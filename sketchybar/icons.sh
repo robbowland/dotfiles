@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# svim
+MODE_NORMAL=􀂯
+MODE_INSERT=􀂥
+MODE_VISUAL=􀂿
+MODE_CMD=􀂙
+MODE_PENDING=􀈏

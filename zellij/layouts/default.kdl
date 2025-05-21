@@ -1,0 +1,41 @@
+layout {
+    default_tab_template {
+        children
+
+        pane size=1 borderless=true {
+            plugin location="file:$HOME/.config/zellij/plugins/zjstatus.wasm" {
+                format_left  " {tabs}"
+                format_right "{mode}"
+                // format_right   "#[fg=#303030]#[bg=#303030,fg=white]{session} {mode}"
+                // format_center  "{command_git_branch}"
+                format_space   ""
+
+                pane_frames false
+
+                mode_locked "#[fg=#303030]lock" 
+                mode_normal "#[fg=#303030]nrml"
+                mode_tab    "#[fg=#7ee687]tabs"
+                mode_pane "#[fg=#fea656]pane"
+                mode_tmux "#[fg=#303030]tmux"
+                mode_resize "#[fg=#89b4fa]rsze"
+                mode_move "#[fg=#89b4fa]move"
+                // mode_locked   "#[bg=#808080,fg=#000000] LOCK#[fg=#808080]"
+                // mode_normal   "#[bg=#79C0FF,fg=#000000] NRML#[fg=#79C0FF]"
+                // mode_tab      "#[bg=#7EE687,fg=#000000] TABS#[fg=#7EE687]"
+                // mode_pane     "#[bg=#FEA656,fg=#000000] PANE#[fg=#FEA656]"
+                // mode_tmux     "#[bg=#ffc387,fg=#000000] TMUX#[fg=#ffc387]"
+                // mode_resize   "#[bg=#89B4FA,fg=#000000] RSZE#[fg=#89B4FA]"
+                // mode_move     "#[bg=#89B4FA,fg=#000000] MOVE#[fg=#89B4FA]"
+
+                tab_normal   "#[fg=#303030][{index}]{name} "
+                tab_active   "#[fg=#303030,bold]{name} "
+            }
+        }
+    }
+    tab name="main" focus=true {
+      pane focus=true cwd="~"
+    }
+    tab name="nvim" focus=false {
+      pane command="nvim" cwd="~/me/code/"
+    }
+}
