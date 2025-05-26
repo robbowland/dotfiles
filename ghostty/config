@@ -1,0 +1,24 @@
+theme = GitHub Dark
+background = 000000
+foreground = ffffff
+
+macos-titlebar-style = hidden
+
+font-size = 16
+font-thicken=true
+font-family="JetBrainsMono Nerd Font Mono"
+
+macos-option-as-alt=true
+
+window-padding-x = 17
+window-padding-x = 16
+
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+quick-terminal-position=center
+quick-terminal-screen=mouse
+quick-terminal-autohide=true
+quick-terminal-animation-duration=0.05
+
+window-vsync=true
+
+shell-integration=fish
