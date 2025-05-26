@@ -1,23 +1,27 @@
 [mode]
-normal_main = { bg = "#000000", bold = true }
-normal_alt = { fg = "blue", bg = "#000000" }
-select_main = { bg = "#000000", bold = true }
-select_alt = { fg = "red", bg = "#000000" }
+normal_main = { fg = "#303030", bg = "#000000", bold = true }
+normal_alt = { fg = "#303030", bg = "#000000" }
+select_main = { fg = "red", bg = "#000000", bold = true }
+select_alt = { fg = "#303030", bg = "#000000" }
 unset_main = { bg = "#000000", bold = true }
-unset_alt = { fg = "red", bg = "#000000" }
+unset_alt = { fg = "#303030", bg = "#000000" }
 
 [status]
-overall = {}
+overall = { fg = "#303030" }
 sep_left = { open = "", close = "" }
 sep_right = { open = "", close = "" }
-perm_sep = { fg = "darkgray" }
-perm_type = { fg = "green" }
+perm_sep = { fg = "#303030" }
+perm_type = { fg = "blue" }
 perm_read = { fg = "yellow" }
 perm_write = { fg = "red" }
-perm_exec = { fg = "cyan" }
+perm_exec = { fg = "green" }
 progress_label = { bold = true }
 progress_normal = { fg = "blue", bg = "#000000" }
 progress_error = { fg = "red", bg = "#000000" }
 
+[input]
+border = { fg = "#ffffff" }
+
 [manager] # Preview theme
 syntect_theme = "~/.config/yazi/preview/GitHubDark.tmTheme"
+cwd = { fg = "#79c0ff" }
