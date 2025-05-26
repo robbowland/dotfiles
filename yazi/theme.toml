@@ -1,2 +1,23 @@
-[manager]
+[mode]
+normal_main = { bg = "#000000", bold = true }
+normal_alt = { fg = "blue", bg = "#000000" }
+select_main = { bg = "#000000", bold = true }
+select_alt = { fg = "red", bg = "#000000" }
+unset_main = { bg = "#000000", bold = true }
+unset_alt = { fg = "red", bg = "#000000" }
+
+[status]
+overall = {}
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+perm_sep = { fg = "darkgray" }
+perm_type = { fg = "green" }
+perm_read = { fg = "yellow" }
+perm_write = { fg = "red" }
+perm_exec = { fg = "cyan" }
+progress_label = { bold = true }
+progress_normal = { fg = "blue", bg = "#000000" }
+progress_error = { fg = "red", bg = "#000000" }
+
+[manager] # Preview theme
 syntect_theme = "~/.config/yazi/preview/GitHubDark.tmTheme"
