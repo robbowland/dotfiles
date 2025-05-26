@@ -1,0 +1,1 @@
+{"author":{"id":"1b2c1fccb682b9788a4768a5e0cc19f6865da0aa6389c37f7393269674b101c8"},"ops":[{"type":1,"timestamp":1748253153,"nonce":"li4ujKW+33ocV1Ag8pEJW/KoQVA=","title":"`yazi` behaviour","message":"Pressing enter on a directory opens up vim-like navigation buffer.\nI'd rather it perform a `cd` to that directory and then close.","files":null}]}
