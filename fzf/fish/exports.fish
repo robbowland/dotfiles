@@ -18,6 +18,6 @@ set -x FZF_DEFAULT_OPTS "
    --prompt='❯ '
    --marker='▸ '
    --pointer='•'
-   --separator='─':
+   --separator='─'
    --scrollbar='│'
    --info='right'"
