@@ -22,6 +22,6 @@ progress_error = { fg = "red", bg = "#000000" }
 [input]
 border = { fg = "#ffffff" }
 
-[manager] # Preview theme
+[mgr] # Preview theme
 syntect_theme = "~/.config/yazi/preview/GitHubDark.tmTheme"
 cwd = { fg = "#79c0ff" }
