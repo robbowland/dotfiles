@@ -1,4 +1,3 @@
-// If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
     normal {
         // Unbind to avoid conflicts with neovim jumps
@@ -185,40 +184,26 @@ keybinds {
 
   shared_except "locked" {
     bind "Ctrl y" {
-       LaunchOrFocusPlugin "file:~/.config/zellij/plugins/forgot.wasm" {}
+       LaunchOrFocusPlugin "file:~/.config/zellij/plugins/forgot.wasm" {
+         floating true
+       }
     }
   }
 }
 
 themes {
-  default {
-        // fg "#D8DEE9"
-        bg "#000000"
-        fg "#000000"
-        black "#000000"
-        red "#FE7A72"
-        // green "#E5EDF2" // replace with white
-        green "#000000"
-        yellow "#EBCB8B"
-        blue "#79C0FF"
-        magenta "#B48EAD"
-        cyan "#88C0D0"
-        white  "#000000"
-        orange "#FEA656"
-  }
-
-test {
-    bg "#000000"// Surface2
-    fg "#000000"// Subtext1
-    red "#000000"
-    green "#000000"
-    blue "#000000"
-    yellow "#000000"
-    magenta "#000000"
-    orange "#000000"
-    cyan "#000000"
-    black "#000000"
-    white "#000000"
+  github_dark {
+      bg "#000000"
+      fg "#000000"
+      black "#000000"
+      red "#FE7A72"
+      green "#000000" // Workaround to hide borders
+      yellow "#EBCB8B"
+      blue "#79C0FF"
+      magenta "#B48EAD"
+      cyan "#88C0D0"
+      white  "#000000" // Workaround to hide borders
+      orange "#FEA656"
   }
 }
 
@@ -229,5 +214,10 @@ plugins {
     session-manager { path "session-manager"; }
 }
 
-theme "test"
+ui {
+  welcome_screen false
+  disable_tips true
+}
+
+theme "github_dark"
 pane_frames false
