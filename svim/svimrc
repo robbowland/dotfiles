@@ -1,0 +1,15 @@
+nnoremap H ^
+nnoremap L $
+
+nnoremap x "_x
+vnoremap x "_x
+nnoremap d "_d
+vnoremap d "_d
+nnoremap c "_c
+vnoremap c "_c
+
+nnoremap J 3j
+nnoremap K 3k
+
+vnoremap J :m '>+3<CR>gv=gv
+vnoremap K :m '<-3<CR>gv=gv
