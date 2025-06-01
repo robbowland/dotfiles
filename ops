@@ -1,0 +1,1 @@
+{"author":{"id":"1b2c1fccb682b9788a4768a5e0cc19f6865da0aa6389c37f7393269674b101c8"},"ops":[{"type":1,"timestamp":1748814471,"nonce":"nRWZCuTsiReoC/0j3cx+SWE4opE=","title":"Port some `nvim` binding to `fish` vi mode","message":"Would be nice to have further consistency of motions if possible.","files":null}]}
