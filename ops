@@ -1,1 +1,1 @@
-{"author":{"id":"1b2c1fccb682b9788a4768a5e0cc19f6865da0aa6389c37f7393269674b101c8"},"ops":[{"type":5,"timestamp":1748814480,"nonce":"KeOt128sMeldgFMurfOcrClWctI=","added":["enhancement"],"removed":null}]}
+{"author":{"id":"1b2c1fccb682b9788a4768a5e0cc19f6865da0aa6389c37f7393269674b101c8"},"ops":[{"type":8,"timestamp":1748814495,"nonce":"70o+gVAVHjZeOZDwK15X0xAlU+w=","target":"f93f9906301767ad808bc33a8db45d32ebeb6c4f01030422df454ceab8ba314e","new_metadata":{"github-id":"I_kwDOOuOAd865PtGz","github-url":"https://github.com/robbowland/dotfiles/issues/6"}}]}
