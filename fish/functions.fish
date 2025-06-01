@@ -18,11 +18,3 @@ function prompt_to_bottom
         echo
     end
 end
-
-######################################
-# Add SSH keys to the Apple Keychain,
-# ensuring passwords only need to be input once.
-######################################
-function add_ssh_keys_to_keychain
-    ssh-add --apple-use-keychain 2>/dev/null
-end
