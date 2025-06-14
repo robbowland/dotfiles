@@ -1,3 +1,6 @@
 [submodule "nvim"]
 	path = nvim
 	url = git@github.com:robbowland/neovim.git
+[submodule "keymaps"]
+	path = keymaps
+	url = git@github.com:robbowland/keymaps.git
