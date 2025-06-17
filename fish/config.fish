@@ -67,5 +67,7 @@ for file in $HOME/.config/{,*/}fish/{aliases,functions,exports}.fish
     end
 end
 
-fish_user_keybindings
-prompt_to_bottom
+if status --is-interactive
+    fish_user_keybindings
+    prompt_to_bottom
+end
