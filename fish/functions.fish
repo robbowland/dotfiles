@@ -1,4 +1,4 @@
-#!/bin/fish
+#!/usr/bin/env fish
 
 ######################################
 # Reload fish configuration.
@@ -22,7 +22,7 @@ end
 ######################################
 # Load custom vi-mode bindings
 ######################################
-function fish_user_key_bindings
+function fish_user_keybindings
     # Ensure Vi-mode is active without clearing defaults
     fish_vi_key_bindings --no-erase
 
