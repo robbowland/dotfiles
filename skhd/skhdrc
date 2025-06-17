@@ -8,10 +8,11 @@ alt - f : yabai -m space --focus 4
 alt - g : yabai -m space --focus 5
 
 # -- Navigation
-alt - h : yabai -m window --focus west
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - l : yabai -m window --focus east
+# These conflict with neovim
+# alt - h : yabai -m window --focus west
+# alt - j : yabai -m window --focus south
+# alt - k : yabai -m window --focus north
+# alt - l : yabai -m window --focus east
 
 # -- Moving windows
 shift + alt - h : yabai -m window --warp west
