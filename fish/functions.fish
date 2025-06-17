@@ -18,3 +18,24 @@ function prompt_to_bottom
         echo
     end
 end
+
+######################################
+# Load custom vi-mode bindings
+######################################
+function fish_user_key_bindings
+    # Ensure Vi-mode is active without clearing defaults
+    fish_vi_key_bindings --no-erase
+
+    # i-mode: map jk to escape (exit insert)
+    bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
+
+    # Normal mode H and L to beginning/end of line
+    bind -M default H beginning-of-line
+    bind -M default L end-of-line
+    bind -M visual H beginning-of-line
+    bind -M visual L end-of-line
+
+    # Move visual block 3 lines
+    bind -M visual J 'commandline -f beginning-of-history; commandline -A ";m \'>+3"; repaint'
+    bind -M visual K 'commandline -f beginning-of-history; commandline -A ";m \'<-3"; repaint'
+end

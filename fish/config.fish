@@ -66,4 +66,6 @@ for file in $HOME/.config/{,*/}fish/{aliases,functions,exports}.fish
         source $file
     end
 end
+
+fish_user_keybindings
 prompt_to_bottom
