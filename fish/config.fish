@@ -1,5 +1,6 @@
 fish_add_path /opt/homebrew/bin/
 fish_add_path "$HOME/.config"
+fish_add_path /opt/homebrew/opt/llvm/bin
 
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
