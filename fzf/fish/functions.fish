@@ -19,21 +19,28 @@ end
 # Fuzzy-select a git commit and show its diff.
 #######################################
 function fzf_git_show_commit --description "Fuzzy-select a git commit and show its diff"
-    set -l sel (git log --graph \
-    --pretty=format:'%C(yellow)%h%Creset %Cblue%ad%Creset %Cgreen%an%Creset %s' \
-    --date=relative --abbrev-commit --color=always \
+    set -l sel (
+    git log \
+      --pretty=format:'%C(yellow)%h%Creset %Cblue%ad%Creset %Cgreen%an%Creset %s' \
+      --date=relative --abbrev-commit --color=always \
+    | awk '{print $1"\t"$0}' \
     | fzf \
         --ansi \
         --no-sort \
         --height=45% \
         --layout=default \
         --bind=alt-p:toggle-preview \
-        --preview-window=right:60%:border-rounded \
-        --preview 'bash -lc "h={1}; git show --color=always $h | bat --plain --language=diff --color=always"')
+        --delimiter='\t' \
+        --with-nth=2.. \
+        --preview 'git show --color=always {1} | bat --plain --language=diff --color=always' \
+        --preview-window=right:60%:border-rounded
+  )
+
     test -z "$sel"; and return
-    set -l hash (string split " " -- $sel)[1]
+    set -l hash (string split "\t" -- $sel)[1]
     git show $hash | bat --plain --language=diff
 end
+alias gshow="fzf_git_show_commit"
 
 ######################################
 # Setup fzf path & autocompletion.
