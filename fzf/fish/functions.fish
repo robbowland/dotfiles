@@ -16,26 +16,10 @@ function fzf_git_checkout --description "Fuzzy-select a git branch and check it 
 end
 
 #######################################
-# Fuzzy-select a git commit and show its diff.
+# Fuzzy-select one or two commits (use <Tab> to multi-select):
+#  - Single commit → show its diff and copy hash to clipboard
+#  - Two commits   → show diff between them and copy "old..new" to clipboard
 #######################################
-####
-# fzf_git_show_commit
-# Fuzzy-select one or two commits (use <Tab> to multi-select):
-#  - Single commit → show its diff and copy hash to clipboard (gray status)
-#  - Two commits   → show diff between them and copy "old..new" to clipboard
-####
-####
-# fzf_git_show_commit
-# Fuzzy-select one or two commits (use <Tab> to multi-select):
-#  - Single commit → show its diff and copy hash to clipboard (gray status)
-#  - Two commits   → show diff between them and copy "old..new" to clipboard
-####
-####
-# fzf_git_show_commit
-# Fuzzy-select one or two commits (use <Tab> to multi-select):
-#  - Single commit → show its diff and copy short hash to clipboard (gray status)
-#  - Two commits   → show diff between them and copy "old..new" to clipboard
-####
 function fzf_git_show_commit --description "View or diff git commits with bat; copies hash or range"
     set -l selection (
     git log \
@@ -84,7 +68,8 @@ function fzf_git_show_commit --description "View or diff git commits with bat; c
             echo "Select one or two commits only."
     end
 end
-alias gshow="fzf_git_show_commit"
+
+#######################################
 # Setup fzf path & autocompletion.
 ######################################
 function _fzf_setup
