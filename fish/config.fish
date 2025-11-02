@@ -56,9 +56,11 @@ set -g fish_pager_color_completion "$PALETTE_GRAY"
 set -g fish_pager_color_description "$PALETTE_GRAY"
 
 # <------------------ Inits ------------------
-fzf --fish | source
-starship init fish | source
-zoxide init fish | source
+for script in $HOME/.config/*/fish/init.fish
+    if test -r $script
+        source $script
+    end
+end
 # >------------------ Inits ------------------
 
 # Source fish files from main and nested config dirs
