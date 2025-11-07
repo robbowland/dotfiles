@@ -5,7 +5,7 @@
     move_down: Some(( code: Char('j'), modifiers: "")),
 
     stash_open: Some(( code: Char('l'), modifiers: "")),
-    open_help: Some(( code: F(1), modifiers: "")),
+    open_help: Some(( code: Char('?'), modifiers: "")),
 
     status_reset_item: Some(( code: Char('U'), modifiers: "SHIFT")),
 )
