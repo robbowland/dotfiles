@@ -85,17 +85,41 @@ keybindings:
   universal:
     - key: enter
       builtin: togglePreview
-      name: Open preview
+      name: open preview
     - key: "?"
       builtin: help
     - key: g
       name: gitui
       command: >
         cd {{.RepoPath}} && gitui
+    - key: tab
+      builtin: nextSection
+      name: next section
+    - key: shift+tab
+      builtin: prevSection
+      name: previous section
+    - key: j
+      builtin: down
+      name: move down
+    - key: k
+      builtin: up
+      name: move up
+    - key: ctrl+j
+      builtin: previewLineDown
+      name: preview scroll down
+    - key: ctrl+k
+      builtin: previewLineUp
+      name: preview scroll up
   prs:
     - key: "C"
       builtin: checkout
       name: (C)heckout
+    - key: ctrl+l
+      builtin: nextSidebarTab
+      name: sidebar next tab
+    - key: ctrl+h
+      builtin: prevSidebarTab
+      name: sidebar prev tab
 repoPaths: {}
 theme:
   ui:
@@ -105,18 +129,18 @@ theme:
       compact: false
   colors:
     text:
-      primary: "#ffffff" # match gitui command_fg
-      secondary: "#79c0ff" # match gitui commit_time
-      inverted: "#0d1117" # dark base for inverted contexts
-      faint: "#484f58" # match gitui disabled_fg
-      warning: "#f85149" # match gitui danger_fg
-      success: "#3fb950" # match gitui diff_line_add
+      primary: "#ffffff"
+      secondary: "#79c0ff"
+      inverted: "#0d1117"
+      faint: "#484f58"
+      warning: "#f85149"
+      success: "#3fb950"
     background:
-      selected: "#101010" # slightly brighter than gitui selection_bg
+      selected: "#101010"
     border:
-      primary: "#ffffff" # match gitui command_fg
-      secondary: "#ffffff" # match gitui command_fg
-      faint: "#484f58" # subdued separator
+      primary: "#ffffff"
+      secondary: "#ffffff"
+      faint: "#484f58"
 pager:
   diff: diffnav
 confirmQuit: false
