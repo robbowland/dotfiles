@@ -1,0 +1,124 @@
+prSections:
+  - title: Queue
+    filters: >-
+      is:open
+      review-requested:@me
+      draft:false
+      sort:updated-desc
+  - title: Mine
+    filters: >-
+      is:open
+      author:@me
+      sort:updated-desc
+  - title: Watch
+    filters: >-
+      is:open
+      involves:@me
+      -author:@me
+      -assignee:@me
+      sort:updated-desc
+issuesSections:
+  - title: Queue
+    filters: >-
+      is:open
+      assignee:@me
+      sort:updated-desc
+  - title: Mine
+    filters: >-
+      is:open
+      author:@me
+      sort:updated-desc
+  - title: Watch
+    filters: >-
+      is:open
+      involves:@me
+      -assignee:@me
+      -author:@me
+      sort:updated-desc
+repo:
+  branchesRefetchIntervalSeconds: 30
+  prsRefetchIntervalSeconds: 60
+defaults:
+  preview:
+    open: true
+    width: 50
+  prsLimit: 20
+  prApproveComment: LGTM
+  issuesLimit: 20
+  view: prs
+  layout:
+    prs:
+      updatedAt:
+        width: 5
+      createdAt:
+        width: 5
+      repo:
+        width: 20
+      author:
+        width: 15
+      authorIcon:
+        hidden: false
+      assignees:
+        width: 20
+        hidden: true
+      base:
+        width: 15
+        hidden: true
+      lines:
+        width: 15
+    issues:
+      updatedAt:
+        width: 5
+      createdAt:
+        width: 5
+      repo:
+        width: 15
+      creator:
+        width: 10
+      creatorIcon:
+        hidden: false
+      assignees:
+        width: 20
+        hidden: true
+  refetchIntervalMinutes: 30
+keybindings:
+  universal:
+    - key: enter
+      builtin: togglePreview
+      name: Open preview
+    - key: "?"
+      builtin: help
+    - key: g
+      name: gitui
+      command: >
+        cd {{.RepoPath}} && gitui
+  prs:
+    - key: "C"
+      builtin: checkout
+      name: (C)heckout
+repoPaths: {}
+theme:
+  ui:
+    sectionsShowCount: true
+    table:
+      showSeparator: true
+      compact: false
+  colors:
+    text:
+      primary: "#ffffff" # match gitui command_fg
+      secondary: "#79c0ff" # match gitui commit_time
+      inverted: "#0d1117" # dark base for inverted contexts
+      faint: "#484f58" # match gitui disabled_fg
+      warning: "#f85149" # match gitui danger_fg
+      success: "#3fb950" # match gitui diff_line_add
+    background:
+      selected: "#101010" # slightly brighter than gitui selection_bg
+    border:
+      primary: "#ffffff" # match gitui command_fg
+      secondary: "#ffffff" # match gitui command_fg
+      faint: "#484f58" # subdued separator
+pager:
+  diff: diffnav
+confirmQuit: false
+showAuthorIcons: true
+smartFilteringAtLaunch: true
