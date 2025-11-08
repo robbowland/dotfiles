@@ -1,0 +1,31 @@
+[delta]
+  syntax-theme = GitHubDark
+  features = github-dark
+  navigate = true
+  line-numbers = true
+  pager = diffnav
+  tabs = 2
+  file-style = "#8b949e" bold
+  file-decoration-style = none
+  line-numbers-left-format = "{nm:>4} "
+  line-numbers-right-format = "│ {np:>4} "
+  line-numbers-left-style = "#8b949e" dim
+  line-numbers-right-style = "#0d1117" dim
+  line-numbers-zero-style = "#8b949e" dim
+  line-numbers-plus-style = "#ffffff" 
+  line-numbers-minus-style = "#ffffff" 
+  wrap-left-symbol = " "
+  wrap-right-symbol = " "
+  wrap-right-prefix-symbol = " "
+  hunk-label = "  󰡏 "
+  hunk-header-line-number-style = "#0d1117"
+  hunk-header-decoration-style = "#0d1117" ul
+
+[delta "github-dark"]
+  minus-style = "syntax #26181C"
+  minus-emph-style = "syntax #7A2F2E"
+  plus-style = "syntax #14261F"
+  plus-emph-style = "syntax #20562E"
+  hunk-header-style = "syntax bold"
+  hunk-header-file-style = "#8b949e"
+  zero-style = syntax
