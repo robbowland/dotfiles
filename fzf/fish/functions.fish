@@ -9,32 +9,36 @@ function fzf_git_checkout --description "Fuzzy-select a git branch and check it 
         --ansi \
         --height=40% \
         --layout=default \
-        --bind=alt-p:toggle-preview \
+        --bind=ctrl-p:toggle-preview \
         --preview-window=right:60%:border-rounded \
         --preview 'bash -lc "git log --color=always -n 10 {} | bat --plain --language=diff --color=always"')
     test -n "$branch"; and git checkout "$branch"
 end
 
 #######################################
-# Fuzzy-select one or two commits (use <Tab> to multi-select):
-#  - Single commit → show its diff and copy hash to clipboard
-#  - Two commits   → show diff between them and copy "old..new" to clipboard
+# Internal helper for `fzf_git_show_commit*` variants.
+# include_author: "with-author" | "no-author"
 #######################################
-function fzf_git_show_commit --description "View or diff git commits with bat; copies hash or range"
+function __fzf_git_show_commit --argument-names include_author
+    set -l log_format "%h%x09%C($PALETTE_YELLOW)%h%Creset %C($PALETTE_MAGENTA)%ad%Creset %s"
+    if test "$include_author" = "with-author"
+        set log_format "%h%x09%C($PALETTE_YELLOW)%h%Creset %C($PALETTE_MAGENTA)%ad%Creset %C($PALETTE_GREEN)%an%Creset %s"
+    end
+
     set -l selection (
     git log \
-      --pretty=format:'%h%x09%C(yellow)%h%Creset %Cblue%ad%Creset %Cgreen%an%Creset %s' \
-      --date=relative --abbrev-commit --color=always \
+      --pretty=format:$log_format \
+      --date=format:%Y-%m-%d\ %H:%M --abbrev-commit --color=always \
     | fzf \
         --ansi \
         --multi \
         --height=45% \
         --layout=default \
-        --bind=alt-p:toggle-preview \
+        --bind=ctrl-p:toggle-preview \
         --delimiter='\t' \
         --with-nth=2.. \
         --preview 'git show --color=always {1} | bat --plain --language=diff --color=always' \
-        --preview-window=right:60%:border-rounded
+        --preview-window=right:60%:border-rounded:hidden
   )
     test -z "$selection"; and return
 
@@ -67,6 +71,20 @@ function fzf_git_show_commit --description "View or diff git commits with bat; c
         case '*'
             echo "Select one or two commits only."
     end
+end
+
+#######################################
+# Fuzzy-select commits showing hash, date, commit message.
+#######################################
+function fzf_git_show_commit --description "View or diff git commits (hash, date, message)"
+    __fzf_git_show_commit no-author
+end
+
+#######################################
+# Variant showing hash, date, author, commit message.
+#######################################
+function fzf_git_show_commit_with_author --description "View or diff git commits (hash, date, author, message)"
+    __fzf_git_show_commit with-author
 end
 
 #######################################

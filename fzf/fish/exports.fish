@@ -9,7 +9,7 @@ end
 
 # Set the theme
 set -x FZF_DEFAULT_OPTS "
-   --color=fg:$PALETTE_GRAY,fg+:$PALLETTE_WHITE,bg:-1,bg+:$PALETTE_BLACK
+   --color=fg:$PALETTE_WHITE,fg+:$PALETTE_WHITE:bold:italic,bg:-1,bg+:$PALETTE_BLACK
    --color=hl:$PALETTE_YELLOW,hl+:$PALETTE_MAGENTA,info:#d0d0d0,marker:$PALETTE_YELLOW
    --color=prompt:"$PALETTE_MAGENTA",spinner:$PALETTE_MAGENTA,pointer:$PALETTE_YELLOW,header:#87afaf
    --color=border:#262626,label:#aeaeae,query:#d9d9d9
