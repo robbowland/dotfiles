@@ -4,7 +4,7 @@
     selection_bg: Some("#ffffff"),
     selection_fg: Some("#000000"),
     selection_bold: Some(true),
-    use_selection_fg: Some(true),
+    use_selection_fg: Some(false),
     cmdbar_bg: Some("#080808"),
     cmdbar_extra_lines_bg: Some("#080808"),
     disabled_fg: Some("#484f58"),
