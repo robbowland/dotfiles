@@ -1,7 +1,8 @@
 #!/bin/sh
 
 install_serie() {
-  brew_install_formulas serie
+	ensure_brew_tap robbowland/kegs
+	brew_install_formulas robbowland/kegs/serie
 }
 
 register_installer install_serie
