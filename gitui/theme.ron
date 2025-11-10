@@ -1,26 +1,47 @@
 (
-    selected_tab: Some("Reset"),
-    command_fg: Some("#484f58"),
-    selection_bg: Some("#ffffff"),
-    selection_fg: Some("#000000"),
-    selection_bold: Some(true),
-    use_selection_fg: Some(false),
-    cmdbar_bg: Some("#080808"),
-    cmdbar_extra_lines_bg: Some("#080808"),
-    disabled_fg: Some("#484f58"),
-    diff_line_add: Some("#3fb950"),
-    diff_line_delete: Some("#f85149"),
-    diff_file_added: Some("#3fb950"),
-    diff_file_removed: Some("#f85149"),
-    diff_file_moved: Some("#bc8cff"),
-    diff_file_modified: Some("#d29922"),
-    commit_hash: Some("#bc8cff"),
-    commit_time: Some("#79c0ff"),
-    commit_author: Some("#3fb950"),
-    danger_fg: Some("#f85149"),
-    push_gauge_bg: Some("#58a6ff"),
-    push_gauge_fg: Some("Reset"),
-    tag_fg: Some("#bc8cff"),
-    branch_fg: Some("#d29922"),
+    // --- core
     syntax: Some("GitHubDark"),
+    selected_tab: Some("Reset"),
+    // --- command
+    command_fg: Some("#e6edf3"), // PALETTE_WHITE
+    cmdbar_bg: Some("#000000"), // PALETTE_BLACK
+    cmdbar_extra_lines_bg: Some("#000000"),
+    // --- selection
+    selection_bg: Some("#0a0a0a"), // PALETTE_BG_SEL
+    selection_fg: Some("#000000"), // PALETTE_BLACK (ignored because use_selection_fg=false)
+    selection_bold: Some(true),
+    selection_italic: Some(false),
+    use_selection_fg: Some(false),
+    // --- file tree
+    file_tree_path_selected_fg: Some("#79c0ff"), // PALETTE_CYAN
+    file_tree_path_unselected_fg: Some("#4e99d4"), // PALETTE_BLUE_DIM
+    file_tree_path_icon_selected_fg: Some("#79c0ff"), // PALETTE_CYAN
+    file_tree_path_icon_unselected_fg: Some("#4e99d4"), // PALETTE_CYAN_DIM
+    // --- diff
+    diff_line_add: Some("#3fb950"), // PALETTE_GREEN
+    diff_line_delete: Some("#f85149"), // PALETTE_RED
+    diff_file_added: Some("#3fb950"), // PALETTE_GREEN
+    diff_file_removed: Some("#f85149"), // PALETTE_RED
+    diff_file_moved: Some("#bc8cff"), // PALETTE_MAGENTA
+    diff_file_modified: Some("#d29922"), // PALETTE_YELLOW
+    // --- status
+    status_new_unselected_fg: Some("#2f9142"), // PALETTE_GREEN_DIM
+    status_modified_unselected_fg: Some("#9d731a"), // PALETTE_YELLOW_DIM
+    status_deleted_unselected_fg: Some("#bd3d38"), // PALETTE_RED_DIM
+    status_renamed_unselected_fg: Some("#946ccc"), // PALETTE_MAGENTA_DIM
+    status_conflicted_unselected_fg: Some("#aa541e"), // PALETTE_ORANGE_DIM
+    status_typechange_unselected_fg: Some("#ad4d85"), // PALETTE_PINK_DIM
+    // --- commit
+    commit_hash: Some("#bc8cff"), // PALETTE_MAGENTA
+    commit_time: Some("#79c0ff"), // PALETTE_CYAN
+    commit_author: Some("#3fb950"), // PALETTE_GREEN
+    // --- branches / tags
+    branch_fg: Some("#d29922"), // PALETTE_YELLOW
+    tag_fg: Some("#bc8cff"), // PALETTE_MAGENTA
+    // --- misc
+    disabled_fg: Some("#303030"), // PALETTE_GRAY_SUBTLE
+    danger_fg: Some("#f85149"), // PALETTE_RED
+    // --- push
+    push_gauge_bg: Some("#58a6ff"), // PALETTE_BLUE
+    push_gauge_fg: Some("Reset"),
 )
