@@ -1,0 +1,40 @@
+[mgr]
+hovered         = { bg = "${PALETTE_SURFACE_0}", bold = true }
+preview_hovered = { bg = "${PALETTE_SURFACE_0}", bold = true }
+cwd             = { fg = "${PALETTE_CYAN}" }
+syntect_theme   = "~/.config/yazi/preview/GitHubDark.tmTheme"
+
+[filetype]
+rules = [
+  { name = "*/",       fg = "${PALETTE_CYAN}" },
+  { is = "link",       fg = "${PALETTE_MAGENTA}" },
+  { is = "orphan",     fg = "${PALETTE_RED}" },
+  { is = "exec",       fg = "${PALETTE_GREEN}" },
+  { name = "*.zip",    fg = "${PALETTE_ORANGE}" },
+  { name = "*.tar",    fg = "${PALETTE_ORANGE}" },
+  { name = "*.gz",     fg = "${PALETTE_ORANGE}" },
+  { name = "*.7z",     fg = "${PALETTE_ORANGE}" },
+  { mime = "image/*",  fg = "${PALETTE_YELLOW}" },
+  { mime = "video/*",  fg = "${PALETTE_MAGENTA}" },
+  { mime = "audio/*",  fg = "${PALETTE_MAGENTA}" },
+  { name = "*.dmg",    fg = "${PALETTE_YELLOW}" },
+  { name = "*.iso",    fg = "${PALETTE_YELLOW}" },
+  { name = ".*",       fg = "${PALETTE_GRAY_DIM}" },
+]
+
+[mode]
+normal_main = { bg = "${PALETTE_BLACK}" }
+normal_alt  = { bg = "${PALETTE_BLACK}" }
+
+[status]
+overall         = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+sep_left        = { open = "", close = "", fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+sep_right       = { open = "", close = "", fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+perm_sep        = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+perm_type       = { fg = "${PALETTE_BLUE}",   bg = "${PALETTE_BLACK}" }
+perm_read       = { fg = "${PALETTE_YELLOW}", bg = "${PALETTE_BLACK}" }
+perm_write      = { fg = "${PALETTE_RED}",    bg = "${PALETTE_BLACK}" }
+perm_exec       = { fg = "${PALETTE_GREEN}",  bg = "${PALETTE_BLACK}" }
+progress_label  = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+progress_normal = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+progress_error  = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }

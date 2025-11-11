@@ -1,27 +1,40 @@
+[mgr]
+hovered         = { bg = "#0c0c0c", bold = true }
+preview_hovered = { bg = "#0c0c0c", bold = true }
+cwd             = { fg = "#79c0ff" }
+syntect_theme   = "~/.config/yazi/preview/GitHubDark.tmTheme"
+
+[filetype]
+rules = [
+  { name = "*/",       fg = "#79c0ff" },
+  { is = "link",       fg = "#bc8cff" },
+  { is = "orphan",     fg = "#f85149" },
+  { is = "exec",       fg = "#3fb950" },
+  { name = "*.zip",    fg = "#db6d28" },
+  { name = "*.tar",    fg = "#db6d28" },
+  { name = "*.gz",     fg = "#db6d28" },
+  { name = "*.7z",     fg = "#db6d28" },
+  { mime = "image/*",  fg = "#d29922" },
+  { mime = "video/*",  fg = "#bc8cff" },
+  { mime = "audio/*",  fg = "#bc8cff" },
+  { name = "*.dmg",    fg = "#d29922" },
+  { name = "*.iso",    fg = "#d29922" },
+  { name = ".*",       fg = "#303030" },
+]
+
 [mode]
-normal_main = { fg = "#303030", bg = "#000000", bold = true }
-normal_alt = { fg = "#303030", bg = "#000000" }
-select_main = { fg = "red", bg = "#000000", bold = true }
-select_alt = { fg = "#303030", bg = "#000000" }
-unset_main = { bg = "#000000", bold = true }
-unset_alt = { fg = "#303030", bg = "#000000" }
+normal_main = { bg = "#000000" }
+normal_alt  = { bg = "#000000" }
 
 [status]
-overall = { fg = "#303030" }
-sep_left = { open = "", close = "" }
-sep_right = { open = "", close = "" }
-perm_sep = { fg = "#303030" }
-perm_type = { fg = "blue" }
-perm_read = { fg = "yellow" }
-perm_write = { fg = "red" }
-perm_exec = { fg = "green" }
-progress_label = { bold = true }
-progress_normal = { fg = "blue", bg = "#000000" }
-progress_error = { fg = "red", bg = "#000000" }
-
-[input]
-border = { fg = "#ffffff" }
-
-[mgr] # Preview theme
-syntect_theme = "~/.config/yazi/preview/GitHubDark.tmTheme"
-cwd = { fg = "#79c0ff" }
+overall         = { fg = "#303030", bg = "#000000" }
+sep_left        = { open = "", close = "", fg = "#303030", bg = "#000000" }
+sep_right       = { open = "", close = "", fg = "#303030", bg = "#000000" }
+perm_sep        = { fg = "#303030", bg = "#000000" }
+perm_type       = { fg = "#58a6ff",   bg = "#000000" }
+perm_read       = { fg = "#d29922", bg = "#000000" }
+perm_write      = { fg = "#f85149",    bg = "#000000" }
+perm_exec       = { fg = "#3fb950",  bg = "#000000" }
+progress_label  = { fg = "#303030", bg = "#000000" }
+progress_normal = { fg = "#303030", bg = "#000000" }
+progress_error  = { fg = "#303030", bg = "#000000" }
