@@ -10,17 +10,18 @@
   disabled_fg:              Some("#b7c2cc"),
 
   // selection (microcontrast + readable bold)
+  use_selection_bg:         Some(true),
+  use_selection_fg:         Some(false),
   selection_bg:             Some("#0c0c0c"),
   selection_fg:             Some("#000000"),
   selection_bold:           Some(true),
   selection_italic:         Some(false),
-  use_selection_fg:         Some(false),
 
-  // file tree
-  file_tree_path_unselected_fg:      Some("#3e7cc4"),
-  file_tree_path_selected_fg:        Some("#79c0ff"),
-  file_tree_path_icon_unselected_fg: Some("#3e7cc4"),
-  file_tree_path_icon_selected_fg:   Some("#79c0ff"),
+  // file tree (unselected = base, selected = bright)
+  file_tree_path_unselected_fg:      Some("#79c0ff"),
+  file_tree_path_selected_fg:        Some("#a5d6ff"),
+  file_tree_path_icon_unselected_fg: Some("#79c0ff"),
+  file_tree_path_icon_selected_fg:   Some("#a5d6ff"),
 
   // diff
   diff_line_add:             Some("#3fb950"),
@@ -30,13 +31,13 @@
   diff_file_moved:           Some("#bc8cff"),
   diff_file_modified:        Some("#d29922"),
 
-  // status (dimmed for unselected)
-  status_new_unselected_fg:        Some("#2f9142"),
-  status_modified_unselected_fg:   Some("#9d731a"),
-  status_deleted_unselected_fg:    Some("#bd3d38"),
-  status_renamed_unselected_fg:    Some("#946ccc"),
-  status_conflicted_unselected_fg: Some("#aa541e"),
-  status_typechange_unselected_fg: Some("#ad4d85"),
+  // status (unselected = base; selection state gets the bold/bg above)
+  status_new_unselected_fg:        Some("#3fb950"),
+  status_modified_unselected_fg:   Some("#d29922"),
+  status_deleted_unselected_fg:    Some("#f85149"),
+  status_renamed_unselected_fg:    Some("#bc8cff"),
+  status_conflicted_unselected_fg: Some("#db6d28"),
+  status_typechange_unselected_fg: Some("#db61a2"),
 
   // commit list
   commit_hash:               Some("#bc8cff"),

@@ -10,17 +10,18 @@
   disabled_fg:              Some("${PALETTE_WHITE_DIM}"),
 
   // selection (microcontrast + readable bold)
-  selection_bg:             Some("${PALETTE_SURFACE_1}"),
+  use_selection_bg:         Some(true),
+  use_selection_fg:         Some(false),
+  selection_bg:             Some("${PALETTE_SURFACE_0}"),
   selection_fg:             Some("${PALETTE_BLACK}"),
   selection_bold:           Some(true),
   selection_italic:         Some(false),
-  use_selection_fg:         Some(false),
 
-  // file tree
-  file_tree_path_unselected_fg:      Some("${PALETTE_BLUE_DIM}"),
-  file_tree_path_selected_fg:        Some("${PALETTE_CYAN}"),
-  file_tree_path_icon_unselected_fg: Some("${PALETTE_BLUE_DIM}"),
-  file_tree_path_icon_selected_fg:   Some("${PALETTE_CYAN}"),
+  // file tree (unselected = base, selected = bright)
+  file_tree_path_unselected_fg:      Some("${PALETTE_CYAN}"),
+  file_tree_path_selected_fg:        Some("${PALETTE_CYAN_BRIGHT}"),
+  file_tree_path_icon_unselected_fg: Some("${PALETTE_CYAN}"),
+  file_tree_path_icon_selected_fg:   Some("${PALETTE_CYAN_BRIGHT}"),
 
   // diff
   diff_line_add:             Some("${PALETTE_GREEN}"),
@@ -30,13 +31,13 @@
   diff_file_moved:           Some("${PALETTE_MAGENTA}"),
   diff_file_modified:        Some("${PALETTE_YELLOW}"),
 
-  // status (dimmed for unselected)
-  status_new_unselected_fg:        Some("${PALETTE_GREEN_DIM}"),
-  status_modified_unselected_fg:   Some("${PALETTE_YELLOW_DIM}"),
-  status_deleted_unselected_fg:    Some("${PALETTE_RED_DIM}"),
-  status_renamed_unselected_fg:    Some("${PALETTE_MAGENTA_DIM}"),
-  status_conflicted_unselected_fg: Some("${PALETTE_ORANGE_DIM}"),
-  status_typechange_unselected_fg: Some("${PALETTE_PINK_DIM}"),
+  // status (unselected = base; selection state gets the bold/bg above)
+  status_new_unselected_fg:        Some("${PALETTE_GREEN}"),
+  status_modified_unselected_fg:   Some("${PALETTE_YELLOW}"),
+  status_deleted_unselected_fg:    Some("${PALETTE_RED}"),
+  status_renamed_unselected_fg:    Some("${PALETTE_MAGENTA}"),
+  status_conflicted_unselected_fg: Some("${PALETTE_ORANGE}"),
+  status_typechange_unselected_fg: Some("${PALETTE_PINK}"),
 
   // commit list
   commit_hash:               Some("${PALETTE_MAGENTA}"),
