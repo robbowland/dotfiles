@@ -7,20 +7,33 @@ if type -q fd
     set -x FZF_ALT_C_COMMAND "fd -t d . $HOME"
 end
 
-# Set the theme
+# theme
 set -x FZF_DEFAULT_OPTS "
-   --color=fg:$PALETTE_WHITE,fg+:$PALETTE_WHITE:bold:italic,bg:-1,bg+:$PALETTE_BLACK
-   --color=hl:$PALETTE_YELLOW,hl+:$PALETTE_MAGENTA,info:#d0d0d0,marker:$PALETTE_YELLOW
-   --color=prompt:"$PALETTE_MAGENTA",spinner:$PALETTE_MAGENTA,pointer:$PALETTE_YELLOW,header:#87afaf
-   --color=border:#262626,label:#aeaeae,query:#d9d9d9
-   --prompt='❯ '
-   --marker='▸ '
-   --pointer='•'
-   --separator='─'
-   --scrollbar=''
-   --info='right'
-   --layout=default
-   --bind=alt-p:toggle-preview
+  --color=\
+fg:$PALETTE_WHITE,\
+bg:$PALETTE_BLACK,\
+hl:$PALETTE_YELLOW,\
+fg+:$PALETTE_WHITE_BRIGHT:bold,\
+bg+:$PALETTE_SURFACE_1,\
+hl+:$PALETTE_YELLOW_BRIGHT:bold,\
+info:$PALETTE_GRAY_DIM,\
+border:$PALETTE_GRAY_DIM,\
+gutter:$PALETTE_BLACK,\
+prompt:$PALETTE_MAGENTA,\
+pointer:$PALETTE_YELLOW,\
+marker:$PALETTE_YELLOW,\
+spinner:$PALETTE_CYAN,\
+header:$PALETTE_CYAN,\
+label:$PALETTE_GRAY,\
+query:$PALETTE_WHITE \
+  --prompt='❯ '
+  --marker='▸ '
+  --pointer='•'
+  --separator='─'
+  --scrollbar=''
+  --info=right
+  --layout=default
+  --bind=ctrl-p:toggle-preview
 "
 
 set -x FZF_CTRL_R_OPTS "
