@@ -1,0 +1,82 @@
+[keybind]
+user_command_view_toggle_1 = ["d"]
+
+[core.user_command]
+commands_1 = { name = "delta diff", commands = ["sh", "-c", "git --no-pager diff --color=always {{first_parent_hash}} {{target_hash}} | delta --paging=never"] }
+
+[ui.detail]
+height = 12
+
+[ui.user_command]
+height = 10
+
+[graph.color]
+branches = [
+  "${PALETTE_BLUE}",
+  "${PALETTE_GREEN}",
+  "${PALETTE_YELLOW}",
+  "${PALETTE_MAGENTA}",
+  "${PALETTE_ORANGE}",
+  "${PALETTE_PINK}",
+]
+edge = "${PALETTE_GRAY_DIM}"
+background = "${PALETTE_BLACK}"
+
+[color]
+# non-selected baseline
+fg = "${PALETTE_WHITE}"
+bg = "${PALETTE_BLACK}"
+
+# selected rows: bright + plate + bold
+list_selected_fg = "${PALETTE_WHITE_BRIGHT}"
+list_selected_bg = "${PALETTE_SURFACE_1}"
+list_selected_bold = true
+list_selected_italic = false
+
+# selected refs follow same rule
+ref_selected_fg = "${PALETTE_WHITE_BRIGHT}"
+ref_selected_bg = "${PALETTE_SURFACE_1}"
+ref_selected_bold = true
+ref_selected_italic = false
+
+# list text stays BASE, not dim
+list_subject_fg = "${PALETTE_WHITE}"
+list_name_fg    = "${PALETTE_BLUE}"
+list_hash_fg    = "${PALETTE_YELLOW}"
+list_date_fg    = "${PALETTE_CYAN}"
+
+# match highlight remains readable
+list_match_fg = "${PALETTE_BLACK}"
+list_match_bg = "${PALETTE_YELLOW}"
+
+# ref indicators
+list_ref_paren_fg         = "${PALETTE_YELLOW}"
+list_ref_branch_fg        = "${PALETTE_GREEN}"
+list_ref_remote_branch_fg = "${PALETTE_RED}"
+list_ref_tag_fg           = "${PALETTE_YELLOW}"
+list_ref_stash_fg         = "${PALETTE_MAGENTA}"
+list_head_fg              = "${PALETTE_BLUE}"
+
+# detail panel
+detail_email_fg              = "${PALETTE_BLUE}"
+detail_ref_branch_fg         = "${PALETTE_GREEN}"
+detail_ref_remote_branch_fg  = "${PALETTE_RED}"
+detail_ref_tag_fg            = "${PALETTE_YELLOW}"
+detail_file_change_add_fg    = "${PALETTE_GREEN}"
+detail_file_change_modify_fg = "${PALETTE_YELLOW}"
+detail_file_change_delete_fg = "${PALETTE_RED}"
+detail_file_change_move_fg   = "${PALETTE_MAGENTA}"
+
+# status + misc
+status_input_fg           = "${PALETTE_WHITE}"
+status_input_transient_fg = "${PALETTE_GRAY}"
+status_info_fg            = "${PALETTE_CYAN}"
+status_success_fg         = "${PALETTE_GREEN}"
+status_warn_fg            = "${PALETTE_YELLOW}"
+status_error_fg           = "${PALETTE_RED}"
+virtual_cursor_fg         = "${PALETTE_BLUE}"
+help_block_title_fg       = "${PALETTE_GREEN}"
+help_key_fg               = "${PALETTE_YELLOW}"
+
+# chrome
+divider_fg = "${PALETTE_GRAY_DIM}"
