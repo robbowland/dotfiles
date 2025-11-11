@@ -6,20 +6,20 @@ syntect_theme   = "~/.config/yazi/preview/GitHubDark.tmTheme"
 
 [filetype]
 rules = [
-  { name = "*/",       fg = "#79c0ff" },
+  { name = "*/",       fg = "#58a6ff" },
   { is = "link",       fg = "#bc8cff" },
-  { is = "orphan",     fg = "#f85149" },
+  { is = "orphan",     fg = "#ff7b72" },
   { is = "exec",       fg = "#3fb950" },
-  { name = "*.zip",    fg = "#db6d28" },
-  { name = "*.tar",    fg = "#db6d28" },
-  { name = "*.gz",     fg = "#db6d28" },
-  { name = "*.7z",     fg = "#db6d28" },
-  { mime = "image/*",  fg = "#d29922" },
+  { name = "*.zip",    fg = "#f0883e" },
+  { name = "*.tar",    fg = "#f0883e" },
+  { name = "*.gz",     fg = "#f0883e" },
+  { name = "*.7z",     fg = "#f0883e" },
+  { mime = "image/*",  fg = "#e3b341" },
   { mime = "video/*",  fg = "#bc8cff" },
   { mime = "audio/*",  fg = "#bc8cff" },
-  { name = "*.dmg",    fg = "#d29922" },
-  { name = "*.iso",    fg = "#d29922" },
-  { name = ".*",       fg = "#303030" },
+  { name = "*.dmg",    fg = "#e3b341" },
+  { name = "*.iso",    fg = "#e3b341" },
+  { name = ".*",       fg = "#484f58" },
 ]
 
 [mode]
@@ -27,14 +27,14 @@ normal_main = { bg = "#000000" }
 normal_alt  = { bg = "#000000" }
 
 [status]
-overall         = { fg = "#303030", bg = "#000000" }
-sep_left        = { open = "", close = "", fg = "#303030", bg = "#000000" }
-sep_right       = { open = "", close = "", fg = "#303030", bg = "#000000" }
-perm_sep        = { fg = "#303030", bg = "#000000" }
-perm_type       = { fg = "#58a6ff",   bg = "#000000" }
-perm_read       = { fg = "#d29922", bg = "#000000" }
-perm_write      = { fg = "#f85149",    bg = "#000000" }
+overall         = { fg = "#484f58", bg = "#000000" }
+sep_left        = { open = "", close = "", fg = "#484f58", bg = "#000000" }
+sep_right       = { open = "", close = "", fg = "#484f58", bg = "#000000" }
+perm_sep        = { fg = "#484f58", bg = "#000000" }
+perm_type       = { fg = "#79c0ff",   bg = "#000000" }
+perm_read       = { fg = "#e3b341", bg = "#000000" }
+perm_write      = { fg = "#ff7b72",    bg = "#000000" }
 perm_exec       = { fg = "#3fb950",  bg = "#000000" }
-progress_label  = { fg = "#303030", bg = "#000000" }
-progress_normal = { fg = "#303030", bg = "#000000" }
-progress_error  = { fg = "#303030", bg = "#000000" }
+progress_label  = { fg = "#484f58", bg = "#000000" }
+progress_normal = { fg = "#484f58", bg = "#000000" }
+progress_error  = { fg = "#484f58", bg = "#000000" }

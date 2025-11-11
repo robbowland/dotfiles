@@ -43,7 +43,7 @@ ref_selected_italic = false
 list_subject_fg = "${PALETTE_WHITE}"
 list_name_fg    = "${PALETTE_BLUE}"
 list_hash_fg    = "${PALETTE_YELLOW}"
-list_date_fg    = "${PALETTE_CYAN}"
+list_date_fg    = "${PALETTE_BLUE}"
 
 # match highlight remains readable
 list_match_fg = "${PALETTE_BLACK}"
@@ -70,11 +70,11 @@ detail_file_change_move_fg   = "${PALETTE_MAGENTA}"
 # status + misc
 status_input_fg           = "${PALETTE_WHITE}"
 status_input_transient_fg = "${PALETTE_GRAY}"
-status_info_fg            = "${PALETTE_CYAN}"
+status_info_fg            = "${PALETTE_BLUE}"
 status_success_fg         = "${PALETTE_GREEN}"
 status_warn_fg            = "${PALETTE_YELLOW}"
 status_error_fg           = "${PALETTE_RED}"
-virtual_cursor_fg         = "${PALETTE_BLUE}"
+virtual_cursor_fg         = "${PALETTE_BLUE_BRIGHT}"
 help_block_title_fg       = "${PALETTE_GREEN}"
 help_key_fg               = "${PALETTE_YELLOW}"
 

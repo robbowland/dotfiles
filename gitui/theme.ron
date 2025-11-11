@@ -7,7 +7,7 @@
   cmdbar_bg:                Some("#000000"),
   cmdbar_extra_lines_bg:    Some("#000000"),
   command_fg:               Some("#e6edf3"),
-  disabled_fg:              Some("#484f58"),
+  disabled_fg:              Some("#6e7681"),
 
   // selection (microcontrast + readable bold)
   use_selection_bg:         Some(true),
@@ -25,31 +25,31 @@
 
   // diff
   diff_line_add:             Some("#3fb950"),
-  diff_line_delete:          Some("#f85149"),
+  diff_line_delete:          Some("#ff7b72"),
   diff_file_added:           Some("#3fb950"),
-  diff_file_removed:         Some("#f85149"),
+  diff_file_removed:         Some("#ff7b72"),
   diff_file_moved:           Some("#bc8cff"),
-  diff_file_modified:        Some("#d29922"),
+  diff_file_modified:        Some("#e3b341"),
 
   // status (unselected = base; selection state gets the bold/bg above)
   status_new_unselected_fg:        Some("#3fb950"),
-  status_modified_unselected_fg:   Some("#d29922"),
-  status_deleted_unselected_fg:    Some("#f85149"),
+  status_modified_unselected_fg:   Some("#e3b341"),
+  status_deleted_unselected_fg:    Some("#ff7b72"),
   status_renamed_unselected_fg:    Some("#bc8cff"),
-  status_conflicted_unselected_fg: Some("#db6d28"),
+  status_conflicted_unselected_fg: Some("#f0883e"),
   status_typechange_unselected_fg: Some("#db61a2"),
 
   // commit list
   commit_hash:               Some("#bc8cff"),
-  commit_time:               Some("#79c0ff"),
+  commit_time:               Some("#a3e8f2"),
   commit_author:             Some("#3fb950"),
 
   // branches / tags
-  branch_fg:                 Some("#d29922"),
+  branch_fg:                 Some("#e3b341"),
   tag_fg:                    Some("#bc8cff"),
 
   // misc
-  danger_fg:                 Some("#f85149"),
-  push_gauge_bg:             Some("#58a6ff"),
+  danger_fg:                 Some("#ff7b72"),
+  push_gauge_bg:             Some("#79c0ff"),
   push_gauge_fg:             Some("Reset"),
 )

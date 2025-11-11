@@ -18,10 +18,10 @@
   selection_italic:         Some(false),
 
   // file tree (unselected = base, selected = bright)
-  file_tree_path_unselected_fg:      Some("${PALETTE_CYAN}"),
-  file_tree_path_selected_fg:        Some("${PALETTE_CYAN_BRIGHT}"),
-  file_tree_path_icon_unselected_fg: Some("${PALETTE_CYAN}"),
-  file_tree_path_icon_selected_fg:   Some("${PALETTE_CYAN_BRIGHT}"),
+  file_tree_path_unselected_fg:      Some("${PALETTE_BLUE}"),
+  file_tree_path_selected_fg:        Some("${PALETTE_BLUE_BRIGHT}"),
+  file_tree_path_icon_unselected_fg: Some("${PALETTE_BLUE}"),
+  file_tree_path_icon_selected_fg:   Some("${PALETTE_BLUE_BRIGHT}"),
 
   // diff
   diff_line_add:             Some("${PALETTE_GREEN}"),

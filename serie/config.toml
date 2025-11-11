@@ -12,14 +12,14 @@ height = 10
 
 [graph.color]
 branches = [
-  "#58a6ff",
+  "#79c0ff",
   "#3fb950",
-  "#d29922",
+  "#e3b341",
   "#bc8cff",
-  "#db6d28",
+  "#f0883e",
   "#db61a2",
 ]
-edge = "#303030"
+edge = "#484f58"
 background = "#000000"
 
 [color]
@@ -41,42 +41,42 @@ ref_selected_italic = false
 
 # list text stays BASE, not dim
 list_subject_fg = "#e6edf3"
-list_name_fg    = "#58a6ff"
-list_hash_fg    = "#d29922"
+list_name_fg    = "#79c0ff"
+list_hash_fg    = "#e3b341"
 list_date_fg    = "#79c0ff"
 
 # match highlight remains readable
 list_match_fg = "#000000"
-list_match_bg = "#d29922"
+list_match_bg = "#e3b341"
 
 # ref indicators
-list_ref_paren_fg         = "#d29922"
+list_ref_paren_fg         = "#e3b341"
 list_ref_branch_fg        = "#3fb950"
-list_ref_remote_branch_fg = "#f85149"
-list_ref_tag_fg           = "#d29922"
+list_ref_remote_branch_fg = "#ff7b72"
+list_ref_tag_fg           = "#e3b341"
 list_ref_stash_fg         = "#bc8cff"
-list_head_fg              = "#58a6ff"
+list_head_fg              = "#79c0ff"
 
 # detail panel
-detail_email_fg              = "#58a6ff"
+detail_email_fg              = "#79c0ff"
 detail_ref_branch_fg         = "#3fb950"
-detail_ref_remote_branch_fg  = "#f85149"
-detail_ref_tag_fg            = "#d29922"
+detail_ref_remote_branch_fg  = "#ff7b72"
+detail_ref_tag_fg            = "#e3b341"
 detail_file_change_add_fg    = "#3fb950"
-detail_file_change_modify_fg = "#d29922"
-detail_file_change_delete_fg = "#f85149"
+detail_file_change_modify_fg = "#e3b341"
+detail_file_change_delete_fg = "#ff7b72"
 detail_file_change_move_fg   = "#bc8cff"
 
 # status + misc
 status_input_fg           = "#e6edf3"
-status_input_transient_fg = "#484f58"
+status_input_transient_fg = "#6e7681"
 status_info_fg            = "#79c0ff"
 status_success_fg         = "#3fb950"
-status_warn_fg            = "#d29922"
-status_error_fg           = "#f85149"
-virtual_cursor_fg         = "#58a6ff"
+status_warn_fg            = "#e3b341"
+status_error_fg           = "#ff7b72"
+virtual_cursor_fg         = "#a5d6ff"
 help_block_title_fg       = "#3fb950"
-help_key_fg               = "#d29922"
+help_key_fg               = "#e3b341"
 
 # chrome
-divider_fg = "#303030"
+divider_fg = "#484f58"

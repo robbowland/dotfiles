@@ -1,12 +1,12 @@
 [mgr]
 hovered         = { bg = "${PALETTE_SURFACE_0}", bold = true }
 preview_hovered = { bg = "${PALETTE_SURFACE_0}", bold = true }
-cwd             = { fg = "${PALETTE_CYAN}" }
+cwd             = { fg = "${PALETTE_BLUE}" }
 syntect_theme   = "~/.config/yazi/preview/GitHubDark.tmTheme"
 
 [filetype]
 rules = [
-  { name = "*/",       fg = "${PALETTE_CYAN}" },
+  { name = "*/",       fg = "${PALETTE_BLUE_DIM}" },
   { is = "link",       fg = "${PALETTE_MAGENTA}" },
   { is = "orphan",     fg = "${PALETTE_RED}" },
   { is = "exec",       fg = "${PALETTE_GREEN}" },

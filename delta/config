@@ -6,41 +6,38 @@ line-numbers = true
 pager = "diffnav"
 tabs = 2
 
-# file header
+# --- file header
 file-style = "#e6edf3" bold
 file-decoration-style = none
 
-# line numbers — base + subtle dimming
+# --- line numbers (neutral; brighten +/- counters only)
 line-numbers-left-format = "{nm:>4} "
 line-numbers-right-format = "│ {np:>4} "
-line-numbers-left-style = "#484f58"
-line-numbers-right-style = "#484f58"
-line-numbers-zero-style = "#484f58"
+line-numbers-left-style = "#6e7681"
+line-numbers-right-style = "#6e7681"
+line-numbers-zero-style = "#6e7681"
 line-numbers-plus-style = "#ffffff"
 line-numbers-minus-style = "#ffffff"
 
-# wrap symbols invisible
+# --- wrap symbols (invisible)
 wrap-left-symbol = " "
 wrap-right-symbol = " "
 wrap-right-prefix-symbol = " "
 
-# hunk display
+# --- hunk header
 hunk-label = "  󰡏 "
-hunk-header-line-number-style = "#101010"
-hunk-header-decoration-style = "#101010" ul
+hunk-header-style = "syntax bold"
+hunk-header-file-style = "#6e7681"
+hunk-header-line-number-style = "#6e7681"
+file-decoration-style = none
+hunk-header-decoration-style = none
+commit-decoration-style = none
 
 [delta "github-dark"]
-# minus (deletions) use palette reds and microcontrast
-minus-style = "syntax #101010"
-minus-emph-style = "syntax #bd3d38"
+minus-style = "syntax #3b1f25"
+minus-emph-style = "syntax #9b3836"
+plus-style = "syntax #1f3a30"
+plus-emph-style = "syntax #2c7a41"
 
-# plus (additions) use palette greens and microcontrast
-plus-style = "syntax #101010"
-plus-emph-style = "syntax #2f9142"
-
-# hunk headers bold + base fg
-hunk-header-style = "syntax bold"
-hunk-header-file-style = "#484f58"
-
-# unchanged context
-zero-style = syntax
+# Unchanged context (keep syntax)
+zero-style = "syntax"
