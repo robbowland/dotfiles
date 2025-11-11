@@ -7,7 +7,7 @@
   cmdbar_bg:                Some("${PALETTE_BLACK}"),
   cmdbar_extra_lines_bg:    Some("${PALETTE_BLACK}"),
   command_fg:               Some("${PALETTE_WHITE}"),
-  disabled_fg:              Some("${PALETTE_WHITE_DIM}"),
+  disabled_fg:              Some("${PALETTE_GRAY}"),
 
   // selection (microcontrast + readable bold)
   use_selection_bg:         Some(true),

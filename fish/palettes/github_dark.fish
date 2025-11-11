@@ -8,9 +8,9 @@ set -gx PALETTE_DARKEST '#080808'
 set -gx PALETTE_BLACK '#000000'
 
 #-- surfaces (microcontrast)
-set -gx PALETTE_SURFACE_0 '#080808' # background
-set -gx PALETTE_SURFACE_1 '#0c0c0c' # subtle selection
-set -gx PALETTE_SURFACE_2 '#1a1a1a' # hover / active
+set -gx PALETTE_SURFACE_0 '#0c0c0c' # new background
+set -gx PALETTE_SURFACE_1 '#101010' # subtle selection
+set -gx PALETTE_SURFACE_2 '#181818' # hover / active
 
 #-- white
 set -gx PALETTE_WHITE_BRIGHT '#ffffff'
