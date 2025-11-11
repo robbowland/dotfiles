@@ -6,6 +6,7 @@ set -eu
 #  execute them in the order they are registered
 # ==================================================
 
+# Resolve repo root from .../.scripts/install/install.sh → <root>
 CONFIG_ROOT="$(CDPATH='' cd -- "$(dirname -- "$0")/../.." && pwd)"
 
 # shellcheck source=.scripts/install/lib.sh
@@ -14,19 +15,22 @@ CONFIG_ROOT="$(CDPATH='' cd -- "$(dirname -- "$0")/../.." && pwd)"
 ensure_command_line_tools
 ensure_homebrew
 
-scripts=$(find "$CONFIG_ROOT" -mindepth 2 -maxdepth 2 -name install.sh \
-	! -path "$CONFIG_ROOT/.scripts/install/install.sh" | sort)
-
+# Save IFS and set newline-only to avoid splitting on spaces/tabs
 old_ifs=$IFS
 IFS='
 '
-# shellcheck disable=SC2086     # deliberate splitting on newline
-set -- $scripts
-IFS=$old_ifs
 
-for script in "$@"; do
+scripts=$(
+	find "$CONFIG_ROOT" -type f -path '*/.scripts/install.sh' \
+		! -path "$CONFIG_ROOT/.scripts/install/install.sh" |
+		sort
+)
+
+for script in $scripts; do
 	# shellcheck source=/dev/null
 	. "$script"
 done
+
+IFS=$old_ifs
 
 run_installers
