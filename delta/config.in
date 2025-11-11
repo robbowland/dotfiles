@@ -7,17 +7,17 @@ pager = "diffnav"
 tabs = 2
 
 # file header
-file-style = "#e6edf3" bold
+file-style = "${PALETTE_WHITE}" bold
 file-decoration-style = none
 
 # line numbers — base + subtle dimming
 line-numbers-left-format = "{nm:>4} "
 line-numbers-right-format = "│ {np:>4} "
-line-numbers-left-style = "#484f58"
-line-numbers-right-style = "#484f58"
-line-numbers-zero-style = "#484f58"
-line-numbers-plus-style = "#ffffff"
-line-numbers-minus-style = "#ffffff"
+line-numbers-left-style = "${PALETTE_GRAY}"
+line-numbers-right-style = "${PALETTE_GRAY}"
+line-numbers-zero-style = "${PALETTE_GRAY}"
+line-numbers-plus-style = "${PALETTE_WHITE_BRIGHT}"
+line-numbers-minus-style = "${PALETTE_WHITE_BRIGHT}"
 
 # wrap symbols invisible
 wrap-left-symbol = " "
@@ -26,21 +26,21 @@ wrap-right-prefix-symbol = " "
 
 # hunk display
 hunk-label = "  󰡏 "
-hunk-header-line-number-style = "#101010"
-hunk-header-decoration-style = "#101010" ul
+hunk-header-line-number-style = "${PALETTE_SURFACE_1}"
+hunk-header-decoration-style = "${PALETTE_SURFACE_1}" ul
 
 [delta "github-dark"]
 # minus (deletions) use palette reds and microcontrast
-minus-style = "syntax #101010"
-minus-emph-style = "syntax #bd3d38"
+minus-style = "syntax ${PALETTE_SURFACE_1}"
+minus-emph-style = "syntax ${PALETTE_RED_DIM}"
 
 # plus (additions) use palette greens and microcontrast
-plus-style = "syntax #101010"
-plus-emph-style = "syntax #2f9142"
+plus-style = "syntax ${PALETTE_SURFACE_1}"
+plus-emph-style = "syntax ${PALETTE_GREEN_DIM}"
 
 # hunk headers bold + base fg
 hunk-header-style = "syntax bold"
-hunk-header-file-style = "#484f58"
+hunk-header-file-style = "${PALETTE_GRAY}"
 
 # unchanged context
 zero-style = syntax
