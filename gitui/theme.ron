@@ -40,8 +40,8 @@
   status_typechange_unselected_fg: Some("#db61a2"),
 
   // commit list
-  commit_hash:               Some("#bc8cff"),
-  commit_time:               Some("#a3e8f2"),
+  commit_hash:               Some("#e3b341"),
+  commit_time:               Some("#79c0ff"),
   commit_author:             Some("#3fb950"),
 
   // branches / tags

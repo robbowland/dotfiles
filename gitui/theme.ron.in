@@ -40,8 +40,8 @@
   status_typechange_unselected_fg: Some("${PALETTE_PINK}"),
 
   // commit list
-  commit_hash:               Some("${PALETTE_MAGENTA}"),
-  commit_time:               Some("${PALETTE_CYAN}"),
+  commit_hash:               Some("${PALETTE_YELLOW}"),
+  commit_time:               Some("${PALETTE_BLUE}"),
   commit_author:             Some("${PALETTE_GREEN}"),
 
   // branches / tags
