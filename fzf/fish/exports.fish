@@ -22,8 +22,8 @@ gutter:$PALETTE_BLACK,\
 prompt:$PALETTE_MAGENTA,\
 pointer:$PALETTE_YELLOW,\
 marker:$PALETTE_YELLOW,\
-spinner:$PALETTE_CYAN,\
-header:$PALETTE_CYAN,\
+spinner:$PALETTE_BLUE,\
+header:$PALETTE_BLUE,\
 label:$PALETTE_GRAY,\
 query:$PALETTE_WHITE \
   --prompt='❯ '

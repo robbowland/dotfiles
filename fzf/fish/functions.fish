@@ -22,9 +22,9 @@ end
 function __fzf_git_show_commit --argument-names include_author
     # First field (before \t) must be the short hash for fzf {1}
     # After the tab: hash (yellow), date (cyan), [author (green)], subject (base)
-    set -l log_format "%h%x09%C($PALETTE_YELLOW)%h%Creset  %C($PALETTE_CYAN)%ad%Creset  %s"
+    set -l log_format "%h%x09%C($PALETTE_YELLOW)%h%Creset  %C($PALETTE_BLUE)%ad%Creset  %s"
     if test "$include_author" = with-author
-        set log_format "%h%x09%C($PALETTE_YELLOW)%h%Creset  %C($PALETTE_CYAN)%ad%Creset  %C($PALETTE_GREEN)%an%Creset  %s"
+        set log_format "%h%x09%C($PALETTE_YELLOW)%h%Creset  %C($PALETTE_BLUE)%ad%Creset  %C($PALETTE_GREEN)%an%Creset  %s"
     end
 
     # Select commits via fzf; show diff/commit on the right
