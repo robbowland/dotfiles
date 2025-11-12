@@ -13,15 +13,15 @@ $python\
 $character"""
 
 [palettes.github-dark]
-blue = "#79c0ff"
-cyan = "#a3e8f2" 
-green = "#3fb950"
-yellow = "#e3b341"
-orange = "#f0883e"
-purple = "#bc8cff"
-red = "#ff7b72"
-gray = "#6e7681"
-white = "#e6edf3"
+blue = "${PALETTE_BLUE}"
+cyan = "${PALETTE_CYAN}" 
+green = "${PALETTE_GREEN}"
+yellow = "${PALETTE_YELLOW}"
+orange = "${PALETTE_ORANGE}"
+purple = "${PALETTE_MAGENTA}"
+red = "${PALETTE_RED}"
+gray = "${PALETTE_GRAY}"
+white = "${PALETTE_WHITE}"
 
 [directory]
 style = "blue"
