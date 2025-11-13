@@ -1,0 +1,46 @@
+name: ink
+primary: "#e6edf3"
+background: "#000000"
+panel: "#000000"
+surface: "#0d1117"
+warning: "#d29922"
+error: "#f85149"
+success: "#3fb950"
+accent: "#e6edf3"
+dark: true
+
+syntax:
+  json_key: "#79c0ff"
+  json_string: "#a5d6ff"
+  json_number: "#ffa657"
+  json_boolean: "#3fb950"
+  json_null: "#f778ba"
+
+url:
+  base: "#58a6ff"
+  protocol: "#79c0ff"
+  separator: "dim"
+
+variables:
+  resolved: "#58a6ff"
+  unresolved: "#f85149"
+  footer-background: "#000000"
+
+text_area:
+  gutter: "#8b949e on #000000"
+  cursor: "#58a6ff"
+  cursor_line: "#161b22"
+  cursor_line_gutter: "#161b22"
+  matched_bracket: "bold #58a6ff"
+  selection: "#0d1117 on #264d78"
+
+method:
+  get: "#58a6ff"
+  post: "#3fb950"
+  put: "#e3b341"
+  delete: "#f85149"
+  patch: "#bc8cff"
+  options: "#d2a8ff"
+  head: "#db6d28"
+
+description: "GitHub Dark inspired theme with true black background, white text, and crisp borders."
