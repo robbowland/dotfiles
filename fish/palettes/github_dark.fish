@@ -15,7 +15,7 @@ set -gx PALETTE_WHITE_DIM '#b1bac4'
 # -- gray
 set -gx PALETTE_GRAY_BRIGHT '#8b949e'
 set -gx PALETTE_GRAY '#6e7681'
-set -gx PALETTE_GRAY_DIM '#484f58'
+set -gx PALETTE_GRAY_DIM '#24282d'
 
 # -- surfaces (micro-contrast plates)
 set -gx PALETTE_SURFACE_0 '#0c0c0c'

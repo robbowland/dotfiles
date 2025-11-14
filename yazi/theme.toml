@@ -19,7 +19,7 @@ rules = [
   { mime = "audio/*",  fg = "#bc8cff" },
   { name = "*.dmg",    fg = "#e3b341" },
   { name = "*.iso",    fg = "#e3b341" },
-  { name = ".*",       fg = "#484f58" },
+  { name = ".*",       fg = "#24282d" },
 ]
 
 [mode]
@@ -27,14 +27,14 @@ normal_main = { bg = "#000000" }
 normal_alt  = { bg = "#000000" }
 
 [status]
-overall         = { fg = "#484f58", bg = "#000000" }
-sep_left        = { open = "", close = "", fg = "#484f58", bg = "#000000" }
-sep_right       = { open = "", close = "", fg = "#484f58", bg = "#000000" }
-perm_sep        = { fg = "#484f58", bg = "#000000" }
+overall         = { fg = "#24282d", bg = "#000000" }
+sep_left        = { open = "", close = "", fg = "#24282d", bg = "#000000" }
+sep_right       = { open = "", close = "", fg = "#24282d", bg = "#000000" }
+perm_sep        = { fg = "#24282d", bg = "#000000" }
 perm_type       = { fg = "#79c0ff",   bg = "#000000" }
 perm_read       = { fg = "#e3b341", bg = "#000000" }
 perm_write      = { fg = "#ff7b72",    bg = "#000000" }
 perm_exec       = { fg = "#3fb950",  bg = "#000000" }
-progress_label  = { fg = "#484f58", bg = "#000000" }
-progress_normal = { fg = "#484f58", bg = "#000000" }
-progress_error  = { fg = "#484f58", bg = "#000000" }
+progress_label  = { fg = "#24282d", bg = "#000000" }
+progress_normal = { fg = "#24282d", bg = "#000000" }
+progress_error  = { fg = "#24282d", bg = "#000000" }

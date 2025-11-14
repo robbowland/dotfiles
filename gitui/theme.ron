@@ -7,7 +7,7 @@
   cmdbar_bg:                Some("#000000"),
   cmdbar_extra_lines_bg:    Some("#000000"),
   command_fg:               Some("#e6edf3"),
-  disabled_fg:              Some("#484f58"),
+  disabled_fg:              Some("#24282d"),
 
   // selection (microcontrast + readable bold)
   use_selection_bg:         Some(true),

@@ -19,7 +19,7 @@ branches = [
   "#f0883e",
   "#db61a2",
 ]
-edge = "#484f58"
+edge = "#24282d"
 background = "#000000"
 
 [color]
@@ -79,4 +79,4 @@ help_block_title_fg       = "#3fb950"
 help_key_fg               = "#e3b341"
 
 # chrome
-divider_fg = "#484f58"
+divider_fg = "#24282d"
