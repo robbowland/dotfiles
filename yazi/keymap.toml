@@ -1,1 +1,4 @@
-
+[[mgr.prepend_keymap]]
+on = "<Enter>"
+run = "open"
+desc = "Use default open"
