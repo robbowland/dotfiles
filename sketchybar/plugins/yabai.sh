@@ -5,34 +5,18 @@ source "$HOME/.config/sketchybar/icons.sh"
 source "$HOME/.config/sketchybar/icon_map.sh"
 
 window_state() {
-  WINDOW=$(yabai -m query --windows --window)
-  CURRENT=$(echo "$WINDOW" | jq '.["stack-index"]')
+  WINDOW=$(yabai -m query --windows --window 2>/dev/null) || return
+  [ -n "$WINDOW" ] || return
+
+  CURRENT=$(echo "$WINDOW" | jq -r '.["stack-index"] // 0')
 
   args=()
   if [[ $CURRENT -gt 0 ]]; then
-    LAST=$(yabai -m query --windows --window stack.last | jq '.["stack-index"]')
-    args+=(--set $NAME icon=$YABAI_STACK icon.color=$RED label.drawing=on drawing=on label=$(printf "[%s/%s]" "$CURRENT" "$LAST")
-          --bar border_color=$RED)
+    LAST=$(yabai -m query --windows --window stack.last 2>/dev/null | jq -r '.["stack-index"] // empty')
+    [ -n "$LAST" ] || return
+    args+=(--set $NAME icon=$YABAI_STACK icon.color=$RED label.drawing=on drawing=on label=$(printf "[%s/%s]" "$CURRENT" "$LAST"))
   else
     args+=(--set $NAME label.drawing=off drawing=off)
-    COLOR=$BAR_BORDER_COLOR
-    ICON=$YABAI_GRID
-    case "$(echo "$WINDOW" | jq '.["is-floating"]')" in
-      "false")
-        if [ "$(echo "$WINDOW" | jq '.["has-fullscreen-zoom"]')" = "true" ]; then
-          ICON=$YABAI_FULLSCREEN_ZOOM
-          COLOR=$GREEN
-        elif [ "$(echo "$WINDOW" | jq '.["has-parent-zoom"]')" = "true" ]; then
-          ICON=$YABAI_PARENT_ZOOM
-          COLOR=$BLUE
-        fi
-        ;;
-      "true")
-        ICON=$YABAI_FLOAT
-        COLOR=$MAGENTA
-        ;;
-    esac
-    args+=(--animate sin 10 --bar border_color=$COLOR)
   fi
 
   sketchybar -m "${args[@]}"
@@ -47,9 +31,8 @@ windows_on_spaces () {
   do
     for space in $line
     do
-      echo "$space"
       icon_strip=" "
-      apps=$(yabai -m query --windows --space $space | jq -r ".[].app")
+      apps=$(yabai -m query --windows --space "$space" 2>/dev/null | jq -r ".[].app")
       if [ "$apps" != "" ]; then
         while IFS= read -r app; do
           icon_strip+=" $(__icon_map "$app")"
@@ -64,11 +47,19 @@ windows_on_spaces () {
 
 inactive_windows_on_current_space () {
   # Query the current space and focused window
-  CURRENT_SPACE=$(yabai -m query --spaces --space | jq -r '.index')
-  FOCUSED_APP=$(yabai -m query --windows --window | jq -r '.app')
+  CURRENT_SPACE=$(yabai -m query --spaces --space 2>/dev/null | jq -r '.index // empty') || return
+  [ -n "$CURRENT_SPACE" ] || return
+
+  if [ "$SENDER" = "front_app_switched" ] && [ -n "${INFO:-}" ]; then
+    FOCUSED_APP="$INFO"
+  else
+    FOCUSED_APP=$(yabai -m query --windows --window 2>/dev/null | jq -r '.app // empty') || return
+  fi
+  [ -n "$FOCUSED_APP" ] || return
 
   # Fetch app names on the current space, excluding the focused app
-  apps=$(yabai -m query --windows --space "$CURRENT_SPACE" | jq -r ".[].app" | grep -v "$FOCUSED_APP" | sort | uniq)
+  WINDOWS=$(yabai -m query --windows --space "$CURRENT_SPACE" 2>/dev/null) || return
+  apps=$(printf '%s\n' "$WINDOWS" | jq -r ".[].app" | grep -F -x -v "$FOCUSED_APP" | sort -u)
 
   # Build the icon strip with non-focused apps
   icon_strip="•"

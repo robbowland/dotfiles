@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FRONT_APP_SCRIPT='source "$HOME/.config/sketchybar/icon_map.sh"; FOCUSED="$(yabai -m query --windows --window | jq -r '.app')"; ICON="$(__icon_map "$FOCUSED")"; sketchybar --set $NAME label="$ICON" label.drawing=on'
+FRONT_APP_SCRIPT='source "$HOME/.config/sketchybar/icon_map.sh"; FOCUSED="${INFO:-}"; if [ -z "$FOCUSED" ]; then FOCUSED="$(yabai -m query --windows --window 2>/dev/null | jq -r ".app // empty")"; fi; [ -n "$FOCUSED" ] || exit 0; ICON="$(__icon_map "$FOCUSED")"; sketchybar --set "$NAME" label="$ICON" label.drawing=on'
 
 yabai=(
   script="$PLUGIN_DIR/yabai.sh"
@@ -10,7 +10,7 @@ yabai=(
   icon.width=30
   icon=$YABAI_GRID
   icon.color=$ORANGE
-  associated_display=active
+  display=1
 )
 
 right_items=()
@@ -22,7 +22,7 @@ front_app=(
   label.padding_right=5
   label.padding_left=5
   width=30
-  associated_display=active
+  display=1
 )
 
 other_apps=(
@@ -30,7 +30,7 @@ other_apps=(
   label.color=$GREY
   label.padding_right=5
   padding_right=7
-  associated_display=active
+  display=1
   y_offset=-1
 )
 
@@ -60,8 +60,6 @@ sketchybar --add event window_focus             \
 	    --add item front_app right          \
         --set front_app "${front_app[@]}"   \
         --subscribe front_app front_app_switched \
-                    		  space_windows_change \
-                    		  space_change \
 	    --add item other_apps right \
         --set other_apps "${other_apps[@]}"   \
         --subscribe other_apps front_app_switched \

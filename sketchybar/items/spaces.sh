@@ -48,7 +48,7 @@ separator=(
 	padding_left=10
 	padding_right=8
 	label.drawing=off
-	associated_display=active
+	display=1
 	click_script='yabai -m space --create && sketchybar --trigger space_change'
 	icon.color=$WHITE
 )
@@ -62,7 +62,7 @@ yabai=(
 	icon.width=30
 	icon=$YABAI_GRID
 	icon.color=$ORANGE
-	associated_display=active
+	display=1
 )
 
 sketchybar --add bracket spaces '/space\..*/'               \
