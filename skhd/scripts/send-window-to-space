@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -eu
+
+target="${1:?usage: send-window-to-space <space-selector>}"
+focus_target="$target"
+
+window_id="$(yabai -m query --windows --window | jq -r '.id')"
+
+space_index_for_label() {
+  yabai -m query --spaces | jq -er --arg label "$1" '.[] | select(.label == $label) | .index'
+}
+
+case "$target" in
+  prev)
+    if ! yabai -m window "$window_id" --space prev 2>/dev/null; then
+      yabai -m window "$window_id" --space last
+      target=last
+    fi
+    ;;
+  next)
+    if ! yabai -m window "$window_id" --space next 2>/dev/null; then
+      yabai -m window "$window_id" --space first
+      target=first
+    fi
+    ;;
+  notes|web|terminal|code|other)
+    target_index="$(space_index_for_label "$target")"
+    yabai -m window "$window_id" --space "$target_index"
+    focus_target="$target_index"
+    ;;
+  *)
+    yabai -m window "$window_id" --space "$target"
+    ;;
+esac
+
+yabai -m space --focus "$focus_target"
+sketchybar --trigger windows_on_spaces

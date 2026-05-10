@@ -1,41 +1,45 @@
-# <------------------- Yabai -------------------
+# Yabai
 
-# == Spaces
-alt - a : yabai -m space --focus 1
-alt - s : yabai -m space --focus 2
-alt - d : yabai -m space --focus 3
-alt - f : yabai -m space --focus 4
-alt - g : yabai -m space --focus 5
+# -- Fixed spaces
+alt - a : yabai -m space --focus notes
+alt - s : yabai -m space --focus web
+alt - d : yabai -m space --focus terminal
+alt - f : yabai -m space --focus code
+alt - g : yabai -m space --focus other
 
-# -- Navigation
+# -- Space cycling
+alt - q : yabai -m space --focus prev || yabai -m space --focus last
+alt - e : yabai -m space --focus next || yabai -m space --focus first
+
+# -- Window focus
 # These conflict with neovim
 # alt - h : yabai -m window --focus west
 # alt - j : yabai -m window --focus south
 # alt - k : yabai -m window --focus north
 # alt - l : yabai -m window --focus east
 
-# -- Moving windows
+# -- Move window in tree
 shift + alt - h : yabai -m window --warp west
 shift + alt - j : yabai -m window --warp south
 shift + alt - k : yabai -m window --warp north
 shift + alt - l : yabai -m window --warp east
 
-# -- Float / Unfloat window
+# -- Move window to fixed spaces
+shift + alt - a : "$HOME/.config/skhd/scripts/send-window-to-space" notes
+shift + alt - s : "$HOME/.config/skhd/scripts/send-window-to-space" web
+shift + alt - d : "$HOME/.config/skhd/scripts/send-window-to-space" terminal
+shift + alt - f : "$HOME/.config/skhd/scripts/send-window-to-space" code
+shift + alt - g : "$HOME/.config/skhd/scripts/send-window-to-space" other
+
+# -- Move window while cycling spaces
+shift + alt - q : "$HOME/.config/skhd/scripts/send-window-to-space" prev
+shift + alt - e : "$HOME/.config/skhd/scripts/send-window-to-space" next
+shift + alt - m : "$HOME/.config/skhd/scripts/send-window-to-space" last
+
+# -- Float / unfloat window
 alt - z : \
     yabai -m window --toggle float; \
     sketchybar --trigger window_focus
-
-# -- Move focus container to workspace
-shift + alt - m : yabai -m window --space last; yabai -m space --focus last
-shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
-shift + alt - n : yabai -m window --space next; yabai -m space --focus next
-shift + alt - 1 : yabai -m window --space 1 && sketchybar --trigger windows_on_spaces
-shift + alt - 2 : yabai -m window --space 2 && sketchybar --trigger windows_on_spaces
-shift + alt - 3 : yabai -m window --space 3 && sketchybar --trigger windows_on_spaces
-shift + alt - 4 : yabai -m window --space 4 && sketchybar --trigger windows_on_spaces
-shift + alt - 5 : yabai -m window --space 5 && sketchybar --trigger windows_on_spaces
-shift + alt - 6 : yabai -m window --space 6 && sketchybar --trigger windows_on_spaces
-shift + alt - 7 : yabai -m window --space 7 && sketchybar --trigger windows_on_spaces
 
 # -- Resize windows
 lctrl + alt - h : yabai -m window --resize left:-50:0; \
@@ -66,5 +70,3 @@ shift + lctrl + alt - h : yabai -m window --insert west
 shift + lctrl + alt - j : yabai -m window --insert south
 shift + lctrl + alt - k : yabai -m window --insert north
 shift + lctrl + alt - l : yabai -m window --insert east
-
-# >------------------- Yabai -------------------
