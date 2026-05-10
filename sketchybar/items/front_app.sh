@@ -27,6 +27,7 @@ yabai_stack_count=(
 )
 
 right_items=()
+stack_items=()
 
 front_app=(
   script="$FRONT_APP_SCRIPT"
@@ -68,6 +69,10 @@ sketchybar --add event window_focus \
   --add item other_apps right \
   --set other_apps "${other_apps[@]}" \
   --subscribe other_apps front_app_switched \
+  --add event svim_update \
+  --add item svim right \
+  --set svim "${svim[@]}" \
+  --subscribe svim svim_update \
   --add item yabai_stack_icon right \
   --set yabai_stack_icon "${yabai_stack_icon[@]}" \
   --subscribe yabai_stack_icon window_focus \
@@ -88,11 +93,13 @@ sketchybar --add event window_focus \
                                 space_change \
                                 space_windows_change \
                                 front_app_switched \
-  --add event svim_update \
-  --add item svim right \
-  --set svim "${svim[@]}" \
-  --subscribe svim svim_update \
-  --add bracket right_items front_app other_apps yabai_stack_icon yabai_stack_count svim \
+  --add bracket stack_items yabai_stack_icon yabai_stack_count \
+  --set stack_items drawing=off \
+                    background.color=$BLACK \
+                    background.corner_radius=12 \
+                    background.height=35 \
+                    background.border_width=2 \
+  --add bracket right_items front_app other_apps svim \
   --set right_items background.color=$BLACK \
                     background.corner_radius=12 \
                     background.height=35 \

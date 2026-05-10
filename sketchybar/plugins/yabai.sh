@@ -25,6 +25,8 @@ window_state() {
       label=$(printf "%s/%s" "$CURRENT" "$LAST")
       label.drawing=on
       drawing=on
+      --set stack_items
+      drawing=on
     )
   else
     args+=(
@@ -33,6 +35,8 @@ window_state() {
       drawing=off
       --set yabai_stack_count
       label.drawing=off
+      drawing=off
+      --set stack_items
       drawing=off
     )
   fi
