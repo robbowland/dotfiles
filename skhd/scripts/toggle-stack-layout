@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -eu
+
+layout="$(yabai -m query --spaces --space | jq -r '.type')"
+
+if [ "$layout" = "stack" ]; then
+  "$HOME/.config/skhd/scripts/rebuild-bsp-grid" --force
+else
+  yabai -m space --layout stack
+fi

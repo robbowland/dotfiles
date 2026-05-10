@@ -14,9 +14,23 @@ window_state() {
   if [[ $CURRENT -gt 0 ]]; then
     LAST=$(yabai -m query --windows --window stack.last 2>/dev/null | jq -r '.["stack-index"] // empty')
     [ -n "$LAST" ] || return
-    args+=(--set $NAME icon=$YABAI_STACK icon.color=$RED label.drawing=on drawing=on label=$(printf "[%s/%s]" "$CURRENT" "$LAST"))
+    args+=(
+      --set yabai_stack_icon
+      label.drawing=on
+      drawing=on
+      --set yabai_stack_count
+      label=$(printf "%s/%s" "$CURRENT" "$LAST")
+      drawing=on
+    )
   else
-    args+=(--set $NAME label.drawing=off drawing=off)
+    args+=(
+      --set yabai_stack_icon
+      label.drawing=off
+      drawing=off
+      --set yabai_stack_count
+      label.drawing=off
+      drawing=off
+    )
   fi
 
   sketchybar -m "${args[@]}"
@@ -75,16 +89,36 @@ inactive_windows_on_current_space () {
 }
 
 mouse_clicked() {
-  yabai -m window --toggle float
+  if yabai -m query --windows --window 2>/dev/null | jq -e '.["stack-index"] > 0' >/dev/null; then
+    yabai -m window --focus stack.next || yabai -m window --focus stack.first
+  else
+    yabai -m window --toggle float
+  fi
+  window_state
+}
+
+mouse_scrolled() {
+  if [ "${SCROLL_DIRECTION:-}" = "up" ]; then
+    yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+  else
+    yabai -m window --focus stack.next || yabai -m window --focus stack.first
+  fi
+
   window_state
 }
 
 case "$SENDER" in
   "mouse.clicked") mouse_clicked
   ;;
+  "mouse.scrolled") mouse_scrolled
+  ;;
   "forced") exit 0
   ;;
   "window_focus") window_state
+  ;;
+  "window_created") window_state
+  ;;
+  "window_destroyed") window_state
   ;;
   "windows_on_spaces") windows_on_spaces
   ;;

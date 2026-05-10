@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -eu
+
+space="${1:-}"
+
+safe_space="$(
+  printf '%s\n' "${space:-current}" |
+    tr -c '[:alnum:]_.-' '_'
+)"
+lock_dir="${TMPDIR:-/tmp}/yabai-bsp-grid-${USER:-user}-${safe_space}.lock"
+request_file="${TMPDIR:-/tmp}/yabai-bsp-grid-${USER:-user}-${safe_space}.request"
+
+printf '%s:%s\n' "$$" "$(date +%s)" > "$request_file"
+
+if ! mkdir "$lock_dir" 2>/dev/null; then
+  exit 0
+fi
+
+cleanup() {
+  rm -f "$request_file" 2>/dev/null || true
+  rmdir "$lock_dir" 2>/dev/null || true
+}
+
+trap cleanup EXIT INT TERM
+
+while :; do
+  observed="$(cat "$request_file" 2>/dev/null || true)"
+  sleep "${YABAI_BSP_GRID_DEBOUNCE:-0.12}"
+  current="$(cat "$request_file" 2>/dev/null || true)"
+
+  if [ "$observed" = "$current" ]; then
+    rm -f "$request_file"
+    "$HOME/.config/skhd/scripts/rebuild-bsp-grid" "$space"
+
+    [ -f "$request_file" ] || break
+  fi
+done

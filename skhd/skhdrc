@@ -12,17 +12,16 @@ alt - q : yabai -m space --focus prev || yabai -m space --focus last
 alt - e : yabai -m space --focus next || yabai -m space --focus first
 
 # -- Window focus
-# These conflict with neovim
-# alt - h : yabai -m window --focus west
-# alt - j : yabai -m window --focus south
-# alt - k : yabai -m window --focus north
-# alt - l : yabai -m window --focus east
+cmd + shift - h : "$HOME/.config/skhd/scripts/focus-window" west
+cmd + shift - j : "$HOME/.config/skhd/scripts/focus-window" south
+cmd + shift - k : "$HOME/.config/skhd/scripts/focus-window" north
+cmd + shift - l : "$HOME/.config/skhd/scripts/focus-window" east
 
 # -- Move window in tree
-shift + alt - h : yabai -m window --warp west
-shift + alt - j : yabai -m window --warp south
-shift + alt - k : yabai -m window --warp north
-shift + alt - l : yabai -m window --warp east
+cmd + alt - h : yabai -m window --warp west
+cmd + alt - j : yabai -m window --warp south
+cmd + alt - k : yabai -m window --warp north
+cmd + alt - l : yabai -m window --warp east
 
 # -- Move window to fixed spaces
 shift + alt - a : "$HOME/.config/skhd/scripts/send-window-to-space" notes
@@ -51,11 +50,17 @@ lctrl + alt - k : yabai -m window --resize top:0:-50; \
 lctrl + alt - l : yabai -m window --resize right:50:0; \
                   yabai -m window --resize left:50:0
 
-# -- Equalize size of windows
+# -- Balance current space
 lctrl + alt - e : yabai -m space --balance
+
+# -- Layout / stack mode
+cmd + shift - s : "$HOME/.config/skhd/scripts/toggle-stack-layout"
 
 # -- Enable / Disable gaps in current workspace
 lctrl + alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
+
+# -- Stack insertion
+cmd + alt - s : yabai -m window --insert stack
 
 # -- Rotate windows clockwise and anticlockwise
 alt - r         : yabai -m space --rotate 270

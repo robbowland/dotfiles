@@ -13,6 +13,9 @@ launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist >
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
 yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed active=yes action="$HOME/.config/yabai/.scripts/focus-after-window-destroyed"
+yabai -m signal --add event=window_created app="^Ghostty$" action="$HOME/.config/skhd/scripts/debounced-rebuild-bsp-grid terminal"
+yabai -m signal --add event=window_destroyed app="^Ghostty$" action="$HOME/.config/skhd/scripts/debounced-rebuild-bsp-grid terminal"
 
 yabai -m config external_bar               all:40:0     \
                 mouse_follows_focus        off          \
@@ -49,6 +52,11 @@ yabai -m space 2 --label web
 yabai -m space 3 --label terminal
 yabai -m space 4 --label code
 yabai -m space 5 --label other
+
+# Space Layouts
+yabai -m config --space terminal layout bsp
+yabai -m config --space terminal split_type auto
+yabai -m config --space terminal auto_balance on
 
 # Window Rules
 yabai -m rule --add app="^Logseq$" space=notes

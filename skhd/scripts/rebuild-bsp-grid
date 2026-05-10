@@ -1,0 +1,227 @@
+#!/bin/sh
+
+# Rebuild a managed BSP space into an even grid-shaped tree.
+#
+# Use --force when leaving native yabai stack mode or when the tree shape is
+# known stale. The cache only skips work when the same windows are already in
+# the expected grid shape. The final balance is still required because yabai
+# owns the BSP split ratios after the warp sequence.
+
+set -eu
+
+# Inputs
+force=0
+space=""
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --force)
+      force=1
+      ;;
+    *)
+      space="$1"
+      ;;
+  esac
+
+  shift
+done
+
+# Current space
+if [ -n "$space" ]; then
+  space_json="$(yabai -m query --spaces --space "$space")"
+else
+  space_json="$(yabai -m query --spaces --space)"
+fi
+
+space_info="$(
+  printf '%s\n' "$space_json" |
+    jq -r '[.display, (if .label != "" then .label else (.index | tostring) end), .type] | @tsv'
+)"
+IFS='	' read -r display cache_space space_type <<EOF
+$space_info
+EOF
+
+# Managed windows
+if [ -n "$space" ]; then
+  windows_json="$(yabai -m query --windows --space "$space")"
+else
+  windows_json="$(yabai -m query --windows --space)"
+fi
+
+window_data="$(
+  printf '%s\n' "$windows_json" |
+    jq -r '
+      map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
+      map(select(.["is-floating"] | not)) as $windows |
+      ($windows | sort_by(.frame.y, .frame.x) | map(.id) | join(" ")),
+      ($windows | map(.id) | sort | join(","))
+    '
+)"
+
+{
+  IFS= read -r window_ids
+  IFS= read -r window_set
+} <<EOF
+$window_data
+EOF
+
+if [ -z "$window_ids" ]; then
+  exit 0
+fi
+
+set -- $window_ids
+window_count="$#"
+
+window_position=1
+for window_id in "$@"; do
+  eval "window_$window_position=\$window_id"
+  window_position=$((window_position + 1))
+done
+
+# Cached layout choice
+cache_key="$(
+  printf '%s\n' "$cache_space" |
+    tr -c '[:alnum:]_.-' '_'
+)"
+cache_file="${TMPDIR:-/tmp}/yabai-bsp-grid-${USER:-user}-${cache_key}.state"
+cached_signature="$(cat "$cache_file" 2>/dev/null || true)"
+cached_display=""
+cached_rows=""
+cached_cols=""
+cached_windows=""
+
+for field in $cached_signature; do
+  case "$field" in
+    display=*) cached_display="${field#display=}" ;;
+    rows=*) cached_rows="${field#rows=}" ;;
+    cols=*) cached_cols="${field#cols=}" ;;
+    windows=*) cached_windows="${field#windows=}" ;;
+  esac
+done
+
+if [ "$cached_display" = "$display" ] &&
+  [ "$cached_windows" = "$window_set" ] &&
+  [ -n "$cached_rows" ] &&
+  [ -n "$cached_cols" ]; then
+  rows="$cached_rows"
+  cols="$cached_cols"
+else
+  layout="$(
+    yabai -m query --displays --display "$display" |
+      jq -r --argjson count "$window_count" '
+        def ceil_div($n; $d): (($n + $d - 1) / $d | floor);
+        def abs: if . < 0 then -. else . end;
+
+        (.frame.w / .frame.h) as $aspect |
+        [
+          range(1; $count + 1) as $cols |
+          ceil_div($count; $cols) as $rows |
+          {
+            rows: $rows,
+            cols: $cols,
+            empty: (($rows * $cols) - $count),
+            aspect_error: (($cols / $rows) - $aspect | abs)
+          } |
+          .score = (.aspect_error + (.empty * 0.35))
+        ] |
+        min_by(.score) |
+        "\(.rows) \(.cols)"
+      '
+  )"
+
+  rows="${layout%% *}"
+  cols="${layout##* }"
+fi
+
+signature="display=$display rows=$rows cols=$cols windows=$window_set"
+
+# Fast path
+if [ "$force" -eq 0 ]; then
+  is_grid_shaped="$(
+    printf '%s\n' "$windows_json" |
+      jq -er --argjson rows "$rows" --argjson cols "$cols" --argjson count "$window_count" '
+        def close($actual; $expected): (($actual - $expected) | if . < 0 then -. else . end) <= 8;
+
+        map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
+        map(select(.["is-floating"] | not)) as $windows |
+        ($windows | map(.frame.x) | unique | length) as $actual_cols |
+        ($windows | map(.frame.y) | unique | length) as $actual_rows |
+        ($windows | group_by(.frame.x) | map(length) | max) as $max_col_depth |
+        ($windows | group_by(.frame.y) | map(length) | max) as $max_row_width |
+        ($actual_cols == $cols) and
+        ($actual_rows == $rows) and
+        ($max_col_depth <= $rows) and
+        ($max_row_width <= $cols) and
+        all(
+          $windows[];
+          close(.frame.w; ($windows | map(.frame.w) | add / length)) and
+          close(.frame.h; ($windows | map(.frame.h) | add / length))
+        )
+      ' >/dev/null 2>&1 &&
+      printf true ||
+      printf false
+  )"
+
+  if [ "$space_type" = "bsp" ] &&
+    [ "$is_grid_shaped" = true ] &&
+    [ "$cached_signature" = "$signature" ]; then
+    exit 0
+  fi
+fi
+
+# Rebuild
+id_at() {
+  eval "printf '%s\n' \"\${window_$(($1 + 1))}\""
+}
+
+if [ "$space_type" != "bsp" ]; then
+  if [ -n "$space" ]; then
+    yabai -m space "$space" --layout bsp
+  else
+    yabai -m space --layout bsp
+  fi
+fi
+
+# Build the first row as left-to-right columns.
+col=1
+while [ "$col" -lt "$cols" ] && [ "$col" -lt "$window_count" ]; do
+  target_id="$(id_at $((col - 1)))"
+  window_id="$(id_at "$col")"
+
+  yabai -m window "$target_id" --insert east
+  yabai -m window "$window_id" --warp "$target_id"
+
+  col=$((col + 1))
+done
+
+# Split each column downward for subsequent rows.
+row=1
+while [ "$row" -lt "$rows" ]; do
+  col=0
+  while [ "$col" -lt "$cols" ]; do
+    index=$((row * cols + col))
+
+    if [ "$index" -ge "$window_count" ]; then
+      break
+    fi
+
+    target_id="$(id_at $(((row - 1) * cols + col)))"
+    window_id="$(id_at "$index")"
+
+    yabai -m window "$target_id" --insert south
+    yabai -m window "$window_id" --warp "$target_id"
+
+    col=$((col + 1))
+  done
+
+  row=$((row + 1))
+done
+
+# Final balance
+if [ -n "$space" ]; then
+  yabai -m space "$space" --balance
+else
+  yabai -m space --balance
+fi
+
+printf '%s\n' "$signature" > "$cache_file"

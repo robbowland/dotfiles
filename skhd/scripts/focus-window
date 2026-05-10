@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -eu
+
+direction="${1:?usage: focus-window <north|east|south|west>}"
+
+case "$direction" in
+  south)
+    yabai -m window --focus stack.next 2>/dev/null ||
+      yabai -m window --focus stack.first 2>/dev/null ||
+      yabai -m window --focus south 2>/dev/null ||
+      true
+    ;;
+  north)
+    yabai -m window --focus stack.prev 2>/dev/null ||
+      yabai -m window --focus stack.last 2>/dev/null ||
+      yabai -m window --focus north 2>/dev/null ||
+      true
+    ;;
+  east|west)
+    yabai -m window --focus "$direction" 2>/dev/null || true
+    ;;
+  *)
+    printf >&2 "Unknown direction: %s\n" "$direction"
+    exit 1
+    ;;
+esac

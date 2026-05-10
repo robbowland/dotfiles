@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -eu
+
+# Let yabai/macOS settle before checking whether focus was reassigned.
+sleep 0.05
+
+if yabai -m query --windows --window >/dev/null 2>&1; then
+  exit 0
+fi
+
+for selector in recent last first; do
+  if yabai -m window --focus "$selector" >/dev/null 2>&1; then
+    exit 0
+  fi
+done
+
+window_id="$(
+  yabai -m query --windows --space 2>/dev/null |
+    jq -er 'map(select((.["is-minimized"] | not) and (.["is-visible"] // true))) | last | .id' 2>/dev/null
+)" || exit 0
+
+yabai -m window --focus "$window_id" >/dev/null 2>&1 || true
