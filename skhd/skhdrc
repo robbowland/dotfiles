@@ -23,7 +23,7 @@ shift + alt - l : yabai -m window --warp east
 # -- Float / Unfloat window
 alt - z : \
     yabai -m window --toggle float; \
-    yabai -m window --toggle border
+    sketchybar --trigger window_focus
 
 # -- Move focus container to workspace
 shift + alt - m : yabai -m window --space last; yabai -m space --focus last
@@ -35,7 +35,7 @@ shift + alt - 3 : yabai -m window --space 3 && sketchybar --trigger windows_on_s
 shift + alt - 4 : yabai -m window --space 4 && sketchybar --trigger windows_on_spaces
 shift + alt - 5 : yabai -m window --space 5 && sketchybar --trigger windows_on_spaces
 shift + alt - 6 : yabai -m window --space 6 && sketchybar --trigger windows_on_spaces
-shift + alt - 7 : yabai -m window --space 7 && sketchybar --trig∞∞ger windows_on_spaces
+shift + alt - 7 : yabai -m window --space 7 && sketchybar --trigger windows_on_spaces
 
 # -- Resize windows
 lctrl + alt - h : yabai -m window --resize left:-50:0; \
