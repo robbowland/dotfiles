@@ -6,20 +6,20 @@ syntect_theme   = "~/.config/yazi/preview/GitHubDark.tmTheme"
 
 [filetype]
 rules = [
-  { name = "*/",       fg = "#58a6ff" },
-  { is = "link",       fg = "#bc8cff" },
-  { is = "orphan",     fg = "#ff7b72" },
-  { is = "exec",       fg = "#3fb950" },
-  { name = "*.zip",    fg = "#f0883e" },
-  { name = "*.tar",    fg = "#f0883e" },
-  { name = "*.gz",     fg = "#f0883e" },
-  { name = "*.7z",     fg = "#f0883e" },
+  { url = "*/",        fg = "#58a6ff" },
+  { url = "*",         is = "link",   fg = "#bc8cff" },
+  { url = "*",         is = "orphan", fg = "#ff7b72" },
+  { url = "*",         is = "exec",   fg = "#3fb950" },
+  { url = "*.zip",     fg = "#f0883e" },
+  { url = "*.tar",     fg = "#f0883e" },
+  { url = "*.gz",      fg = "#f0883e" },
+  { url = "*.7z",      fg = "#f0883e" },
   { mime = "image/*",  fg = "#e3b341" },
   { mime = "video/*",  fg = "#bc8cff" },
   { mime = "audio/*",  fg = "#bc8cff" },
-  { name = "*.dmg",    fg = "#e3b341" },
-  { name = "*.iso",    fg = "#e3b341" },
-  { name = ".*",       fg = "#24282d" },
+  { url = "*.dmg",     fg = "#e3b341" },
+  { url = "*.iso",     fg = "#e3b341" },
+  { url = ".*",        fg = "#24282d" },
 ]
 
 [mode]

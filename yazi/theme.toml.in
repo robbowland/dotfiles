@@ -6,20 +6,20 @@ syntect_theme   = "~/.config/yazi/preview/GitHubDark.tmTheme"
 
 [filetype]
 rules = [
-  { name = "*/",       fg = "${PALETTE_BLUE_DIM}" },
-  { is = "link",       fg = "${PALETTE_MAGENTA}" },
-  { is = "orphan",     fg = "${PALETTE_RED}" },
-  { is = "exec",       fg = "${PALETTE_GREEN}" },
-  { name = "*.zip",    fg = "${PALETTE_ORANGE}" },
-  { name = "*.tar",    fg = "${PALETTE_ORANGE}" },
-  { name = "*.gz",     fg = "${PALETTE_ORANGE}" },
-  { name = "*.7z",     fg = "${PALETTE_ORANGE}" },
+  { url = "*/",        fg = "${PALETTE_BLUE_DIM}" },
+  { url = "*",         is = "link",   fg = "${PALETTE_MAGENTA}" },
+  { url = "*",         is = "orphan", fg = "${PALETTE_RED}" },
+  { url = "*",         is = "exec",   fg = "${PALETTE_GREEN}" },
+  { url = "*.zip",     fg = "${PALETTE_ORANGE}" },
+  { url = "*.tar",     fg = "${PALETTE_ORANGE}" },
+  { url = "*.gz",      fg = "${PALETTE_ORANGE}" },
+  { url = "*.7z",      fg = "${PALETTE_ORANGE}" },
   { mime = "image/*",  fg = "${PALETTE_YELLOW}" },
   { mime = "video/*",  fg = "${PALETTE_MAGENTA}" },
   { mime = "audio/*",  fg = "${PALETTE_MAGENTA}" },
-  { name = "*.dmg",    fg = "${PALETTE_YELLOW}" },
-  { name = "*.iso",    fg = "${PALETTE_YELLOW}" },
-  { name = ".*",       fg = "${PALETTE_GRAY_DIM}" },
+  { url = "*.dmg",     fg = "${PALETTE_YELLOW}" },
+  { url = "*.iso",     fg = "${PALETTE_YELLOW}" },
+  { url = ".*",        fg = "${PALETTE_GRAY_DIM}" },
 ]
 
 [mode]
