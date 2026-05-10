@@ -9,3 +9,5 @@ if [ "$layout" = "stack" ]; then
 else
   yabai -m space --layout stack
 fi
+
+sketchybar --trigger window_focus >/dev/null 2>&1 || true
