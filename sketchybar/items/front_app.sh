@@ -10,7 +10,6 @@ yabai_stack_icon=(
   label.color=$ORANGE
   label.padding_right=5
   label.padding_left=5
-  label=:terminal:
   width=30
   display=1
 )

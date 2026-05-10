@@ -12,14 +12,18 @@ window_state() {
 
   args=()
   if [[ $CURRENT -gt 0 ]]; then
+    APP=$(echo "$WINDOW" | jq -r '.app // empty')
+    ICON="$(__icon_map "$APP")"
     LAST=$(yabai -m query --windows --window stack.last 2>/dev/null | jq -r '.["stack-index"] // empty')
     [ -n "$LAST" ] || return
     args+=(
       --set yabai_stack_icon
+      label="$ICON"
       label.drawing=on
       drawing=on
       --set yabai_stack_count
       label=$(printf "%s/%s" "$CURRENT" "$LAST")
+      label.drawing=on
       drawing=on
     )
   else
