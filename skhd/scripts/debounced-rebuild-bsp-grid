@@ -31,7 +31,29 @@ while :; do
 
   if [ "$observed" = "$current" ]; then
     rm -f "$request_file"
-    "$HOME/.config/skhd/scripts/rebuild-bsp-grid" "$space"
+
+    if [ -n "$space" ]; then
+      space_json="$(yabai -m query --spaces --space "$space")"
+      windows_json="$(yabai -m query --windows --space "$space")"
+    else
+      space_json="$(yabai -m query --spaces --space)"
+      windows_json="$(yabai -m query --windows --space)"
+    fi
+
+    layout="$(printf '%s\n' "$space_json" | jq -r '.type')"
+    stacked_windows="$(
+      printf '%s\n' "$windows_json" |
+        jq -r '
+          map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
+          map(select(.["is-floating"] | not)) |
+          map(select(.["stack-index"] > 0)) |
+          length
+        '
+    )"
+
+    if [ "$layout" != "stack" ] && [ "$stacked_windows" -eq 0 ]; then
+      "$HOME/.config/skhd/scripts/rebuild-bsp-grid" "$space"
+    fi
 
     [ -f "$request_file" ] || break
   fi

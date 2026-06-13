@@ -2,12 +2,22 @@
 
 set -eu
 
-layout="$(yabai -m query --spaces --space | jq -r '.type')"
+space_json="$(yabai -m query --spaces --space)"
+layout="$(printf '%s\n' "$space_json" | jq -r '.type')"
+stacked_windows="$(
+  yabai -m query --windows --space |
+    jq -r '
+      map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
+      map(select(.["is-floating"] | not)) |
+      map(select(.["stack-index"] > 0)) |
+      length
+    '
+)"
 
-if [ "$layout" = "stack" ]; then
+if [ "$layout" = "stack" ] || [ "$stacked_windows" -gt 0 ]; then
   "$HOME/.config/skhd/scripts/rebuild-bsp-grid" --force
 else
-  yabai -m space --layout stack
+  "$HOME/.config/skhd/scripts/enter-stack-layout"
 fi
 
 sketchybar --trigger window_focus >/dev/null 2>&1 || true

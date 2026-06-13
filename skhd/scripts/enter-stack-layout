@@ -1,0 +1,49 @@
+#!/bin/sh
+
+set -eu
+
+space="${1:-}"
+
+if [ -n "$space" ]; then
+  windows_json="$(yabai -m query --windows --space "$space")"
+else
+  windows_json="$(yabai -m query --windows --space)"
+fi
+
+window_ids="$(
+  printf '%s\n' "$windows_json" |
+    jq -r '
+      map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
+      map(select(.["is-floating"] | not)) |
+      sort_by(.frame.y, .frame.x) |
+      map(.id) |
+      join(" ")
+    '
+)"
+
+if [ -z "$window_ids" ]; then
+  exit 0
+fi
+
+if [ -n "$space" ]; then
+  yabai -m space "$space" --layout bsp
+else
+  yabai -m space --layout bsp
+fi
+
+set -- $window_ids
+target_id="$1"
+shift
+
+for window_id in "$@"; do
+  yabai -m window "$target_id" --insert stack
+  yabai -m window "$window_id" --warp "$target_id"
+done
+
+if [ -n "$space" ]; then
+  yabai -m space "$space" --layout stack
+else
+  yabai -m space --layout stack
+fi
+
+sketchybar --trigger window_focus >/dev/null 2>&1 || true
