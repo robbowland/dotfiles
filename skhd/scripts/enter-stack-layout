@@ -10,28 +10,6 @@ else
   windows_json="$(yabai -m query --windows --space)"
 fi
 
-blocked_windows="$(
-  printf '%s\n' "$windows_json" |
-    jq -r '
-      map(select(.["is-floating"] | not)) |
-      map(select(
-        (.["can-move"] | not) or
-        (.["can-resize"] | not) or
-        (.["has-ax-reference"] | not) or
-        (.role != "AXWindow") or
-        (.subrole != "AXStandardWindow")
-      )) |
-      map("\(.app):\(.id)") |
-      join(" ")
-    '
-)"
-
-if [ -n "$blocked_windows" ]; then
-  printf >&2 'Skipping native stack; unmanaged windows on space: %s\n' "$blocked_windows"
-  sketchybar --trigger window_focus >/dev/null 2>&1 || true
-  exit 0
-fi
-
 window_ids="$(
   printf '%s\n' "$windows_json" |
     jq -r '
