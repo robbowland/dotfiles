@@ -48,6 +48,18 @@ else
   windows_json="$(yabai -m query --windows --space)"
 fi
 
+if [ "$space_type" != "bsp" ]; then
+  if [ -n "$space" ]; then
+    yabai -m space "$space" --layout bsp
+    windows_json="$(yabai -m query --windows --space "$space")"
+  else
+    yabai -m space --layout bsp
+    windows_json="$(yabai -m query --windows --space)"
+  fi
+
+  space_type="bsp"
+fi
+
 stacked_window_ids="$(
   printf '%s\n' "$windows_json" |
     jq -r '
@@ -203,14 +215,6 @@ fi
 id_at() {
   eval "printf '%s\n' \"\${window_$(($1 + 1))}\""
 }
-
-if [ "$space_type" != "bsp" ]; then
-  if [ -n "$space" ]; then
-    yabai -m space "$space" --layout bsp
-  else
-    yabai -m space --layout bsp
-  fi
-fi
 
 # Build the first row as left-to-right columns.
 col=1
