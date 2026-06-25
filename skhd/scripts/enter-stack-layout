@@ -15,6 +15,8 @@ window_ids="$(
     jq -r '
       map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
       map(select(.["is-floating"] | not)) |
+      map(select(.["can-move"] and .["can-resize"] and .["has-ax-reference"])) |
+      map(select(.role == "AXWindow" and .subrole == "AXStandardWindow")) |
       sort_by(.frame.y, .frame.x) |
       map(.id) |
       join(" ")
@@ -25,20 +27,28 @@ if [ -z "$window_ids" ]; then
   exit 0
 fi
 
+set -- $window_ids
+
+if [ "$#" -lt 2 ]; then
+  exit 0
+fi
+
 if [ -n "$space" ]; then
   yabai -m space "$space" --layout bsp
 else
   yabai -m space --layout bsp
 fi
 
-set -- $window_ids
 target_id="$1"
 shift
 
 for window_id in "$@"; do
-  yabai -m window "$target_id" --insert stack
-  yabai -m window "$window_id" --warp "$target_id"
+  yabai -m window "$window_id" --stack "$target_id"
 done
+
+if [ -z "$space" ]; then
+  yabai -m window "$target_id" --focus || true
+fi
 
 if [ -n "$space" ]; then
   yabai -m space "$space" --layout stack

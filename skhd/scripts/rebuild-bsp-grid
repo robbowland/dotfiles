@@ -48,11 +48,39 @@ else
   windows_json="$(yabai -m query --windows --space)"
 fi
 
+stacked_window_ids="$(
+  printf '%s\n' "$windows_json" |
+    jq -r '
+      map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
+      map(select(.["is-floating"] | not)) |
+      map(select(.["can-move"] and .["can-resize"] and .["has-ax-reference"])) |
+      map(select(.role == "AXWindow" and .subrole == "AXStandardWindow")) |
+      map(select(.["stack-index"] > 0)) |
+      map(.id) |
+      join(" ")
+    '
+)"
+
+for window_id in $stacked_window_ids; do
+  yabai -m window "$window_id" --toggle float || true
+  yabai -m window "$window_id" --toggle float || true
+done
+
+if [ -n "$stacked_window_ids" ]; then
+  if [ -n "$space" ]; then
+    windows_json="$(yabai -m query --windows --space "$space")"
+  else
+    windows_json="$(yabai -m query --windows --space)"
+  fi
+fi
+
 window_data="$(
   printf '%s\n' "$windows_json" |
     jq -r '
       map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
-      map(select(.["is-floating"] | not)) as $windows |
+      map(select(.["is-floating"] | not)) |
+      map(select(.["can-move"] and .["can-resize"] and .["has-ax-reference"])) |
+      map(select(.role == "AXWindow" and .subrole == "AXStandardWindow")) as $windows |
       ($windows | sort_by(.frame.y, .frame.x) | map(.id) | join(" ")),
       ($windows | map(.id) | sort | join(","))
     '
@@ -143,7 +171,9 @@ if [ "$force" -eq 0 ]; then
         def close($actual; $expected): (($actual - $expected) | if . < 0 then -. else . end) <= 8;
 
         map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
-        map(select(.["is-floating"] | not)) as $windows |
+        map(select(.["is-floating"] | not)) |
+        map(select(.["can-move"] and .["can-resize"] and .["has-ax-reference"])) |
+        map(select(.role == "AXWindow" and .subrole == "AXStandardWindow")) as $windows |
         ($windows | map(.frame.x) | unique | length) as $actual_cols |
         ($windows | map(.frame.y) | unique | length) as $actual_rows |
         ($windows | group_by(.frame.x) | map(length) | max) as $max_col_depth |

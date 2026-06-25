@@ -46,6 +46,8 @@ while :; do
         jq -r '
           map(select((.["is-minimized"] | not) and (.["is-hidden"] | not))) |
           map(select(.["is-floating"] | not)) |
+          map(select(.["can-move"] and .["can-resize"] and .["has-ax-reference"])) |
+          map(select(.role == "AXWindow" and .subrole == "AXStandardWindow")) |
           map(select(.["stack-index"] > 0)) |
           length
         '
