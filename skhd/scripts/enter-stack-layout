@@ -10,6 +10,28 @@ else
   windows_json="$(yabai -m query --windows --space)"
 fi
 
+blocked_windows="$(
+  printf '%s\n' "$windows_json" |
+    jq -r '
+      map(select(.["is-floating"] | not)) |
+      map(select(
+        (.["can-move"] | not) or
+        (.["can-resize"] | not) or
+        (.["has-ax-reference"] | not) or
+        (.role != "AXWindow") or
+        (.subrole != "AXStandardWindow")
+      )) |
+      map("\(.app):\(.id)") |
+      join(" ")
+    '
+)"
+
+if [ -n "$blocked_windows" ]; then
+  printf >&2 'Skipping native stack; unmanaged windows on space: %s\n' "$blocked_windows"
+  sketchybar --trigger window_focus >/dev/null 2>&1 || true
+  exit 0
+fi
+
 window_ids="$(
   printf '%s\n' "$windows_json" |
     jq -r '
@@ -33,27 +55,20 @@ if [ "$#" -lt 2 ]; then
   exit 0
 fi
 
-if [ -n "$space" ]; then
-  yabai -m space "$space" --layout bsp
-else
-  yabai -m space --layout bsp
-fi
-
 target_id="$1"
 shift
 
+# Native yabai stacks are stable when a window is marked for stack insertion
+# and the other windows are warped into that stack leaf. Direct --stack calls
+# preserve stale BSP frames for hidden stack members in yabai v7.1.25.
+yabai -m window "$target_id" --insert stack
+
 for window_id in "$@"; do
-  yabai -m window "$window_id" --stack "$target_id"
+  yabai -m window "$window_id" --warp "$target_id"
 done
 
 if [ -z "$space" ]; then
   yabai -m window "$target_id" --focus || true
-fi
-
-if [ -n "$space" ]; then
-  yabai -m space "$space" --layout stack
-else
-  yabai -m space --layout stack
 fi
 
 sketchybar --trigger window_focus >/dev/null 2>&1 || true

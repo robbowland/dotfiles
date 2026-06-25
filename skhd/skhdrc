@@ -59,9 +59,6 @@ cmd + shift - s : "$HOME/.config/skhd/scripts/toggle-stack-layout"
 # -- Enable / Disable gaps in current workspace
 lctrl + alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
-# -- Stack insertion
-cmd + alt - s : yabai -m window --insert stack
-
 # -- Rotate windows clockwise and anticlockwise
 alt - r         : yabai -m space --rotate 270
 shift + alt - r : yabai -m space --rotate 90

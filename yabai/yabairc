@@ -59,7 +59,7 @@ yabai -m config --space terminal split_type auto
 yabai -m config --space terminal auto_balance on
 
 # Window Rules
-yabai -m rule --add app="^Logseq$" space=notes
+yabai -m rule --add app="^Logseq$" space=notes manage=off
 yabai -m rule --add app="^Zen Browser$" space=web
 yabai -m rule --add app="^Ghostty$" space=terminal
 yabai -m rule --add app="^Zed$" space=code
@@ -69,6 +69,7 @@ yabai -m rule --add app=Finder manage=off
 yabai -m rule --add app="System Settings" manage=off
 yabai -m rule --add app=System\ Preferences manage=off
 yabai -m rule --add app=Surfshark manage=off
+yabai -m rule --add app="^Proton Pass$" manage=off
 yabai -m rule --add app=Calculator manage=off
 yabai -m rule --add app="Alfred Preferences" manage=off
 

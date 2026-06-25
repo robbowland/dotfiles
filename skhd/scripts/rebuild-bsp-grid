@@ -3,9 +3,10 @@
 # Rebuild a managed BSP space into an even grid-shaped tree.
 #
 # Use --force when leaving native yabai stack mode or when the tree shape is
-# known stale. The cache only skips work when the same windows are already in
-# the expected grid shape. The final balance is still required because yabai
-# owns the BSP split ratios after the warp sequence.
+# known stale. Native stacks are cleared by briefly resetting the space through
+# float layout before rebuilding BSP. The cache only skips work when the same
+# windows are already in the expected grid shape. The final balance is still
+# required because yabai owns the BSP split ratios after the warp sequence.
 
 set -eu
 
@@ -48,18 +49,6 @@ else
   windows_json="$(yabai -m query --windows --space)"
 fi
 
-if [ "$space_type" != "bsp" ]; then
-  if [ -n "$space" ]; then
-    yabai -m space "$space" --layout bsp
-    windows_json="$(yabai -m query --windows --space "$space")"
-  else
-    yabai -m space --layout bsp
-    windows_json="$(yabai -m query --windows --space)"
-  fi
-
-  space_type="bsp"
-fi
-
 stacked_window_ids="$(
   printf '%s\n' "$windows_json" |
     jq -r '
@@ -73,17 +62,22 @@ stacked_window_ids="$(
     '
 )"
 
-for window_id in $stacked_window_ids; do
-  yabai -m window "$window_id" --toggle float || true
-  yabai -m window "$window_id" --toggle float || true
-done
-
-if [ -n "$stacked_window_ids" ]; then
+if [ "$space_type" != "bsp" ] || [ -n "$stacked_window_ids" ]; then
   if [ -n "$space" ]; then
+    if [ -n "$stacked_window_ids" ]; then
+      yabai -m space "$space" --layout float
+    fi
+    yabai -m space "$space" --layout bsp
     windows_json="$(yabai -m query --windows --space "$space")"
   else
+    if [ -n "$stacked_window_ids" ]; then
+      yabai -m space --layout float
+    fi
+    yabai -m space --layout bsp
     windows_json="$(yabai -m query --windows --space)"
   fi
+
+  space_type="bsp"
 fi
 
 window_data="$(
