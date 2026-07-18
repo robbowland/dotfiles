@@ -5,9 +5,9 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$python\
 $cmd_duration\
 $line_break\
-$python\
 $character"""
 
 [palettes.micrographics]
@@ -19,42 +19,42 @@ danger = "#ff3b2f"
 selection = "#303030"
 
 [directory]
-format = "[[DIR](faint) $path](ink) "
-style = "ink"
-truncation_length = 4
+format = "[$path]($style) "
+style = "metadata"
+truncation_length = 2
 truncate_to_repo = false
 
 [git_branch]
-format = "[[GIT](faint) $branch](ink) "
-style = "ink"
+format = "[$branch]($style) "
+style = "faint"
 
 [git_status]
-format = "[$all_status$ahead_behind]($style)"
-style = "metadata"
-conflicted = "[!${count}](bold danger)"
-untracked = "[?${count}](metadata)"
-modified = "[~${count}](metadata)"
-staged = "[+${count}](ink)"
-renamed = "[>${count}](metadata)"
-deleted = "[-${count}](danger)"
-stashed = "[=${count}](faint)"
-ahead = "[^${count}](metadata)"
-behind = "[v${count}](metadata)"
-diverged = "[!^${ahead_count}v${behind_count}](danger)"
+format = "[$all_status$ahead_behind]($style) "
+style = "faint"
+conflicted = "[!](bold danger)"
+untracked = ""
+modified = ""
+staged = ""
+renamed = ""
+deleted = "[-](danger)"
+stashed = ""
+ahead = "[^](faint)"
+behind = "[v](faint)"
+diverged = "[!^v](danger)"
 up_to_date = ""
 
 [git_state]
-format = "[[STA](faint) $state( $progress_current/$progress_total)](metadata) "
+format = "[$state( $progress_current/$progress_total)]($style) "
 style = "metadata"
 
 [cmd_duration]
-min_time = 1000
-format = "[[TME](faint) $duration](metadata) "
-style = "metadata"
+min_time = 3000
+format = "[$duration]($style) "
+style = "faint"
 
 [python]
-format = "[[PY](faint) $virtualenv](metadata) "
-style = "metadata"
+format = "[$virtualenv]($style) "
+style = "faint"
 
 [character]
 success_symbol = "[>](bold ink)"

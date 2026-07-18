@@ -69,6 +69,7 @@ bat --theme Micrographics --color=always --style=plain "$TMP/sample.js" >/dev/nu
 printf 'theme = Micrographics\n' > "$TMP/ghostty"
 ghostty +validate-config --config-file="$TMP/ghostty"
 STARSHIP_CONFIG="$BASE/starship/themes/micrographics.toml" starship print-config >/dev/null
+! grep -Eq '\[(DIR|GIT|STA|TME|PY)\]|\$\{count\}' "$BASE/starship/themes/micrographics.toml"
 fish -n "$BASE/fish/palettes/micrographics.fish" "$BASE/fzf/fish/themes/micrographics.fish" "$BASE/micrographics/activate.fish"
 fish --no-config -c 'source ~/.config/micrographics/activate.fish; test "$BAT_THEME" = Micrographics; printf "x\n" | fzf --filter x >/dev/null'
 YAZI_CONFIG_HOME="$BASE/yazi/profiles/micrographics" yazi --debug > "$TMP/yazi" 2>&1
