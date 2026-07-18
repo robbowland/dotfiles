@@ -6,7 +6,7 @@ overall = { fg = "#ffffff", bg = "#000000" }
 [mgr]
 hovered         = { fg = "#000000", bg = "#ffffff", bold = true }
 preview_hovered = { fg = "#000000", bg = "#ffffff", bold = true }
-cwd             = { fg = "#ffffff", bold = true }
+cwd             = { fg = "#999999" }
 find_keyword     = { fg = "#ffffff", bold = true }
 find_position    = { fg = "#999999" }
 symlink_target   = { fg = "#999999", italic = true }
@@ -23,23 +23,23 @@ border_style     = { fg = "#616161" }
 syntect_theme    = "~/.config/bat/themes/Micrographics.tmTheme"
 
 [tabs]
-active   = { fg = "#000000", bg = "#ffffff", bold = true }
-inactive = { fg = "#999999", bg = "#000000" }
+active   = { fg = "#999999", bg = "#000000", bold = true }
+inactive = { fg = "#616161", bg = "#000000" }
 sep_inner = { open = "[", close = "]" }
 sep_outer = { open = "", close = "" }
 
 [mode]
-normal_main = { fg = "#ffffff", bg = "#000000", bold = true }
-normal_alt  = { fg = "#999999", bg = "#000000" }
+normal_main = { fg = "#616161", bg = "#000000" }
+normal_alt  = { fg = "#616161", bg = "#000000" }
 select_main = { fg = "#000000", bg = "#ffffff", bold = true }
-select_alt  = { fg = "#ffffff", bg = "#000000" }
+select_alt  = { fg = "#999999", bg = "#000000" }
 unset_main  = { fg = "#000000", bg = "#ff3b2f", bold = true }
 unset_alt   = { fg = "#ff3b2f", bg = "#000000" }
 
 [indicator]
-parent  = { reversed = true }
-current = { reversed = true }
-preview = { underline = true }
+parent  = { fg = "#616161" }
+current = { fg = "#999999" }
+preview = { fg = "#616161" }
 padding = { open = "[", close = "]" }
 
 [status]
@@ -102,9 +102,9 @@ selected = { fg = "#000000", bg = "#ffffff" }
 border   = { fg = "#616161" }
 active   = { fg = "#000000", bg = "#ffffff", bold = true }
 inactive = { fg = "#999999" }
-icon_file = "[F]"
-icon_folder = "[D]"
-icon_command = "[C]"
+icon_file = "F"
+icon_folder = "D"
+icon_command = "C"
 
 [tasks]
 border  = { fg = "#616161" }
@@ -120,14 +120,15 @@ footer  = { fg = "#000000", bg = "#ffffff" }
 
 [filetype]
 rules = [
-  { url = "*/", fg = "#ffffff", bold = true },
+  { url = "*/", fg = "#ffffff" },
   { url = "*", is = "link", fg = "#999999" },
   { url = "*", is = "orphan", fg = "#ff3b2f", bold = true },
-  { url = "*", is = "exec", fg = "#ffffff", bold = true },
+  { url = "*", is = "exec", fg = "#ffffff" },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#999999" },
   { mime = "{image,audio,video}/*", fg = "#999999" },
   { mime = "vfs/{absent,stale}", fg = "#616161" },
   { url = ".*", fg = "#616161" },
+  { url = "*", fg = "#999999" },
 ]
 
 [icon]
@@ -136,14 +137,14 @@ dirs = []
 files = []
 exts = []
 conds = [
-  { if = "orphan & hovered", text = "[!]", fg = "#ff3b2f" },
-  { if = "orphan", text = "[!]", fg = "#ff3b2f" },
-  { if = "link & hovered", text = "[L]", fg = "#000000" },
-  { if = "link", text = "[L]", fg = "#999999" },
-  { if = "dir & hovered", text = "[D]", fg = "#000000" },
-  { if = "dir", text = "[D]", fg = "#ffffff" },
-  { if = "exec & hovered", text = "[X]", fg = "#000000" },
-  { if = "exec", text = "[X]", fg = "#ffffff" },
-  { if = "hovered", text = "[F]", fg = "#000000" },
-  { if = "!dir", text = "[F]", fg = "#999999" },
+  { if = "orphan & hovered", text = "!", fg = "#ff3b2f" },
+  { if = "orphan", text = "!", fg = "#ff3b2f" },
+  { if = "link & hovered", text = "L", fg = "#000000" },
+  { if = "link", text = "L", fg = "#616161" },
+  { if = "dir & hovered", text = "D", fg = "#000000" },
+  { if = "dir", text = "D", fg = "#999999" },
+  { if = "exec & hovered", text = "X", fg = "#000000" },
+  { if = "exec", text = "X", fg = "#999999" },
+  { if = "hovered", text = "", fg = "#000000" },
+  { if = "!dir", text = "", fg = "#616161" },
 ]
