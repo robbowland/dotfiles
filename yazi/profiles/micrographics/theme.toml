@@ -38,7 +38,7 @@ unset_alt   = { fg = "#ff3b2f", bg = "#000000" }
 parent  = { fg = "#616161" }
 current = { fg = "#000000", bg = "#ffffff", bold = true }
 preview = { fg = "#616161" }
-padding = { open = "", close = "" }
+padding = { open = " ", close = "" }
 
 [status]
 overall   = { fg = "#616161", bg = "#000000" }
