@@ -1,0 +1,65 @@
+[keybind]
+user_command_view_toggle_1 = ["d"]
+
+[core.user_command]
+commands_1 = { name = "delta diff", commands = ["sh", "-c", "git --no-pager diff --color=always {{first_parent_hash}} {{target_hash}} | delta --paging=never"] }
+
+[ui.detail]
+height = 12
+
+[ui.user_command]
+height = 10
+
+[graph.color]
+branches = [
+  "#ffffff",
+  "#999999",
+  "#616161",
+  "#ffffff",
+  "#999999",
+  "#616161",
+]
+edge = "#616161"
+background = "#000000"
+
+[color]
+fg = "#ffffff"
+bg = "#000000"
+list_selected_fg = "#000000"
+list_selected_bg = "#ffffff"
+list_selected_bold = true
+list_selected_italic = false
+ref_selected_fg = "#000000"
+ref_selected_bg = "#ffffff"
+ref_selected_bold = true
+ref_selected_italic = false
+list_subject_fg = "#ffffff"
+list_name_fg = "#ffffff"
+list_hash_fg = "#999999"
+list_date_fg = "#616161"
+list_match_fg = "#000000"
+list_match_bg = "#ffffff"
+list_ref_paren_fg = "#616161"
+list_ref_branch_fg = "#ffffff"
+list_ref_remote_branch_fg = "#999999"
+list_ref_tag_fg = "#ffffff"
+list_ref_stash_fg = "#999999"
+list_head_fg = "#ffffff"
+detail_email_fg = "#999999"
+detail_ref_branch_fg = "#ffffff"
+detail_ref_remote_branch_fg = "#999999"
+detail_ref_tag_fg = "#ffffff"
+detail_file_change_add_fg = "#ffffff"
+detail_file_change_modify_fg = "#999999"
+detail_file_change_delete_fg = "#ff3b2f"
+detail_file_change_move_fg = "#999999"
+status_input_fg = "#ffffff"
+status_input_transient_fg = "#616161"
+status_info_fg = "#999999"
+status_success_fg = "#ffffff"
+status_warn_fg = "#ff3b2f"
+status_error_fg = "#ff3b2f"
+virtual_cursor_fg = "#ffffff"
+help_block_title_fg = "#ffffff"
+help_key_fg = "#999999"
+divider_fg = "#616161"

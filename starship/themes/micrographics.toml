@@ -1,0 +1,65 @@
+palette = "micrographics"
+
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$python\
+$character"""
+
+[palettes.micrographics]
+paper = "#000000"
+ink = "#ffffff"
+metadata = "#999999"
+faint = "#616161"
+danger = "#ff3b2f"
+selection = "#303030"
+
+[directory]
+format = "[[DIR](faint) $path](ink) "
+style = "ink"
+truncation_length = 4
+truncate_to_repo = false
+
+[git_branch]
+format = "[[GIT](faint) $branch](ink) "
+style = "ink"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style)"
+style = "metadata"
+conflicted = "[!${count}](bold danger)"
+untracked = "[?${count}](metadata)"
+modified = "[~${count}](metadata)"
+staged = "[+${count}](ink)"
+renamed = "[>${count}](metadata)"
+deleted = "[-${count}](danger)"
+stashed = "[=${count}](faint)"
+ahead = "[^${count}](metadata)"
+behind = "[v${count}](metadata)"
+diverged = "[!^${ahead_count}v${behind_count}](danger)"
+up_to_date = ""
+
+[git_state]
+format = "[[STA](faint) $state( $progress_current/$progress_total)](metadata) "
+style = "metadata"
+
+[cmd_duration]
+min_time = 1000
+format = "[[TME](faint) $duration](metadata) "
+style = "metadata"
+
+[python]
+format = "[[PY](faint) $virtualenv](metadata) "
+style = "metadata"
+
+[character]
+success_symbol = "[>](bold ink)"
+error_symbol = "[!](bold danger)"
+vimcmd_symbol = "[N](metadata)"
+vimcmd_replace_symbol = "[R](danger)"
+vimcmd_replace_one_symbol = "[R1](danger)"
+vimcmd_visual_symbol = "[V](metadata)"

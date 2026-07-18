@@ -1,0 +1,149 @@
+#:schema https://yazi-rs.github.io/schemas/theme.json
+
+[app]
+overall = { fg = "#ffffff", bg = "#000000" }
+
+[mgr]
+hovered         = { fg = "#000000", bg = "#ffffff", bold = true }
+preview_hovered = { fg = "#000000", bg = "#ffffff", bold = true }
+cwd             = { fg = "#ffffff", bold = true }
+find_keyword     = { fg = "#ffffff", bold = true }
+find_position    = { fg = "#999999" }
+symlink_target   = { fg = "#999999", italic = true }
+marker_copied    = { fg = "#ffffff", bg = "#ffffff" }
+marker_cut       = { fg = "#ff3b2f", bg = "#ff3b2f" }
+marker_marked    = { fg = "#999999", bg = "#999999" }
+marker_selected  = { fg = "#ffffff", bg = "#ffffff" }
+marker_symbol    = "│"
+count_copied     = { fg = "#000000", bg = "#ffffff" }
+count_cut        = { fg = "#000000", bg = "#ff3b2f" }
+count_selected   = { fg = "#000000", bg = "#ffffff" }
+border_symbol    = "│"
+border_style     = { fg = "#616161" }
+syntect_theme    = "~/.config/bat/themes/Micrographics.tmTheme"
+
+[tabs]
+active   = { fg = "#000000", bg = "#ffffff", bold = true }
+inactive = { fg = "#999999", bg = "#000000" }
+sep_inner = { open = "[", close = "]" }
+sep_outer = { open = "", close = "" }
+
+[mode]
+normal_main = { fg = "#ffffff", bg = "#000000", bold = true }
+normal_alt  = { fg = "#999999", bg = "#000000" }
+select_main = { fg = "#000000", bg = "#ffffff", bold = true }
+select_alt  = { fg = "#ffffff", bg = "#000000" }
+unset_main  = { fg = "#000000", bg = "#ff3b2f", bold = true }
+unset_alt   = { fg = "#ff3b2f", bg = "#000000" }
+
+[indicator]
+parent  = { reversed = true }
+current = { reversed = true }
+preview = { underline = true }
+padding = { open = "[", close = "]" }
+
+[status]
+overall   = { fg = "#616161", bg = "#000000" }
+sep_left  = { open = "", close = "", fg = "#616161", bg = "#000000" }
+sep_right = { open = "", close = "", fg = "#616161", bg = "#000000" }
+perm_sep   = { fg = "#616161" }
+perm_type  = { fg = "#999999" }
+perm_read  = { fg = "#999999" }
+perm_write = { fg = "#999999" }
+perm_exec  = { fg = "#ffffff" }
+progress_label  = { fg = "#999999", bold = true }
+progress_normal = { fg = "#ffffff", bg = "#000000" }
+progress_error  = { fg = "#ff3b2f", bg = "#000000" }
+
+[which]
+cols            = 3
+mask            = { bg = "#000000" }
+cand            = { fg = "#ffffff", bold = true }
+rest            = { fg = "#616161" }
+desc            = { fg = "#999999" }
+separator       = " │ "
+separator_style = { fg = "#616161" }
+
+[confirm]
+border     = { fg = "#999999" }
+title      = { fg = "#ffffff", bold = true }
+body       = { fg = "#ffffff" }
+list       = { fg = "#999999" }
+btn_yes    = { fg = "#000000", bg = "#ffffff", bold = true }
+btn_no     = { fg = "#999999" }
+btn_labels = [ " [YES] ", " [NO] " ]
+
+[spot]
+border   = { fg = "#616161" }
+title    = { fg = "#ffffff", bold = true }
+tbl_col  = { fg = "#999999" }
+tbl_cell = { fg = "#ffffff" }
+
+[notify]
+title_info  = { fg = "#999999" }
+title_warn  = { fg = "#ff3b2f", bold = true }
+title_error = { fg = "#ff3b2f", bold = true }
+icon_info  = "[i]"
+icon_warn  = "[!]"
+icon_error = "[x]"
+
+[pick]
+border   = { fg = "#616161" }
+active   = { fg = "#000000", bg = "#ffffff", bold = true }
+inactive = { fg = "#999999" }
+
+[input]
+border   = { fg = "#616161" }
+title    = { fg = "#999999" }
+value    = { fg = "#ffffff" }
+selected = { fg = "#000000", bg = "#ffffff" }
+
+[cmp]
+border   = { fg = "#616161" }
+active   = { fg = "#000000", bg = "#ffffff", bold = true }
+inactive = { fg = "#999999" }
+icon_file = "[F]"
+icon_folder = "[D]"
+icon_command = "[C]"
+
+[tasks]
+border  = { fg = "#616161" }
+title   = { fg = "#ffffff", bold = true }
+hovered = { fg = "#000000", bg = "#ffffff", bold = true }
+
+[help]
+on      = { fg = "#ffffff", bold = true }
+run     = { fg = "#999999" }
+desc    = { fg = "#999999" }
+hovered = { fg = "#000000", bg = "#ffffff", bold = true }
+footer  = { fg = "#000000", bg = "#ffffff" }
+
+[filetype]
+rules = [
+  { url = "*/", fg = "#ffffff", bold = true },
+  { url = "*", is = "link", fg = "#999999" },
+  { url = "*", is = "orphan", fg = "#ff3b2f", bold = true },
+  { url = "*", is = "exec", fg = "#ffffff", bold = true },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#999999" },
+  { mime = "{image,audio,video}/*", fg = "#999999" },
+  { mime = "vfs/{absent,stale}", fg = "#616161" },
+  { url = ".*", fg = "#616161" },
+]
+
+[icon]
+globs = []
+dirs = []
+files = []
+exts = []
+conds = [
+  { if = "orphan & hovered", text = "[!]", fg = "#ff3b2f" },
+  { if = "orphan", text = "[!]", fg = "#ff3b2f" },
+  { if = "link & hovered", text = "[L]", fg = "#000000" },
+  { if = "link", text = "[L]", fg = "#999999" },
+  { if = "dir & hovered", text = "[D]", fg = "#000000" },
+  { if = "dir", text = "[D]", fg = "#ffffff" },
+  { if = "exec & hovered", text = "[X]", fg = "#000000" },
+  { if = "exec", text = "[X]", fg = "#ffffff" },
+  { if = "hovered", text = "[F]", fg = "#000000" },
+  { if = "!dir", text = "[F]", fg = "#999999" },
+]

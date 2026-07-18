@@ -1,0 +1,47 @@
+(
+  syntax:                   Some("Micrographics"),
+  selected_tab:             Some("#000000"),
+
+  cmdbar_bg:                Some("#000000"),
+  cmdbar_extra_lines_bg:    Some("#000000"),
+  command_fg:               Some("#ffffff"),
+  disabled_fg:              Some("#616161"),
+
+  use_selection_bg:         Some(true),
+  use_selection_fg:         Some(true),
+  selection_bg:             Some("#ffffff"),
+  selection_fg:             Some("#000000"),
+  selection_bold:           Some(true),
+  selection_italic:         Some(false),
+
+  file_tree_path_unselected_fg:      Some("#ffffff"),
+  file_tree_path_selected_fg:        Some("#000000"),
+  file_tree_path_icon_unselected_fg: Some("#999999"),
+  file_tree_path_icon_selected_fg:   Some("#000000"),
+
+  diff_line_add:             Some("#ffffff"),
+  diff_line_delete:          Some("#ff3b2f"),
+  diff_file_added:           Some("#ffffff"),
+  diff_file_removed:         Some("#ff3b2f"),
+  diff_file_moved:           Some("#999999"),
+  diff_file_modified:        Some("#999999"),
+
+  status_new_unselected_fg:        Some("#ffffff"),
+  status_modified_unselected_fg:   Some("#999999"),
+  status_deleted_unselected_fg:    Some("#ff3b2f"),
+  status_renamed_unselected_fg:    Some("#999999"),
+  status_conflicted_unselected_fg: Some("#ff3b2f"),
+  status_typechange_unselected_fg: Some("#999999"),
+
+  commit_hash:               Some("#999999"),
+  commit_time:               Some("#616161"),
+  commit_author:             Some("#ffffff"),
+  branch_fg:                 Some("#ffffff"),
+  tag_fg:                    Some("#999999"),
+
+  danger_fg:                 Some("#ff3b2f"),
+  push_gauge_bg:             Some("#ffffff"),
+  push_gauge_fg:             Some("#000000"),
+  block_title_focused:       Some("#ffffff"),
+  line_break:                Some("│"),
+)

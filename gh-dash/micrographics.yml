@@ -1,0 +1,148 @@
+prSections:
+  - title: Queue
+    filters: >-
+      is:open
+      review-requested:@me
+      draft:false
+      sort:updated-desc
+  - title: Mine
+    filters: >-
+      is:open
+      author:@me
+      sort:updated-desc
+  - title: Watch
+    filters: >-
+      is:open
+      involves:@me
+      -author:@me
+      -assignee:@me
+      sort:updated-desc
+issuesSections:
+  - title: Queue
+    filters: >-
+      is:open
+      assignee:@me
+      sort:updated-desc
+  - title: Mine
+    filters: >-
+      is:open
+      author:@me
+      sort:updated-desc
+  - title: Watch
+    filters: >-
+      is:open
+      involves:@me
+      -assignee:@me
+      -author:@me
+      sort:updated-desc
+repo:
+  branchesRefetchIntervalSeconds: 30
+  prsRefetchIntervalSeconds: 60
+defaults:
+  preview:
+    open: true
+    width: 50
+  prsLimit: 20
+  prApproveComment: LGTM
+  issuesLimit: 20
+  view: prs
+  layout:
+    prs:
+      updatedAt:
+        width: 5
+      createdAt:
+        width: 5
+      repo:
+        width: 20
+      author:
+        width: 15
+      authorIcon:
+        hidden: false
+      assignees:
+        width: 20
+        hidden: true
+      base:
+        width: 15
+        hidden: true
+      lines:
+        width: 15
+    issues:
+      updatedAt:
+        width: 5
+      createdAt:
+        width: 5
+      repo:
+        width: 15
+      creator:
+        width: 10
+      creatorIcon:
+        hidden: false
+      assignees:
+        width: 20
+        hidden: true
+  refetchIntervalMinutes: 30
+keybindings:
+  universal:
+    - key: enter
+      builtin: togglePreview
+      name: open preview
+    - key: "?"
+      builtin: help
+    - key: g
+      name: gitui
+      command: >
+        cd {{.RepoPath}} && gitui
+    - key: tab
+      builtin: nextSection
+      name: next section
+    - key: shift+tab
+      builtin: prevSection
+      name: previous section
+    - key: j
+      builtin: down
+      name: move down
+    - key: k
+      builtin: up
+      name: move up
+    - key: ctrl+j
+      builtin: previewLineDown
+      name: preview scroll down
+    - key: ctrl+k
+      builtin: previewLineUp
+      name: preview scroll up
+  prs:
+    - key: "C"
+      builtin: checkout
+      name: (C)heckout
+    - key: ctrl+l
+      builtin: nextSidebarTab
+      name: sidebar next tab
+    - key: ctrl+h
+      builtin: prevSidebarTab
+      name: sidebar prev tab
+repoPaths: {}
+theme:
+  ui:
+    sectionsShowCount: true
+    table:
+      showSeparator: true
+      compact: false
+  colors:
+    text:
+      primary: "#ffffff"
+      secondary: "#999999"
+      inverted: "#000000"
+      faint: "#616161"
+      warning: "#ff3b2f"
+      success: "#ffffff"
+    background:
+      selected: "#303030"
+    border:
+      primary: "#ffffff"
+      secondary: "#999999"
+      faint: "#616161"
+pager:
+  diff: diffnav
+confirmQuit: false
+showAuthorIcons: true
+smartFilteringAtLaunch: true

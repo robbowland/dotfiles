@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+PROFILE="$HOME/.config/micrographics-shell"
+
+if [ "$(uname -s)" = "Darwin" ]; then
+  exec open -na Ghostty.app --args --theme=Micrographics -e "$PROFILE"
+fi
+
+exec ghostty --theme=Micrographics -e "$PROFILE"

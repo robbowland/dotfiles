@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+FISH_BIN="${FISH_BIN:-$(command -v fish)}"
+exec "$FISH_BIN" -C 'source "$HOME/.config/micrographics/activate.fish"'

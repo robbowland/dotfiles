@@ -1,0 +1,26 @@
+# Optional Micrographics palette. Select with `theme = Micrographics` or use
+# `micrographics-terminal`; the default Ghostty config remains unchanged.
+background = #000000
+foreground = #ffffff
+cursor-color = #ffffff
+cursor-text = #000000
+selection-background = #ffffff
+selection-foreground = #000000
+
+# ANSI roles: danger remains red; all other distinctions use ink weight.
+palette = 0=#000000
+palette = 1=#ff3b2f
+palette = 2=#999999
+palette = 3=#ff3b2f
+palette = 4=#999999
+palette = 5=#999999
+palette = 6=#999999
+palette = 7=#ffffff
+palette = 8=#616161
+palette = 9=#ff3b2f
+palette = 10=#ffffff
+palette = 11=#ff3b2f
+palette = 12=#ffffff
+palette = 13=#ffffff
+palette = 14=#ffffff
+palette = 15=#ffffff

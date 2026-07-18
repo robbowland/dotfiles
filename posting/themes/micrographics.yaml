@@ -1,0 +1,46 @@
+name: micrographics
+primary: "#ffffff"
+secondary: "#999999"
+background: "#000000"
+panel: "#000000"
+surface: "#000000"
+warning: "#ff3b2f"
+error: "#ff3b2f"
+success: "#ffffff"
+accent: "#ffffff"
+dark: true
+
+syntax:
+  json_key: "#ffffff"
+  json_string: "#ffffff"
+  json_number: "#ffffff"
+  json_boolean: "#999999"
+  json_null: "#616161"
+
+url:
+  base: "#ffffff"
+  protocol: "#999999"
+  separator: "#616161"
+
+variable:
+  resolved: "#ffffff"
+  unresolved: "#ff3b2f"
+
+text_area:
+  gutter: "#616161 on #000000"
+  cursor: "#000000 on #ffffff"
+  cursor_line: "#000000"
+  cursor_line_gutter: "bold #ffffff on #000000"
+  matched_bracket: "bold #ffffff"
+  selection: "#000000 on #ffffff"
+
+method:
+  get: "#ffffff"
+  post: "#999999"
+  put: "#999999"
+  delete: "#ff3b2f"
+  patch: "#999999"
+  options: "#616161"
+  head: "#616161"
+
+description: "Optional pure-invert Micrographics theme with grayscale scaffolding and danger red."

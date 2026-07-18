@@ -1,0 +1,31 @@
+layout {
+    default_tab_template {
+        children
+
+        pane size=1 borderless=true {
+            plugin location="file:$HOME/.config/zellij/plugins/zjstatus.wasm" {
+                format_left  " {tabs}"
+                format_right "{mode} "
+                format_space ""
+                pane_frames false
+
+                mode_locked "#[fg=#616161][LOCK]"
+                mode_normal "#[fg=#616161][NRM]"
+                mode_tab    "#[fg=#ffffff,bold][TAB]"
+                mode_pane   "#[fg=#ffffff,bold][PANE]"
+                mode_tmux   "#[fg=#999999][TMUX]"
+                mode_resize "#[fg=#ffffff,bold][SIZE]"
+                mode_move   "#[fg=#ffffff,bold][MOVE]"
+
+                tab_normal "#[fg=#616161][{index}] {name} "
+                tab_active "#[fg=#000000,bg=#ffffff,bold][{index}] {name} "
+            }
+        }
+    }
+    tab name="main" focus=true {
+      pane focus=true cwd="~"
+    }
+    tab name="nvim" focus=false {
+      pane command="nvim" cwd="~/me/code/"
+    }
+}
