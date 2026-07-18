@@ -51,6 +51,10 @@ assert yazi["indicator"]["current"] == {
     "bg": "#ffffff",
     "bold": True,
 }, "Yazi current selection must remain solid white with black text"
+assert yazi["indicator"]["padding"] == {
+    "open": "",
+    "close": "",
+}, "Yazi selection must remain an unbracketed solid rectangle"
 PY
 ruby -e 'require "yaml"; ARGV.each { |p| YAML.safe_load(File.read(p), permitted_classes: [], aliases: false) }' \
   "$BASE/gh-dash/micrographics.yml" \
