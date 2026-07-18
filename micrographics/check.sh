@@ -62,6 +62,7 @@ STARSHIP_CONFIG="$BASE/starship/themes/micrographics.toml" starship print-config
 fish -n "$BASE/fish/palettes/micrographics.fish" "$BASE/fzf/fish/themes/micrographics.fish" "$BASE/micrographics/activate.fish"
 fish --no-config -c 'source ~/.config/micrographics/activate.fish; test "$BAT_THEME" = Micrographics; printf "x\n" | fzf --filter x >/dev/null'
 YAZI_CONFIG_HOME="$BASE/yazi/profiles/micrographics" yazi --debug > "$TMP/yazi" 2>&1
+grep -q 'profiles/micrographics/init.lua' "$TMP/yazi"
 grep -q 'profiles/micrographics/theme.toml' "$TMP/yazi"
 ! grep -Eqi 'invalid theme|failed to load|parse error' "$TMP/yazi"
 ZELLIJ_CONFIG_FILE="$BASE/zellij/profiles/micrographics.kdl" zellij setup --check > "$TMP/zellij" 2>&1
