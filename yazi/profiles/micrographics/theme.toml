@@ -4,8 +4,6 @@
 overall = { fg = "#ffffff", bg = "#000000" }
 
 [mgr]
-hovered         = { fg = "#000000", bg = "#ffffff", bold = true }
-preview_hovered = { fg = "#000000", bg = "#ffffff", bold = true }
 cwd             = { fg = "#999999" }
 find_keyword     = { fg = "#ffffff", bold = true }
 find_position    = { fg = "#999999" }
@@ -38,7 +36,7 @@ unset_alt   = { fg = "#ff3b2f", bg = "#000000" }
 
 [indicator]
 parent  = { fg = "#616161" }
-current = { fg = "#999999" }
+current = { fg = "#000000", bg = "#ffffff", bold = true }
 preview = { fg = "#616161" }
 padding = { open = "[", close = "]" }
 

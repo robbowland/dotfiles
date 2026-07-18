@@ -39,12 +39,18 @@ for path in paths:
     unexpected = colors - allowed
     if unexpected:
         raise SystemExit(f"{path}: unexpected colors {sorted(unexpected)}")
-for path in [
+toml_paths = [
     base / "starship/themes/micrographics.toml",
     base / "yazi/profiles/micrographics/theme.toml",
     base / "serie/micrographics.toml",
-]:
-    tomllib.loads(path.read_text())
+]
+parsed = {path: tomllib.loads(path.read_text()) for path in toml_paths}
+yazi = parsed[base / "yazi/profiles/micrographics/theme.toml"]
+assert yazi["indicator"]["current"] == {
+    "fg": "#000000",
+    "bg": "#ffffff",
+    "bold": True,
+}, "Yazi current selection must remain solid white with black text"
 PY
 ruby -e 'require "yaml"; ARGV.each { |p| YAML.safe_load(File.read(p), permitted_classes: [], aliases: false) }' \
   "$BASE/gh-dash/micrographics.yml" \
