@@ -1,55 +1,47 @@
 (
-  // core
-  syntax:                   Some("GitHubDark"),
-  selected_tab:             Some("Reset"),
+  syntax:                   Some("Micrographics"),
+  selected_tab:             Some("${PALETTE_BLACK}"),
 
-  // command bar
   cmdbar_bg:                Some("${PALETTE_BLACK}"),
   cmdbar_extra_lines_bg:    Some("${PALETTE_BLACK}"),
   command_fg:               Some("${PALETTE_WHITE}"),
   disabled_fg:              Some("${PALETTE_GRAY_DIM}"),
 
-  // selection (microcontrast + readable bold)
   use_selection_bg:         Some(true),
-  use_selection_fg:         Some(false),
-  selection_bg:             Some("${PALETTE_SURFACE_0}"),
+  use_selection_fg:         Some(true),
+  selection_bg:             Some("${PALETTE_WHITE}"),
   selection_fg:             Some("${PALETTE_BLACK}"),
   selection_bold:           Some(true),
   selection_italic:         Some(false),
 
-  // file tree (unselected = base, selected = bright)
-  file_tree_path_unselected_fg:      Some("${PALETTE_BLUE}"),
-  file_tree_path_selected_fg:        Some("${PALETTE_BLUE_BRIGHT}"),
-  file_tree_path_icon_unselected_fg: Some("${PALETTE_BLUE}"),
-  file_tree_path_icon_selected_fg:   Some("${PALETTE_BLUE_BRIGHT}"),
+  file_tree_path_unselected_fg:      Some("${PALETTE_WHITE}"),
+  file_tree_path_selected_fg:        Some("${PALETTE_BLACK}"),
+  file_tree_path_icon_unselected_fg: Some("${PALETTE_GRAY}"),
+  file_tree_path_icon_selected_fg:   Some("${PALETTE_BLACK}"),
 
-  // diff
-  diff_line_add:             Some("${PALETTE_GREEN}"),
+  diff_line_add:             Some("${PALETTE_WHITE}"),
   diff_line_delete:          Some("${PALETTE_RED}"),
-  diff_file_added:           Some("${PALETTE_GREEN}"),
+  diff_file_added:           Some("${PALETTE_WHITE}"),
   diff_file_removed:         Some("${PALETTE_RED}"),
-  diff_file_moved:           Some("${PALETTE_MAGENTA}"),
-  diff_file_modified:        Some("${PALETTE_YELLOW}"),
+  diff_file_moved:           Some("${PALETTE_GRAY}"),
+  diff_file_modified:        Some("${PALETTE_GRAY}"),
 
-  // status (unselected = base; selection state gets the bold/bg above)
-  status_new_unselected_fg:        Some("${PALETTE_GREEN}"),
-  status_modified_unselected_fg:   Some("${PALETTE_YELLOW}"),
+  status_new_unselected_fg:        Some("${PALETTE_WHITE}"),
+  status_modified_unselected_fg:   Some("${PALETTE_GRAY}"),
   status_deleted_unselected_fg:    Some("${PALETTE_RED}"),
-  status_renamed_unselected_fg:    Some("${PALETTE_MAGENTA}"),
-  status_conflicted_unselected_fg: Some("${PALETTE_ORANGE}"),
-  status_typechange_unselected_fg: Some("${PALETTE_PINK}"),
+  status_renamed_unselected_fg:    Some("${PALETTE_GRAY}"),
+  status_conflicted_unselected_fg: Some("${PALETTE_RED}"),
+  status_typechange_unselected_fg: Some("${PALETTE_GRAY}"),
 
-  // commit list
-  commit_hash:               Some("${PALETTE_YELLOW}"),
-  commit_time:               Some("${PALETTE_BLUE}"),
-  commit_author:             Some("${PALETTE_GREEN}"),
+  commit_hash:               Some("${PALETTE_GRAY}"),
+  commit_time:               Some("${PALETTE_GRAY_DIM}"),
+  commit_author:             Some("${PALETTE_WHITE}"),
+  branch_fg:                 Some("${PALETTE_WHITE}"),
+  tag_fg:                    Some("${PALETTE_GRAY}"),
 
-  // branches / tags
-  branch_fg:                 Some("${PALETTE_YELLOW}"),
-  tag_fg:                    Some("${PALETTE_MAGENTA}"),
-
-  // misc
   danger_fg:                 Some("${PALETTE_RED}"),
-  push_gauge_bg:             Some("${PALETTE_BLUE}"),
-  push_gauge_fg:             Some("Reset"),
+  push_gauge_bg:             Some("${PALETTE_WHITE}"),
+  push_gauge_fg:             Some("${PALETTE_BLACK}"),
+  block_title_focused:       Some("${PALETTE_WHITE}"),
+  line_break:                Some("│"),
 )

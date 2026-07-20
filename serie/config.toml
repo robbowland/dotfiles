@@ -12,71 +12,54 @@ height = 10
 
 [graph.color]
 branches = [
-  "#79c0ff",
-  "#3fb950",
-  "#e3b341",
-  "#bc8cff",
-  "#f0883e",
-  "#db61a2",
+  "#ffffff",
+  "#999999",
+  "#616161",
+  "#ffffff",
+  "#999999",
+  "#616161",
 ]
-edge = "#24282d"
+edge = "#616161"
 background = "#000000"
 
 [color]
-# non-selected baseline
-fg = "#e6edf3"
+fg = "#ffffff"
 bg = "#000000"
-
-# selected rows: bright + plate + bold
-list_selected_fg = "#ffffff"
-list_selected_bg = "#101010"
+list_selected_fg = "#000000"
+list_selected_bg = "#ffffff"
 list_selected_bold = true
 list_selected_italic = false
-
-# selected refs follow same rule
-ref_selected_fg = "#ffffff"
-ref_selected_bg = "#101010"
+ref_selected_fg = "#000000"
+ref_selected_bg = "#ffffff"
 ref_selected_bold = true
 ref_selected_italic = false
-
-# list text stays BASE, not dim
-list_subject_fg = "#e6edf3"
-list_name_fg    = "#79c0ff"
-list_hash_fg    = "#e3b341"
-list_date_fg    = "#79c0ff"
-
-# match highlight remains readable
+list_subject_fg = "#ffffff"
+list_name_fg = "#ffffff"
+list_hash_fg = "#999999"
+list_date_fg = "#616161"
 list_match_fg = "#000000"
-list_match_bg = "#e3b341"
-
-# ref indicators
-list_ref_paren_fg         = "#e3b341"
-list_ref_branch_fg        = "#3fb950"
-list_ref_remote_branch_fg = "#ff7b72"
-list_ref_tag_fg           = "#e3b341"
-list_ref_stash_fg         = "#bc8cff"
-list_head_fg              = "#79c0ff"
-
-# detail panel
-detail_email_fg              = "#79c0ff"
-detail_ref_branch_fg         = "#3fb950"
-detail_ref_remote_branch_fg  = "#ff7b72"
-detail_ref_tag_fg            = "#e3b341"
-detail_file_change_add_fg    = "#3fb950"
-detail_file_change_modify_fg = "#e3b341"
-detail_file_change_delete_fg = "#ff7b72"
-detail_file_change_move_fg   = "#bc8cff"
-
-# status + misc
-status_input_fg           = "#e6edf3"
-status_input_transient_fg = "#6e7681"
-status_info_fg            = "#79c0ff"
-status_success_fg         = "#3fb950"
-status_warn_fg            = "#e3b341"
-status_error_fg           = "#ff7b72"
-virtual_cursor_fg         = "#a5d6ff"
-help_block_title_fg       = "#3fb950"
-help_key_fg               = "#e3b341"
-
-# chrome
-divider_fg = "#24282d"
+list_match_bg = "#ffffff"
+list_ref_paren_fg = "#616161"
+list_ref_branch_fg = "#ffffff"
+list_ref_remote_branch_fg = "#999999"
+list_ref_tag_fg = "#ffffff"
+list_ref_stash_fg = "#999999"
+list_head_fg = "#ffffff"
+detail_email_fg = "#999999"
+detail_ref_branch_fg = "#ffffff"
+detail_ref_remote_branch_fg = "#999999"
+detail_ref_tag_fg = "#ffffff"
+detail_file_change_add_fg = "#ffffff"
+detail_file_change_modify_fg = "#999999"
+detail_file_change_delete_fg = "#ff3b2f"
+detail_file_change_move_fg = "#999999"
+status_input_fg = "#ffffff"
+status_input_transient_fg = "#616161"
+status_info_fg = "#999999"
+status_success_fg = "#ffffff"
+status_warn_fg = "#ff3b2f"
+status_error_fg = "#ff3b2f"
+virtual_cursor_fg = "#ffffff"
+help_block_title_fg = "#ffffff"
+help_key_fg = "#999999"
+divider_fg = "#616161"

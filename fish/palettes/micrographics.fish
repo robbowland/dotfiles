@@ -1,6 +1,6 @@
 #!/bin/fish
 
-# Optional Micrographics palette: pure invert, two scaffold tiers, danger red.
+# Default Micrographics palette: pure invert, two scaffold tiers, danger red.
 set -gx MG_PAPER '#000000'
 set -gx MG_INK '#ffffff'
 set -gx MG_METADATA '#999999'

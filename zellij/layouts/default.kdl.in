@@ -5,21 +5,20 @@ layout {
         pane size=1 borderless=true {
             plugin location="file:$HOME/.config/zellij/plugins/zjstatus.wasm" {
                 format_left  " {tabs}"
-                format_right "{mode}"
-                format_space   ""
-
+                format_right "{mode} "
+                format_space ""
                 pane_frames false
 
-                mode_locked "#[fg=${PALETTE_GRAY_DIM}]lock" 
-                mode_normal "#[fg=${PALETTE_GRAY_DIM}]nrml"
-                mode_tab    "#[fg=${PALETTE_GREEN_BRIGHT}]tabs"
-                mode_pane "#[fg=${PALETTE_ORANGE_BRIGHT}]pane"
-                mode_tmux "#[fg=${PALETTE_GRAY_DIM}]tmux"
-                mode_resize "#[fg=${PALETTE_BLUE}]rsze"
-                mode_move "#[fg=${PALETTE_BLUE}]move"
+                mode_locked "#[fg=${PALETTE_GRAY_DIM}][LOCK]"
+                mode_normal "#[fg=${PALETTE_GRAY_DIM}][NRM]"
+                mode_tab    "#[fg=${PALETTE_WHITE},bold][TAB]"
+                mode_pane   "#[fg=${PALETTE_WHITE},bold][PANE]"
+                mode_tmux   "#[fg=${PALETTE_GRAY}][TMUX]"
+                mode_resize "#[fg=${PALETTE_WHITE},bold][SIZE]"
+                mode_move   "#[fg=${PALETTE_WHITE},bold][MOVE]"
 
-                tab_normal   "#[fg=${PALETTE_GRAY_DIM}][{index}]{name} "
-                tab_active   "#[fg=${PALETTE_GRAY_DIM},bold]{name} "
+                tab_normal "#[fg=${PALETTE_GRAY_DIM}][{index}] {name} "
+                tab_active "#[fg=${PALETTE_BLACK},bg=${PALETTE_WHITE},bold][{index}] {name} "
             }
         }
     }

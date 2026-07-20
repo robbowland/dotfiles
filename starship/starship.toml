@@ -1,63 +1,65 @@
-palette = "github-dark"
+palette = "micrographics"
 
 format = """
-$username\
-$hostname\
 $directory\
 $git_branch\
 $git_state\
 $git_status\
+$python\
 $cmd_duration\
 $line_break\
-$python\
 $character"""
 
-[palettes.github-dark]
-blue = "#79c0ff"
-cyan = "#a3e8f2" 
-green = "#3fb950"
-yellow = "#e3b341"
-orange = "#f0883e"
-purple = "#bc8cff"
-red = "#ff7b72"
-gray = "#6e7681"
-white = "#e6edf3"
+[palettes.micrographics]
+paper = "#000000"
+ink = "#ffffff"
+metadata = "#999999"
+faint = "#616161"
+danger = "#ff3b2f"
+selection = "#303030"
 
 [directory]
-style = "blue"
-
-[character]
-success_symbol = "[❯](bold purple)"
-error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❙](bold blue)"
-vimcmd_replace_symbol = "[❯](bold orange)"
-vimcmd_replace_one_symbol = "[❯](bold orange)"
-vimcmd_visual_symbol = "[❮](bold yellow)"
+format = "[$path]($style) "
+style = "metadata"
+truncation_length = 2
+truncate_to_repo = false
 
 [git_branch]
-format = "[$branch]($style)"
-style = "gray"
+format = "[$branch]($style) "
+style = "faint"
 
 [git_status]
-format = "[$conflicted$untracked$modified$staged$renamed$deleted$stashed$ahead_behind]($style) "
-style  = "bold blue"
-
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
+format = "[$all_status$ahead_behind]($style) "
+style = "faint"
+conflicted = "[!](bold danger)"
+untracked = ""
+modified = ""
+staged = ""
+renamed = ""
+deleted = "[-](danger)"
+stashed = ""
+ahead = "[^](faint)"
+behind = "[v](faint)"
+diverged = "[!^v](danger)"
+up_to_date = ""
 
 [git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "gray"
+format = "[$state( $progress_current/$progress_total)]($style) "
+style = "metadata"
 
 [cmd_duration]
+min_time = 3000
 format = "[$duration]($style) "
-style = "yellow"
+style = "faint"
 
 [python]
 format = "[$virtualenv]($style) "
-style = "gray"
+style = "faint"
+
+[character]
+success_symbol = "[>](bold ink)"
+error_symbol = "[!](bold danger)"
+vimcmd_symbol = "[N](metadata)"
+vimcmd_replace_symbol = "[R](danger)"
+vimcmd_replace_one_symbol = "[R1](danger)"
+vimcmd_visual_symbol = "[V](metadata)"

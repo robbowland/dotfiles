@@ -1,40 +1,148 @@
+#:schema https://yazi-rs.github.io/schemas/theme.json
+
+[app]
+overall = { fg = "${PALETTE_WHITE}", bg = "${PALETTE_BLACK}" }
+
 [mgr]
-hovered         = { bg = "${PALETTE_SURFACE_0}", bold = true }
-preview_hovered = { bg = "${PALETTE_SURFACE_0}", bold = true }
-cwd             = { fg = "${PALETTE_BLUE}" }
-syntect_theme   = "~/.config/yazi/preview/GitHubDark.tmTheme"
+cwd             = { fg = "${PALETTE_GRAY}" }
+find_keyword     = { fg = "${PALETTE_WHITE}", bold = true }
+find_position    = { fg = "${PALETTE_GRAY}" }
+symlink_target   = { fg = "${PALETTE_GRAY}", italic = true }
+marker_copied    = { fg = "${PALETTE_WHITE}", bg = "${PALETTE_WHITE}" }
+marker_cut       = { fg = "${PALETTE_RED}", bg = "${PALETTE_RED}" }
+marker_marked    = { fg = "${PALETTE_GRAY}", bg = "${PALETTE_GRAY}" }
+marker_selected  = { fg = "${PALETTE_WHITE}", bg = "${PALETTE_WHITE}" }
+marker_symbol    = "│"
+count_copied     = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}" }
+count_cut        = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_RED}" }
+count_selected   = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}" }
+border_symbol    = "│"
+border_style     = { fg = "${PALETTE_GRAY_DIM}" }
+syntect_theme    = "~/.config/bat/themes/Micrographics.tmTheme"
+
+[tabs]
+active   = { fg = "${PALETTE_GRAY}", bg = "${PALETTE_BLACK}", bold = true }
+inactive = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+sep_inner = { open = "[", close = "]" }
+sep_outer = { open = "", close = "" }
+
+[mode]
+normal_main = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+normal_alt  = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+select_main = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}", bold = true }
+select_alt  = { fg = "${PALETTE_GRAY}", bg = "${PALETTE_BLACK}" }
+unset_main  = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_RED}", bold = true }
+unset_alt   = { fg = "${PALETTE_RED}", bg = "${PALETTE_BLACK}" }
+
+[indicator]
+parent  = { fg = "${PALETTE_GRAY_DIM}" }
+current = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}", bold = true }
+preview = { fg = "${PALETTE_GRAY_DIM}" }
+padding = { open = " ", close = "" }
+
+[status]
+overall   = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+sep_left  = { open = "", close = "", fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+sep_right = { open = "", close = "", fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+perm_sep   = { fg = "${PALETTE_GRAY_DIM}" }
+perm_type  = { fg = "${PALETTE_GRAY}" }
+perm_read  = { fg = "${PALETTE_GRAY}" }
+perm_write = { fg = "${PALETTE_GRAY}" }
+perm_exec  = { fg = "${PALETTE_WHITE}" }
+progress_label  = { fg = "${PALETTE_GRAY}", bold = true }
+progress_normal = { fg = "${PALETTE_WHITE}", bg = "${PALETTE_BLACK}" }
+progress_error  = { fg = "${PALETTE_RED}", bg = "${PALETTE_BLACK}" }
+
+[which]
+cols            = 3
+mask            = { bg = "${PALETTE_BLACK}" }
+cand            = { fg = "${PALETTE_WHITE}", bold = true }
+rest            = { fg = "${PALETTE_GRAY_DIM}" }
+desc            = { fg = "${PALETTE_GRAY}" }
+separator       = " │ "
+separator_style = { fg = "${PALETTE_GRAY_DIM}" }
+
+[confirm]
+border     = { fg = "${PALETTE_GRAY}" }
+title      = { fg = "${PALETTE_WHITE}", bold = true }
+body       = { fg = "${PALETTE_WHITE}" }
+list       = { fg = "${PALETTE_GRAY}" }
+btn_yes    = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}", bold = true }
+btn_no     = { fg = "${PALETTE_GRAY}" }
+btn_labels = [ " [YES] ", " [NO] " ]
+
+[spot]
+border   = { fg = "${PALETTE_GRAY_DIM}" }
+title    = { fg = "${PALETTE_WHITE}", bold = true }
+tbl_col  = { fg = "${PALETTE_GRAY}" }
+tbl_cell = { fg = "${PALETTE_WHITE}" }
+
+[notify]
+title_info  = { fg = "${PALETTE_GRAY}" }
+title_warn  = { fg = "${PALETTE_RED}", bold = true }
+title_error = { fg = "${PALETTE_RED}", bold = true }
+icon_info  = "[i]"
+icon_warn  = "[!]"
+icon_error = "[x]"
+
+[pick]
+border   = { fg = "${PALETTE_GRAY_DIM}" }
+active   = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}", bold = true }
+inactive = { fg = "${PALETTE_GRAY}" }
+
+[input]
+border   = { fg = "${PALETTE_GRAY_DIM}" }
+title    = { fg = "${PALETTE_GRAY}" }
+value    = { fg = "${PALETTE_WHITE}" }
+selected = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}" }
+
+[cmp]
+border   = { fg = "${PALETTE_GRAY_DIM}" }
+active   = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}", bold = true }
+inactive = { fg = "${PALETTE_GRAY}" }
+icon_file = "F"
+icon_folder = "D"
+icon_command = "C"
+
+[tasks]
+border  = { fg = "${PALETTE_GRAY_DIM}" }
+title   = { fg = "${PALETTE_WHITE}", bold = true }
+hovered = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}", bold = true }
+
+[help]
+on      = { fg = "${PALETTE_WHITE}", bold = true }
+run     = { fg = "${PALETTE_GRAY}" }
+desc    = { fg = "${PALETTE_GRAY}" }
+hovered = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}", bold = true }
+footer  = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}" }
 
 [filetype]
 rules = [
-  { url = "*/",        fg = "${PALETTE_BLUE_DIM}" },
-  { url = "*",         is = "link",   fg = "${PALETTE_MAGENTA}" },
-  { url = "*",         is = "orphan", fg = "${PALETTE_RED}" },
-  { url = "*",         is = "exec",   fg = "${PALETTE_GREEN}" },
-  { url = "*.zip",     fg = "${PALETTE_ORANGE}" },
-  { url = "*.tar",     fg = "${PALETTE_ORANGE}" },
-  { url = "*.gz",      fg = "${PALETTE_ORANGE}" },
-  { url = "*.7z",      fg = "${PALETTE_ORANGE}" },
-  { mime = "image/*",  fg = "${PALETTE_YELLOW}" },
-  { mime = "video/*",  fg = "${PALETTE_MAGENTA}" },
-  { mime = "audio/*",  fg = "${PALETTE_MAGENTA}" },
-  { url = "*.dmg",     fg = "${PALETTE_YELLOW}" },
-  { url = "*.iso",     fg = "${PALETTE_YELLOW}" },
-  { url = ".*",        fg = "${PALETTE_GRAY_DIM}" },
+  { url = "*/", fg = "${PALETTE_WHITE}" },
+  { url = "*", is = "link", fg = "${PALETTE_GRAY}" },
+  { url = "*", is = "orphan", fg = "${PALETTE_RED}", bold = true },
+  { url = "*", is = "exec", fg = "${PALETTE_WHITE}" },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "${PALETTE_GRAY}" },
+  { mime = "{image,audio,video}/*", fg = "${PALETTE_GRAY}" },
+  { mime = "vfs/{absent,stale}", fg = "${PALETTE_GRAY_DIM}" },
+  { url = ".*", fg = "${PALETTE_GRAY_DIM}" },
+  { url = "*", fg = "${PALETTE_GRAY}" },
 ]
 
-[mode]
-normal_main = { bg = "${PALETTE_BLACK}" }
-normal_alt  = { bg = "${PALETTE_BLACK}" }
-
-[status]
-overall         = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
-sep_left        = { open = "", close = "", fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
-sep_right       = { open = "", close = "", fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
-perm_sep        = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
-perm_type       = { fg = "${PALETTE_BLUE}",   bg = "${PALETTE_BLACK}" }
-perm_read       = { fg = "${PALETTE_YELLOW}", bg = "${PALETTE_BLACK}" }
-perm_write      = { fg = "${PALETTE_RED}",    bg = "${PALETTE_BLACK}" }
-perm_exec       = { fg = "${PALETTE_GREEN}",  bg = "${PALETTE_BLACK}" }
-progress_label  = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
-progress_normal = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
-progress_error  = { fg = "${PALETTE_GRAY_DIM}", bg = "${PALETTE_BLACK}" }
+[icon]
+globs = []
+dirs = []
+files = []
+exts = []
+conds = [
+  { if = "orphan & hovered", text = "!", fg = "${PALETTE_RED}" },
+  { if = "orphan", text = "!", fg = "${PALETTE_RED}" },
+  { if = "link & hovered", text = "L", fg = "${PALETTE_BLACK}" },
+  { if = "link", text = "L", fg = "${PALETTE_GRAY_DIM}" },
+  { if = "dir & hovered", text = "D", fg = "${PALETTE_BLACK}" },
+  { if = "dir", text = "D", fg = "${PALETTE_GRAY}" },
+  { if = "exec & hovered", text = "X", fg = "${PALETTE_BLACK}" },
+  { if = "exec", text = "X", fg = "${PALETTE_GRAY}" },
+  { if = "hovered", text = "", fg = "${PALETTE_BLACK}" },
+  { if = "!dir", text = "", fg = "${PALETTE_GRAY_DIM}" },
+]

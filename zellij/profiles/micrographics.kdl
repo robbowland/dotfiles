@@ -1,4 +1,3 @@
-// Optional Micrographics profile. The default config remains github_dark.
 keybinds {
     normal {
         // Unbind to avoid conflicts with neovim jumps
@@ -221,5 +220,5 @@ ui {
 }
 
 theme "micrographics"
-default_layout "micrographics"
+default_layout "default"
 pane_frames false

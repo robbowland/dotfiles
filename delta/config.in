@@ -1,6 +1,6 @@
 [delta]
-syntax-theme = "GitHubDark"
-features = "github-dark"
+syntax-theme = "Micrographics"
+features = "micrographics"
 navigate = true
 line-numbers = true
 pager = "diffnav"
@@ -42,19 +42,19 @@ plus-emph-style = "syntax #2c7a41"
 # Unchanged context (keep syntax)
 zero-style = "syntax"
 
-# Optional profile selected with DELTA_FEATURES=micrographics.
+# Default Micrographics profile; override DELTA_FEATURES to select another feature.
 [delta "micrographics"]
 syntax-theme = "Micrographics"
-file-style = "#ffffff" bold
-line-numbers-left-style = "#616161"
-line-numbers-right-style = "#616161"
-line-numbers-zero-style = "#616161"
-line-numbers-plus-style = "#ffffff"
-line-numbers-minus-style = "#ff3b2f"
-hunk-header-file-style = "#999999"
-hunk-header-line-number-style = "#999999"
-minus-style = "syntax #ff3b2f"
-minus-emph-style = "syntax #ff3b2f" bold
-plus-style = "syntax #ffffff"
-plus-emph-style = "syntax #ffffff" bold
+file-style = "${PALETTE_WHITE}" bold
+line-numbers-left-style = "${PALETTE_GRAY_DIM}"
+line-numbers-right-style = "${PALETTE_GRAY_DIM}"
+line-numbers-zero-style = "${PALETTE_GRAY_DIM}"
+line-numbers-plus-style = "${PALETTE_WHITE}"
+line-numbers-minus-style = "${PALETTE_RED}"
+hunk-header-file-style = "${PALETTE_GRAY}"
+hunk-header-line-number-style = "${PALETTE_GRAY}"
+minus-style = "syntax ${PALETTE_RED}"
+minus-emph-style = "syntax ${PALETTE_RED}" bold
+plus-style = "syntax ${PALETTE_WHITE}"
+plus-emph-style = "syntax ${PALETTE_WHITE}" bold
 zero-style = "syntax"

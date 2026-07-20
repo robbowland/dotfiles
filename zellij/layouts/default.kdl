@@ -5,21 +5,20 @@ layout {
         pane size=1 borderless=true {
             plugin location="file:$HOME/.config/zellij/plugins/zjstatus.wasm" {
                 format_left  " {tabs}"
-                format_right "{mode}"
-                format_space   ""
-
+                format_right "{mode} "
+                format_space ""
                 pane_frames false
 
-                mode_locked "#[fg=#24282d]lock" 
-                mode_normal "#[fg=#24282d]nrml"
-                mode_tab    "#[fg=#56d364]tabs"
-                mode_pane "#[fg=#ffa657]pane"
-                mode_tmux "#[fg=#24282d]tmux"
-                mode_resize "#[fg=#79c0ff]rsze"
-                mode_move "#[fg=#79c0ff]move"
+                mode_locked "#[fg=#616161][LOCK]"
+                mode_normal "#[fg=#616161][NRM]"
+                mode_tab    "#[fg=#ffffff,bold][TAB]"
+                mode_pane   "#[fg=#ffffff,bold][PANE]"
+                mode_tmux   "#[fg=#999999][TMUX]"
+                mode_resize "#[fg=#ffffff,bold][SIZE]"
+                mode_move   "#[fg=#ffffff,bold][MOVE]"
 
-                tab_normal   "#[fg=#24282d][{index}]{name} "
-                tab_active   "#[fg=#24282d,bold]{name} "
+                tab_normal "#[fg=#616161][{index}] {name} "
+                tab_active "#[fg=#000000,bg=#ffffff,bold][{index}] {name} "
             }
         }
     }

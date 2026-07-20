@@ -1,5 +1,5 @@
-# Optional Micrographics palette. Select with `theme = Micrographics` or use
-# `micrographics-terminal`; the default Ghostty config remains unchanged.
+# Default Micrographics palette. `micrographics-terminal` remains available
+# as a compatibility launcher for an isolated themed window.
 background = #000000
 foreground = #ffffff
 cursor-color = #ffffff

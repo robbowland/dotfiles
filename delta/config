@@ -1,21 +1,21 @@
 [delta]
-syntax-theme = "GitHubDark"
-features = "github-dark"
+syntax-theme = "Micrographics"
+features = "micrographics"
 navigate = true
 line-numbers = true
 pager = "diffnav"
 tabs = 2
 
 # --- file header
-file-style = "#e6edf3" bold
+file-style = "#ffffff" bold
 file-decoration-style = none
 
 # --- line numbers (neutral; brighten +/- counters only)
 line-numbers-left-format = "{nm:>4} "
 line-numbers-right-format = "│ {np:>4} "
-line-numbers-left-style = "#6e7681"
-line-numbers-right-style = "#6e7681"
-line-numbers-zero-style = "#6e7681"
+line-numbers-left-style = "#999999"
+line-numbers-right-style = "#999999"
+line-numbers-zero-style = "#999999"
 line-numbers-plus-style = "#ffffff"
 line-numbers-minus-style = "#ffffff"
 
@@ -27,8 +27,8 @@ wrap-right-prefix-symbol = " "
 # --- hunk header
 hunk-label = "  󰡏 "
 hunk-header-style = "syntax bold"
-hunk-header-file-style = "#6e7681"
-hunk-header-line-number-style = "#6e7681"
+hunk-header-file-style = "#999999"
+hunk-header-line-number-style = "#999999"
 file-decoration-style = none
 hunk-header-decoration-style = none
 commit-decoration-style = none
@@ -42,7 +42,7 @@ plus-emph-style = "syntax #2c7a41"
 # Unchanged context (keep syntax)
 zero-style = "syntax"
 
-# Optional profile selected with DELTA_FEATURES=micrographics.
+# Default Micrographics profile; override DELTA_FEATURES to select another feature.
 [delta "micrographics"]
 syntax-theme = "Micrographics"
 file-style = "#ffffff" bold

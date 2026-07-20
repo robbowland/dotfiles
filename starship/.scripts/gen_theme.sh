@@ -3,7 +3,11 @@ set -eu
 
 BASE="${XDG_CONFIG_HOME:-$HOME/.config}"
 IN="$BASE/starship/starship.toml.in"
-OUT="$BASE/starship/starship.toml"
+GEN="$BASE/.scripts/theme/gen_theme.sh"
 
-IN="$IN" OUT="$OUT" THEME_ENV_FILE="${THEME_ENV_FILE:-}" \
-	exec "$BASE/.scripts/theme/gen_theme.sh"
+render() {
+	IN="$IN" OUT="$1" "$GEN"
+}
+
+render "$BASE/starship/starship.toml"
+render "$BASE/starship/themes/micrographics.toml"

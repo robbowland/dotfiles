@@ -3,7 +3,11 @@ set -eu
 
 BASE="${XDG_CONFIG_HOME:-$HOME/.config}"
 IN="$BASE/yazi/theme.toml.in"
-OUT="$BASE/yazi/theme.toml"
+GEN="$BASE/.scripts/theme/gen_theme.sh"
 
-IN="$IN" OUT="$OUT" THEME_ENV_FILE="${THEME_ENV_FILE:-}" \
-	exec "$BASE/.scripts/theme/gen_theme.sh"
+render() {
+	IN="$IN" OUT="$1" "$GEN"
+}
+
+render "$BASE/yazi/theme.toml"
+render "$BASE/yazi/profiles/micrographics/theme.toml"

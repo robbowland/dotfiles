@@ -192,18 +192,18 @@ keybinds {
 }
 
 themes {
-  github_dark {
+  micrographics {
       bg "${PALETTE_BLACK}"
-      fg "${PALETTE_BLACK}"
+      fg "${PALETTE_WHITE}"
       black "${PALETTE_BLACK}"
       red "${PALETTE_RED}"
-      green "${PALETTE_BLACK}" // Workaround to hide borders
-      yellow "${PALETTE_YELLOW}"
-      blue "${PALETTE_BLUE}"
-      magenta "${PALETTE_MAGENTA}"
-      cyan "${PALETTE_CYAN}"
-      white  "${PALETTE_BLACK}" // Workaround to hide borders
-      orange "${PALETTE_ORANGE_BRIGHT}"
+      green "${PALETTE_GRAY}"
+      yellow "${PALETTE_RED}"
+      blue "${PALETTE_WHITE}"
+      magenta "${PALETTE_GRAY}"
+      cyan "${PALETTE_GRAY}"
+      white "${PALETTE_WHITE}"
+      orange "${PALETTE_RED}"
   }
 }
 
@@ -219,5 +219,6 @@ ui {
   disable_tips true
 }
 
-theme "github_dark"
+theme "micrographics"
+default_layout "default"
 pane_frames false

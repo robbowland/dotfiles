@@ -130,17 +130,17 @@ theme:
   colors:
     text:
       primary: "#ffffff"
-      secondary: "#79c0ff"
-      inverted: "#0d1117"
-      faint: "#484f58"
-      warning: "#f85149"
-      success: "#3fb950"
+      secondary: "#999999"
+      inverted: "#000000"
+      faint: "#616161"
+      warning: "#ff3b2f"
+      success: "#ffffff"
     background:
-      selected: "#101010"
+      selected: "#303030"
     border:
       primary: "#ffffff"
-      secondary: "#ffffff"
-      faint: "#484f58"
+      secondary: "#999999"
+      faint: "#616161"
 pager:
   diff: diffnav
 confirmQuit: false

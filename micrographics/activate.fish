@@ -1,6 +1,6 @@
 #!/bin/fish
 
-# Apply the optional Micrographics suite to this shell only.
+# Apply the default Micrographics suite to Fish and terminal tools.
 set -gx MICROGRAPHICS_TERMINAL 1
 set -gx COLORTERM truecolor
 
@@ -42,6 +42,6 @@ set -g fish_pager_color_completion $MG_INK
 set -g fish_pager_color_description $MG_METADATA
 
 # GitUI has a file-level theme switch but no environment variable.
-function gitui --wraps gitui --description 'GitUI with the optional Micrographics theme'
+function gitui --wraps gitui --description 'GitUI with the Micrographics theme'
     command gitui --theme micrographics.ron $argv
 end

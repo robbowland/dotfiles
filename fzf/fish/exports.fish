@@ -7,31 +7,16 @@ if type -q fd
     set -x FZF_ALT_C_COMMAND "fd -t d . $HOME"
 end
 
-# theme
+# Micrographics theme
 set -x FZF_DEFAULT_OPTS "
-  --color=\
-fg:$PALETTE_WHITE,\
-bg:$PALETTE_BLACK,\
-hl:$PALETTE_YELLOW,\
-fg+:$PALETTE_WHITE_BRIGHT:bold,\
-bg+:$PALETTE_SURFACE_1,\
-hl+:$PALETTE_YELLOW_BRIGHT:bold,\
-info:$PALETTE_GRAY_DIM,\
-border:$PALETTE_GRAY_DIM,\
-gutter:$PALETTE_BLACK,\
-prompt:$PALETTE_MAGENTA,\
-pointer:$PALETTE_YELLOW,\
-marker:$PALETTE_YELLOW,\
-spinner:$PALETTE_BLUE,\
-header:$PALETTE_BLUE,\
-label:$PALETTE_GRAY,\
-query:$PALETTE_WHITE \
-  --prompt='❯ '
-  --marker='▸ '
-  --pointer='•'
+  --style=minimal
+  --color=fg:$PALETTE_WHITE,bg:$PALETTE_BLACK,hl:$PALETTE_GRAY,fg+:$PALETTE_BLACK:bold,bg+:$PALETTE_WHITE,hl+:$PALETTE_BLACK:bold,info:$PALETTE_GRAY_DIM,border:$PALETTE_GRAY_DIM,gutter:$PALETTE_BLACK,prompt:$PALETTE_GRAY,pointer:$PALETTE_BLACK:bold,marker:$PALETTE_BLACK:bold,spinner:$PALETTE_GRAY,header:$PALETTE_GRAY,label:$PALETTE_GRAY_DIM,query:$PALETTE_WHITE
+  --prompt='[FND] '
+  --marker='+ '
+  --pointer='> '
   --separator='─'
   --scrollbar=''
-  --info=right
+  --info=inline-right
   --layout=default
   --bind=ctrl-p:toggle-preview
 "

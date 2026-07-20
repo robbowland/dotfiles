@@ -3,6 +3,7 @@
 Render a template using PALETTE_* from the environment (optionally plus .env).
 
 - Replaces ${PALETTE_*} placeholders
+- Lets an explicit env file override the ambient shell palette
 - Validates #RRGGBB
 """
 
@@ -30,14 +31,15 @@ def main() -> int:
         print(f"ERROR: template not found: {tpl}", file=sys.stderr)
         return 1
 
-    palette: Dict[str, str] = {}
+    palette: Dict[str, str] = {
+        k: v for k, v in os.environ.items() if k.startswith("PALETTE_")
+    }
     if args.env_file:
         envp = pathlib.Path(os.path.expanduser(args.env_file))
         if not envp.exists():
             print(f"ERROR: env-file not found: {envp}", file=sys.stderr)
             return 1
         palette.update(load_dotenv(envp))
-    palette.update({k: v for k, v in os.environ.items() if k.startswith("PALETTE_")})
 
     text = tpl.read_text(encoding="utf-8")
     needed = {

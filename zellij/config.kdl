@@ -192,18 +192,18 @@ keybinds {
 }
 
 themes {
-  github_dark {
+  micrographics {
       bg "#000000"
-      fg "#000000"
+      fg "#ffffff"
       black "#000000"
-      red "#ff7b72"
-      green "#000000" // Workaround to hide borders
-      yellow "#e3b341"
-      blue "#79c0ff"
-      magenta "#bc8cff"
-      cyan "#a3e8f2"
-      white  "#000000" // Workaround to hide borders
-      orange "#ffa657"
+      red "#ff3b2f"
+      green "#999999"
+      yellow "#ff3b2f"
+      blue "#ffffff"
+      magenta "#999999"
+      cyan "#999999"
+      white "#ffffff"
+      orange "#ff3b2f"
   }
 }
 
@@ -219,5 +219,6 @@ ui {
   disable_tips true
 }
 
-theme "github_dark"
+theme "micrographics"
+default_layout "default"
 pane_frames false

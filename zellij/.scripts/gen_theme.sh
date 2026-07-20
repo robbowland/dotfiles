@@ -10,4 +10,6 @@ render() {
 }
 
 render "$MOD_DIR/config.kdl.in" "$MOD_DIR/config.kdl"
+render "$MOD_DIR/config.kdl.in" "$MOD_DIR/profiles/micrographics.kdl"
 render "$MOD_DIR/layouts/default.kdl.in" "$MOD_DIR/layouts/default.kdl"
+render "$MOD_DIR/layouts/default.kdl.in" "$MOD_DIR/layouts/micrographics.kdl"

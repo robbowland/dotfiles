@@ -1,12 +1,6 @@
 # Micrographics terminal suite
 
-This is an opt-in terminal profile. It does not change the active GitHub Dark configurations.
-
-## Start it
-
-- Run `micrographics-terminal` for a new Ghostty window with the full terminal palette and shell profile.
-- Run `micrographics-shell` to try the shell and tool themes inside the current terminal window.
-- Run `exit` to return to the previous shell. Existing windows and normal shell launches stay on the current themes.
+Micrographics is the default theme across the terminal stack. Fish loads `activate.fish` for shell-level integrations, while each tool also selects Micrographics in its normal config so direct launches remain consistent.
 
 ## Covered surfaces
 
@@ -20,24 +14,22 @@ This is an opt-in terminal profile. It does not change the active GitHub Dark co
 - eza and `LS_COLORS`
 - delta, GitUI, Serie, and gh-dash Git surfaces
 - Posting API client
-- Pi and Neovim already use their separate Micrographics themes
+- Pi and Neovim use their separate Micrographics themes
 
 The shared dark palette is `#000000` paper, `#ffffff` ink, `#999999` metadata, `#616161` faint scaffolding, `#ff3b2f` danger, and `#303030` only where a tool cannot safely render pure reverse selection.
 
-## Individual previews
+## Theme generation
+
+The generated defaults continue to use the repository's existing simple theme pipeline:
 
 ```sh
-BAT_THEME=Micrographics bat path/to/file
-YAZI_CONFIG_HOME="$HOME/.config/yazi/profiles/micrographics" yazi
-STARSHIP_CONFIG="$HOME/.config/starship/themes/micrographics.toml" starship prompt
-ZELLIJ_CONFIG_FILE="$HOME/.config/zellij/profiles/micrographics.kdl" zellij
-GH_DASH_CONFIG="$HOME/.config/gh-dash/micrographics.yml" gh-dash
-POSTING_CONFIG_FILE="$HOME/.config/posting/profiles/micrographics.yaml" posting
-SERIE_CONFIG_FILE="$HOME/.config/serie/micrographics.toml" serie
+~/.config/.scripts/theme/gen_themes.sh
 ```
 
-GitUI uses `gitui --theme micrographics.ron`. Delta uses `DELTA_FEATURES=micrographics`.
+`micrographics/palette.env` supplies the default `PALETTE_*` values. Module templates remain the source of truth for Delta, GitUI, Serie, Starship, Yazi, and Zellij; their `.scripts/gen_theme.sh` wrappers produce both the normal config and any compatibility profile.
+
+`micrographics-shell` and `micrographics-terminal` remain available as compatibility launchers, but normal Fish and Ghostty sessions are already themed.
 
 ## Validate
 
-Run `~/.config/micrographics/check.sh`. The check verifies the theme formats, installed loaders, allowed palette, optional profiles, and that the active theme selectors still point at the existing themes.
+Run `~/.config/micrographics/check.sh`. The check verifies generated-file parity, active selectors, theme formats, installed loaders, and the fixed palette contract.
