@@ -19,14 +19,14 @@
   file_tree_path_icon_unselected_fg: Some("${PALETTE_GRAY}"),
   file_tree_path_icon_selected_fg:   Some("${PALETTE_BLACK}"),
 
-  diff_line_add:             Some("${PALETTE_WHITE}"),
+  diff_line_add:             Some("${PALETTE_GREEN}"),
   diff_line_delete:          Some("${PALETTE_RED}"),
-  diff_file_added:           Some("${PALETTE_WHITE}"),
+  diff_file_added:           Some("${PALETTE_GREEN}"),
   diff_file_removed:         Some("${PALETTE_RED}"),
   diff_file_moved:           Some("${PALETTE_GRAY}"),
   diff_file_modified:        Some("${PALETTE_GRAY}"),
 
-  status_new_unselected_fg:        Some("${PALETTE_WHITE}"),
+  status_new_unselected_fg:        Some("${PALETTE_GREEN}"),
   status_modified_unselected_fg:   Some("${PALETTE_GRAY}"),
   status_deleted_unselected_fg:    Some("${PALETTE_RED}"),
   status_renamed_unselected_fg:    Some("${PALETTE_GRAY}"),
@@ -40,7 +40,7 @@
   tag_fg:                    Some("${PALETTE_GRAY}"),
 
   danger_fg:                 Some("${PALETTE_RED}"),
-  push_gauge_bg:             Some("${PALETTE_WHITE}"),
+  push_gauge_bg:             Some("${PALETTE_GREEN}"),
   push_gauge_fg:             Some("${PALETTE_BLACK}"),
   block_title_focused:       Some("${PALETTE_WHITE}"),
   line_break:                Some("│"),

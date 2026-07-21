@@ -15,6 +15,11 @@ grep -q 'Micrographics.tmTheme' "$BASE/yazi/theme.toml"
 grep -q '^theme: micrographics$' "$BASE/posting/config.yaml"
 grep -q '^features = "micrographics"$' "$BASE/delta/config"
 grep -q 'syntax:[[:space:]]*Some("Micrographics")' "$BASE/gitui/theme.ron"
+grep -q '^theme = "custom"$' "$BASE/hunk/config.toml"
+grep -q '^label = "Micrographics"$' "$BASE/hunk/config.toml"
+grep -q '^addedSignColor = "#34c759"$' "$BASE/hunk/config.toml"
+grep -q '^plus-style = "syntax #34c759"$' "$BASE/delta/config"
+grep -q 'diff_line_add:.*Some("#34c759")' "$BASE/gitui/theme.ron"
 grep -q 'micrographics/activate.fish' "$BASE/fish/config.fish"
 cmp -s "$BASE/gh-dash/config.yml" "$BASE/gh-dash/micrographics.yml"
 cmp -s "$BASE/posting/config.yaml" "$BASE/posting/profiles/micrographics.yaml"
@@ -51,7 +56,7 @@ plutil -lint "$BASE/bat/themes/Micrographics.tmTheme" >/dev/null
 python3 - "$BASE" <<'PY'
 import pathlib, re, sys, tomllib
 base = pathlib.Path(sys.argv[1])
-allowed = {"#000000", "#ffffff", "#999999", "#616161", "#ff3b2f", "#303030"}
+allowed = {"#000000", "#ffffff", "#999999", "#616161", "#34c759", "#ff3b2f", "#303030"}
 paths = [
     base / "micrographics/palette.env",
     base / "ghostty/themes/Micrographics",
@@ -63,6 +68,7 @@ paths = [
     base / "zellij/config.kdl",
     base / "zellij/layouts/default.kdl",
     base / "gitui/theme.ron",
+    base / "hunk/config.toml",
     base / "gh-dash/config.yml",
     base / "serie/config.toml",
     base / "posting/themes/micrographics.yaml",
@@ -77,6 +83,7 @@ toml_paths = [
     base / "starship/starship.toml",
     base / "yazi/theme.toml",
     base / "serie/config.toml",
+    base / "hunk/config.toml",
 ]
 parsed = {path: tomllib.loads(path.read_text()) for path in toml_paths}
 yazi = parsed[base / "yazi/theme.toml"]

@@ -197,7 +197,7 @@ themes {
       fg "${PALETTE_WHITE}"
       black "${PALETTE_BLACK}"
       red "${PALETTE_RED}"
-      green "${PALETTE_GRAY}"
+      green "${PALETTE_GREEN}"
       yellow "${PALETTE_RED}"
       blue "${PALETTE_WHITE}"
       magenta "${PALETTE_GRAY}"

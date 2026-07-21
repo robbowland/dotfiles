@@ -7,10 +7,10 @@ cursor-text = #000000
 selection-background = #ffffff
 selection-foreground = #000000
 
-# ANSI roles: danger remains red; all other distinctions use ink weight.
+# ANSI roles: additions/success use green, danger uses red, and other distinctions use ink weight.
 palette = 0=#000000
 palette = 1=#ff3b2f
-palette = 2=#999999
+palette = 2=#34c759
 palette = 3=#ff3b2f
 palette = 4=#999999
 palette = 5=#999999
@@ -18,7 +18,7 @@ palette = 6=#999999
 palette = 7=#ffffff
 palette = 8=#616161
 palette = 9=#ff3b2f
-palette = 10=#ffffff
+palette = 10=#34c759
 palette = 11=#ff3b2f
 palette = 12=#ffffff
 palette = 13=#ffffff

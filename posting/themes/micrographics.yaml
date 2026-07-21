@@ -6,7 +6,7 @@ panel: "#000000"
 surface: "#000000"
 warning: "#ff3b2f"
 error: "#ff3b2f"
-success: "#ffffff"
+success: "#34c759"
 accent: "#ffffff"
 dark: true
 
@@ -43,4 +43,4 @@ method:
   options: "#616161"
   head: "#616161"
 
-description: "Pure-invert Micrographics theme with grayscale scaffolding and danger red."
+description: "Pure-invert Micrographics theme with grayscale scaffolding, success green, and danger red."

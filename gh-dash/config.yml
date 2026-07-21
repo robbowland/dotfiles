@@ -134,7 +134,7 @@ theme:
       inverted: "#000000"
       faint: "#616161"
       warning: "#ff3b2f"
-      success: "#ffffff"
+      success: "#34c759"
     background:
       selected: "#303030"
     border:
