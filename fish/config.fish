@@ -1,3 +1,4 @@
+fish_add_path -m $HOME/.local/bin
 fish_add_path /opt/homebrew/bin/
 fish_add_path "$HOME/.config"
 fish_add_path /opt/homebrew/opt/llvm/bin
@@ -42,3 +43,7 @@ if status --is-interactive
     fish_user_keybindings
     prompt_to_bottom
 end
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
