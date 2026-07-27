@@ -2,6 +2,7 @@ fish_add_path -m $HOME/.local/bin
 fish_add_path /opt/homebrew/bin/
 fish_add_path "$HOME/.config"
 fish_add_path /opt/homebrew/opt/llvm/bin
+fish_add_path --path /opt/homebrew/opt/node@24/bin
 
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
