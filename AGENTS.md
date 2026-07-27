@@ -1,5 +1,10 @@
 # Repository Guidance
 
+## Workflow
+
+- Pull the intended upstream and resolve any divergence or conflicts before editing.
+- Validate and commit every task-owned change; do not leave agent-authored changes uncommitted.
+
 ## Commits
 
 - Do not use conventional commit prefixes in this repository.
