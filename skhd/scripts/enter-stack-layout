@@ -36,12 +36,11 @@ fi
 target_id="$1"
 shift
 
-# Native yabai stacks are stable when a window is marked for stack insertion
-# and the other windows are warped into that stack leaf. Direct --stack calls
-# preserve stale BSP frames for hidden stack members in yabai v7.1.25.
-yabai -m window "$target_id" --insert stack
-
+# Yabai consumes stack insertion after one warp, so re-arm the target leaf for
+# every window. Insert plus warp avoids stale hidden-member BSP frames observed
+# with direct --stack calls in yabai v7.1.25.
 for window_id in "$@"; do
+  yabai -m window "$target_id" --insert stack
   yabai -m window "$window_id" --warp "$target_id"
 done
 
