@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -eu
+
+direction="${1:?usage: stack-window <north|east|south|west>}"
+
+case "$direction" in
+  north|east|south|west) ;;
+  *)
+    printf >&2 'Unknown direction: %s\n' "$direction"
+    exit 1
+    ;;
+esac
+
+source_json="$(yabai -m query --windows --window)"
+if ! target_json="$(yabai -m query --windows --window "$direction" 2>/dev/null)"; then
+  exit 0
+fi
+
+source_id="$(printf '%s\n' "$source_json" | jq -er '.id')"
+target_id="$(printf '%s\n' "$target_json" | jq -er '.id')"
+
+yabai -m window "$target_id" --insert stack
+yabai -m window "$source_id" --warp "$target_id"
+yabai -m window "$source_id" --focus

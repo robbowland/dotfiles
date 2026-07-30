@@ -23,6 +23,12 @@ cmd + alt - j : yabai -m window --warp south
 cmd + alt - k : yabai -m window --warp north
 cmd + alt - l : yabai -m window --warp east
 
+# -- Stack focused window into directional neighbour
+cmd + ctrl - h : "$HOME/.config/skhd/scripts/stack-window" west
+cmd + ctrl - j : "$HOME/.config/skhd/scripts/stack-window" south
+cmd + ctrl - k : "$HOME/.config/skhd/scripts/stack-window" north
+cmd + ctrl - l : "$HOME/.config/skhd/scripts/stack-window" east
+
 # -- Move window to fixed space positions
 shift + alt - a : "$HOME/.config/skhd/scripts/send-window-to-space" 1
 shift + alt - s : "$HOME/.config/skhd/scripts/send-window-to-space" 2

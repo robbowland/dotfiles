@@ -67,5 +67,98 @@ LOG
     'whole-space stacking must re-arm insertion before every warp'
 }
 
+test_directional_stack_moves_focused_window() {
+  scenario="$tmp_dir/directional"
+  mkdir -p "$scenario/bin"
+  log="$scenario/yabai.log"
+  : > "$log"
+
+  cat > "$scenario/bin/yabai" <<'SH'
+#!/bin/sh
+printf '%s\n' "$*" >> "$YABAI_LOG"
+
+case "$*" in
+  '-m query --windows --window')
+    printf '{"id":101}\n'
+    ;;
+  '-m query --windows --window west')
+    [ "${YABAI_NO_NEIGHBOR:-}" != west ] || exit 1
+    printf '{"id":201}\n'
+    ;;
+  '-m query --windows --window south')
+    [ "${YABAI_NO_NEIGHBOR:-}" != south ] || exit 1
+    printf '{"id":202}\n'
+    ;;
+  '-m query --windows --window north')
+    [ "${YABAI_NO_NEIGHBOR:-}" != north ] || exit 1
+    printf '{"id":203}\n'
+    ;;
+  '-m query --windows --window east')
+    [ "${YABAI_NO_NEIGHBOR:-}" != east ] || exit 1
+    printf '{"id":204}\n'
+    ;;
+esac
+SH
+  chmod +x "$scenario/bin/yabai"
+
+  for direction_and_target in 'west 201' 'south 202' 'north 203' 'east 204'; do
+    set -- $direction_and_target
+    direction="$1"
+    target="$2"
+
+    PATH="$scenario/bin:$PATH" YABAI_LOG="$log" \
+      "$repo_root/skhd/scripts/stack-window" "$direction"
+
+    cat >> "$scenario/expected.log" <<LOG
+-m query --windows --window
+-m query --windows --window $direction
+-m window $target --insert stack
+-m window 101 --warp $target
+-m window 101 --focus
+LOG
+  done
+
+  assert_files_equal "$scenario/expected.log" "$log" \
+    'directional stacking must resolve both windows, move the source, and restore focus'
+}
+
+test_missing_directional_neighbour_is_noop() {
+  scenario="$tmp_dir/no-neighbour"
+  mkdir -p "$scenario/bin"
+  log="$scenario/yabai.log"
+  : > "$log"
+
+  cat > "$scenario/bin/yabai" <<'SH'
+#!/bin/sh
+printf '%s\n' "$*" >> "$YABAI_LOG"
+
+case "$*" in
+  '-m query --windows --window') printf '{"id":101}\n' ;;
+  '-m query --windows --window east') exit 1 ;;
+esac
+SH
+  chmod +x "$scenario/bin/yabai"
+
+  PATH="$scenario/bin:$PATH" YABAI_LOG="$log" \
+    "$repo_root/skhd/scripts/stack-window" east
+
+  cat > "$scenario/expected.log" <<'LOG'
+-m query --windows --window
+-m query --windows --window east
+LOG
+
+  assert_files_equal "$scenario/expected.log" "$log" \
+    'a missing neighbour must not mutate the layout'
+}
+
+test_invalid_direction_fails() {
+  if "$repo_root/skhd/scripts/stack-window" diagonal >/dev/null 2>&1; then
+    fail 'an invalid stack direction must fail'
+  fi
+}
+
 test_whole_space_rearms_stack_insertion
+test_directional_stack_moves_focused_window
+test_missing_directional_neighbour_is_noop
+test_invalid_direction_fails
 printf 'PASS: yabai stacking tests\n'
