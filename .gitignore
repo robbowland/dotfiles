@@ -6,5 +6,6 @@ raycast
 spicetify
 xplr
 .aider*
+.worktrees/
 fish/fish_variables
 hunk/state.json
