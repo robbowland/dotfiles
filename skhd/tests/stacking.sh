@@ -122,6 +122,59 @@ LOG
     'directional stacking must resolve both windows, move the source, and restore focus'
 }
 
+test_directional_stack_preserves_populated_destination() {
+  scenario="$tmp_dir/populated-destination"
+  mkdir -p "$scenario/bin"
+  log="$scenario/yabai.log"
+  stack="$scenario/destination.stack"
+  pending_insert="$scenario/pending-insert"
+  : > "$log"
+  printf '%s\n' 201 202 > "$stack"
+
+  cat > "$scenario/bin/yabai" <<'SH'
+#!/bin/sh
+printf '%s\n' "$*" >> "$YABAI_LOG"
+
+case "$*" in
+  '-m query --windows --window')
+    printf '{"id":101}\n'
+    ;;
+  '-m query --windows --window east')
+    printf '{"id":201}\n'
+    ;;
+  '-m window 201 --insert stack')
+    printf '%s\n' 201 > "$YABAI_PENDING_INSERT"
+    ;;
+  '-m window 101 --warp 201')
+    [ "$(cat "$YABAI_PENDING_INSERT")" = 201 ] || exit 1
+    grep -Fxq 101 "$YABAI_STACK" || printf '%s\n' 101 >> "$YABAI_STACK"
+    rm -f "$YABAI_PENDING_INSERT"
+    ;;
+  '-m window 101 --focus')
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+SH
+  chmod +x "$scenario/bin/yabai"
+
+  PATH="$scenario/bin:$PATH" \
+    YABAI_LOG="$log" \
+    YABAI_STACK="$stack" \
+    YABAI_PENDING_INSERT="$pending_insert" \
+    "$repo_root/skhd/scripts/stack-window" east
+
+  cat > "$scenario/expected.stack" <<'STACK'
+201
+202
+101
+STACK
+
+  assert_files_equal "$scenario/expected.stack" "$stack" \
+    'directional stacking must add the source without losing destination stack members'
+}
+
 test_missing_directional_neighbour_is_noop() {
   scenario="$tmp_dir/no-neighbour"
   mkdir -p "$scenario/bin"
@@ -151,14 +204,39 @@ LOG
     'a missing neighbour must not mutate the layout'
 }
 
-test_invalid_direction_fails() {
-  if "$repo_root/skhd/scripts/stack-window" diagonal >/dev/null 2>&1; then
+test_invalid_direction_fails_with_diagnostic() {
+  scenario="$tmp_dir/invalid-direction"
+  mkdir -p "$scenario"
+
+  if "$repo_root/skhd/scripts/stack-window" diagonal >"$scenario.stdout" 2>"$scenario.stderr"; then
     fail 'an invalid stack direction must fail'
   fi
+
+  : > "$scenario/expected.stdout"
+  printf '%s\n' 'Unknown direction: diagonal' > "$scenario/expected.stderr"
+  assert_files_equal "$scenario/expected.stdout" "$scenario.stdout" \
+    'an invalid stack direction must not write to stdout'
+  assert_files_equal "$scenario/expected.stderr" "$scenario.stderr" \
+    'an invalid stack direction must print the exact diagnostic'
+}
+
+test_skhd_bindings() {
+  for binding in \
+    'cmd + ctrl - h : "$HOME/.config/skhd/scripts/stack-window" west' \
+    'cmd + ctrl - j : "$HOME/.config/skhd/scripts/stack-window" south' \
+    'cmd + ctrl - k : "$HOME/.config/skhd/scripts/stack-window" north' \
+    'cmd + ctrl - l : "$HOME/.config/skhd/scripts/stack-window" east' \
+    'cmd + shift - s : "$HOME/.config/skhd/scripts/toggle-stack-layout"'
+  do
+    grep -Fqx -- "$binding" "$repo_root/skhd/skhdrc" || \
+      fail "missing exact skhd binding: $binding"
+  done
 }
 
 test_whole_space_rearms_stack_insertion
 test_directional_stack_moves_focused_window
+test_directional_stack_preserves_populated_destination
 test_missing_directional_neighbour_is_noop
-test_invalid_direction_fails
+test_invalid_direction_fails_with_diagnostic
+test_skhd_bindings
 printf 'PASS: yabai stacking tests\n'
