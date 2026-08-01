@@ -17,11 +17,11 @@
         <key>blockCaret</key><string>#ffffff</string>
         <key>selection</key><string>#303030</string>
         <key>lineHighlight</key><string>#000000</string>
-        <key>invisibles</key><string>#616161</string>
-        <key>guide</key><string>#616161</string>
+        <key>invisibles</key><string>#404040</string>
+        <key>guide</key><string>#404040</string>
         <key>activeGuide</key><string>#999999</string>
         <key>gutter</key><string>#000000</string>
-        <key>gutterForeground</key><string>#616161</string>
+        <key>gutterForeground</key><string>#404040</string>
         <key>gutterForegroundHighlight</key><string>#ffffff</string>
         <key>lineDiffAdded</key><string>#34c759</string>
         <key>lineDiffModified</key><string>#999999</string>
@@ -40,13 +40,13 @@
       <key>name</key><string>Keywords and control flow</string>
       <key>scope</key><string>keyword, keyword.control, keyword.operator, storage, storage.type, storage.modifier, meta.control, meta.function-call keyword</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#616161</string></dict>
+      <dict><key>foreground</key><string>#404040</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Structural punctuation</string>
       <key>scope</key><string>punctuation, punctuation.definition, punctuation.separator, punctuation.terminator, punctuation.section, meta.brace, meta.delimiter</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#616161</string></dict>
+      <dict><key>foreground</key><string>#404040</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Functions and declarations</string>
@@ -76,7 +76,7 @@
       <key>name</key><string>String delimiters and escapes</string>
       <key>scope</key><string>punctuation.definition.string, punctuation.definition.character, constant.character.escape</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#616161</string></dict>
+      <dict><key>foreground</key><string>#404040</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Markup headings</string>

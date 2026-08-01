@@ -5,7 +5,7 @@
   cmdbar_bg:                Some("#000000"),
   cmdbar_extra_lines_bg:    Some("#000000"),
   command_fg:               Some("#ffffff"),
-  disabled_fg:              Some("#616161"),
+  disabled_fg:              Some("#404040"),
 
   use_selection_bg:         Some(true),
   use_selection_fg:         Some(true),
@@ -34,7 +34,7 @@
   status_typechange_unselected_fg: Some("#999999"),
 
   commit_hash:               Some("#999999"),
-  commit_time:               Some("#616161"),
+  commit_time:               Some("#404040"),
   commit_author:             Some("#ffffff"),
   branch_fg:                 Some("#ffffff"),
   tag_fg:                    Some("#999999"),

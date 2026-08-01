@@ -14,7 +14,7 @@ $character"""
 paper = "#000000"
 ink = "#ffffff"
 metadata = "#999999"
-faint = "#616161"
+faint = "#404040"
 danger = "#ff3b2f"
 selection = "#303030"
 

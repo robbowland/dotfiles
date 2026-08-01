@@ -46,9 +46,9 @@ zero-style = "syntax"
 [delta "micrographics"]
 syntax-theme = "Micrographics"
 file-style = "#ffffff" bold
-line-numbers-left-style = "#616161"
-line-numbers-right-style = "#616161"
-line-numbers-zero-style = "#616161"
+line-numbers-left-style = "#404040"
+line-numbers-right-style = "#404040"
+line-numbers-zero-style = "#404040"
 line-numbers-plus-style = "#34c759"
 line-numbers-minus-style = "#ff3b2f"
 hunk-header-file-style = "#999999"

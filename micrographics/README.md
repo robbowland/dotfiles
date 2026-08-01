@@ -16,7 +16,7 @@ Micrographics is the default theme across the terminal stack. Fish loads `activa
 - Posting API client
 - Pi and Neovim use their separate Micrographics themes
 
-The shared dark palette is `#000000` paper, `#ffffff` ink, `#999999` metadata, `#616161` faint scaffolding, `#34c759` success and additions, `#ff3b2f` danger and deletions, and `#303030` only where a tool cannot safely render pure reverse selection.
+The shared dark palette is `#000000` paper, `#ffffff` ink, `#999999` metadata, `#404040` faint scaffolding, `#34c759` success and additions, `#ff3b2f` danger and deletions, and `#303030` only where a tool cannot safely render pure reverse selection.
 
 ## Theme generation
 

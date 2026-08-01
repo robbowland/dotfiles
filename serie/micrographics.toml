@@ -14,12 +14,12 @@ height = 10
 branches = [
   "#ffffff",
   "#999999",
-  "#616161",
+  "#404040",
   "#ffffff",
   "#999999",
-  "#616161",
+  "#404040",
 ]
-edge = "#616161"
+edge = "#404040"
 background = "#000000"
 
 [color]
@@ -36,10 +36,10 @@ ref_selected_italic = false
 list_subject_fg = "#ffffff"
 list_name_fg = "#ffffff"
 list_hash_fg = "#999999"
-list_date_fg = "#616161"
+list_date_fg = "#404040"
 list_match_fg = "#000000"
 list_match_bg = "#ffffff"
-list_ref_paren_fg = "#616161"
+list_ref_paren_fg = "#404040"
 list_ref_branch_fg = "#ffffff"
 list_ref_remote_branch_fg = "#999999"
 list_ref_tag_fg = "#ffffff"
@@ -54,7 +54,7 @@ detail_file_change_modify_fg = "#999999"
 detail_file_change_delete_fg = "#ff3b2f"
 detail_file_change_move_fg = "#999999"
 status_input_fg = "#ffffff"
-status_input_transient_fg = "#616161"
+status_input_transient_fg = "#404040"
 status_info_fg = "#999999"
 status_success_fg = "#34c759"
 status_warn_fg = "#ff3b2f"
@@ -62,4 +62,4 @@ status_error_fg = "#ff3b2f"
 virtual_cursor_fg = "#ffffff"
 help_block_title_fg = "#ffffff"
 help_key_fg = "#999999"
-divider_fg = "#616161"
+divider_fg = "#404040"

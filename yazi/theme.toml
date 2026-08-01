@@ -17,34 +17,34 @@ count_copied     = { fg = "#000000", bg = "#ffffff" }
 count_cut        = { fg = "#000000", bg = "#ff3b2f" }
 count_selected   = { fg = "#000000", bg = "#ffffff" }
 border_symbol    = "│"
-border_style     = { fg = "#616161" }
+border_style     = { fg = "#404040" }
 syntect_theme    = "~/.config/bat/themes/Micrographics.tmTheme"
 
 [tabs]
 active   = { fg = "#999999", bg = "#000000", bold = true }
-inactive = { fg = "#616161", bg = "#000000" }
+inactive = { fg = "#404040", bg = "#000000" }
 sep_inner = { open = "[", close = "]" }
 sep_outer = { open = "", close = "" }
 
 [mode]
-normal_main = { fg = "#616161", bg = "#000000" }
-normal_alt  = { fg = "#616161", bg = "#000000" }
+normal_main = { fg = "#404040", bg = "#000000" }
+normal_alt  = { fg = "#404040", bg = "#000000" }
 select_main = { fg = "#000000", bg = "#ffffff", bold = true }
 select_alt  = { fg = "#999999", bg = "#000000" }
 unset_main  = { fg = "#000000", bg = "#ff3b2f", bold = true }
 unset_alt   = { fg = "#ff3b2f", bg = "#000000" }
 
 [indicator]
-parent  = { fg = "#616161" }
+parent  = { fg = "#404040" }
 current = { fg = "#000000", bg = "#ffffff", bold = true }
-preview = { fg = "#616161" }
+preview = { fg = "#404040" }
 padding = { open = " ", close = "" }
 
 [status]
-overall   = { fg = "#616161", bg = "#000000" }
-sep_left  = { open = "", close = "", fg = "#616161", bg = "#000000" }
-sep_right = { open = "", close = "", fg = "#616161", bg = "#000000" }
-perm_sep   = { fg = "#616161" }
+overall   = { fg = "#404040", bg = "#000000" }
+sep_left  = { open = "", close = "", fg = "#404040", bg = "#000000" }
+sep_right = { open = "", close = "", fg = "#404040", bg = "#000000" }
+perm_sep   = { fg = "#404040" }
 perm_type  = { fg = "#999999" }
 perm_read  = { fg = "#999999" }
 perm_write = { fg = "#999999" }
@@ -57,10 +57,10 @@ progress_error  = { fg = "#ff3b2f", bg = "#000000" }
 cols            = 3
 mask            = { bg = "#000000" }
 cand            = { fg = "#ffffff", bold = true }
-rest            = { fg = "#616161" }
+rest            = { fg = "#404040" }
 desc            = { fg = "#999999" }
 separator       = " │ "
-separator_style = { fg = "#616161" }
+separator_style = { fg = "#404040" }
 
 [confirm]
 border     = { fg = "#999999" }
@@ -72,7 +72,7 @@ btn_no     = { fg = "#999999" }
 btn_labels = [ " [YES] ", " [NO] " ]
 
 [spot]
-border   = { fg = "#616161" }
+border   = { fg = "#404040" }
 title    = { fg = "#ffffff", bold = true }
 tbl_col  = { fg = "#999999" }
 tbl_cell = { fg = "#ffffff" }
@@ -86,18 +86,18 @@ icon_warn  = "[!]"
 icon_error = "[x]"
 
 [pick]
-border   = { fg = "#616161" }
+border   = { fg = "#404040" }
 active   = { fg = "#000000", bg = "#ffffff", bold = true }
 inactive = { fg = "#999999" }
 
 [input]
-border   = { fg = "#616161" }
+border   = { fg = "#404040" }
 title    = { fg = "#999999" }
 value    = { fg = "#ffffff" }
 selected = { fg = "#000000", bg = "#ffffff" }
 
 [cmp]
-border   = { fg = "#616161" }
+border   = { fg = "#404040" }
 active   = { fg = "#000000", bg = "#ffffff", bold = true }
 inactive = { fg = "#999999" }
 icon_file = "F"
@@ -105,7 +105,7 @@ icon_folder = "D"
 icon_command = "C"
 
 [tasks]
-border  = { fg = "#616161" }
+border  = { fg = "#404040" }
 title   = { fg = "#ffffff", bold = true }
 hovered = { fg = "#000000", bg = "#ffffff", bold = true }
 
@@ -124,8 +124,8 @@ rules = [
   { url = "*", is = "exec", fg = "#ffffff" },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#999999" },
   { mime = "{image,audio,video}/*", fg = "#999999" },
-  { mime = "vfs/{absent,stale}", fg = "#616161" },
-  { url = ".*", fg = "#616161" },
+  { mime = "vfs/{absent,stale}", fg = "#404040" },
+  { url = ".*", fg = "#404040" },
   { url = "*", fg = "#999999" },
 ]
 
@@ -138,11 +138,11 @@ conds = [
   { if = "orphan & hovered", text = "!", fg = "#ff3b2f" },
   { if = "orphan", text = "!", fg = "#ff3b2f" },
   { if = "link & hovered", text = "L", fg = "#000000" },
-  { if = "link", text = "L", fg = "#616161" },
+  { if = "link", text = "L", fg = "#404040" },
   { if = "dir & hovered", text = "D", fg = "#000000" },
   { if = "dir", text = "D", fg = "#999999" },
   { if = "exec & hovered", text = "X", fg = "#000000" },
   { if = "exec", text = "X", fg = "#999999" },
   { if = "hovered", text = "", fg = "#000000" },
-  { if = "!dir", text = "", fg = "#616161" },
+  { if = "!dir", text = "", fg = "#404040" },
 ]

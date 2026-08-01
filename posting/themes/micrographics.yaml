@@ -15,19 +15,19 @@ syntax:
   json_string: "#ffffff"
   json_number: "#ffffff"
   json_boolean: "#999999"
-  json_null: "#616161"
+  json_null: "#404040"
 
 url:
   base: "#ffffff"
   protocol: "#999999"
-  separator: "#616161"
+  separator: "#404040"
 
 variable:
   resolved: "#ffffff"
   unresolved: "#ff3b2f"
 
 text_area:
-  gutter: "#616161 on #000000"
+  gutter: "#404040 on #000000"
   cursor: "#000000 on #ffffff"
   cursor_line: "#000000"
   cursor_line_gutter: "bold #ffffff on #000000"
@@ -40,7 +40,7 @@ method:
   put: "#999999"
   delete: "#ff3b2f"
   patch: "#999999"
-  options: "#616161"
-  head: "#616161"
+  options: "#404040"
+  head: "#404040"
 
 description: "Pure-invert Micrographics theme with grayscale scaffolding, success green, and danger red."

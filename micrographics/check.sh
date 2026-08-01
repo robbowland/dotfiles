@@ -56,7 +56,7 @@ plutil -lint "$BASE/bat/themes/Micrographics.tmTheme" >/dev/null
 python3 - "$BASE" <<'PY'
 import pathlib, re, sys, tomllib
 base = pathlib.Path(sys.argv[1])
-allowed = {"#000000", "#ffffff", "#999999", "#616161", "#34c759", "#ff3b2f", "#303030"}
+allowed = {"#000000", "#ffffff", "#999999", "#404040", "#34c759", "#ff3b2f", "#303030"}
 paths = [
     base / "micrographics/palette.env",
     base / "ghostty/themes/Micrographics",
