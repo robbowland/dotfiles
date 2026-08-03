@@ -1,4 +1,18 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
+import {
+  lstatSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readlinkSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { setImmediate } from "node:timers/promises";
 import test from "node:test";
 
@@ -27,6 +41,30 @@ type TestContext = {
 type EventHandler = (event: unknown, context: TestContext) => unknown;
 type CommandHandler = (args: string, context: TestContext) => Promise<void> | void;
 type Exec = (command: string, args: string[], options: { cwd: string; timeout: number }) => Promise<ExecResult>;
+
+const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
+const extensionSource = join(repoRoot, "pi/extensions/context-status.ts");
+
+function runInstaller(home: string) {
+  return spawnSync(
+    "sh",
+    [
+      "-c",
+      '. "$CONFIG_ROOT/.scripts/install/lib.sh"; . "$CONFIG_ROOT/pi/.scripts/install.sh"; install_pi_context_status',
+    ],
+    {
+      cwd: repoRoot,
+      encoding: "utf8",
+      env: { ...process.env, CONFIG_ROOT: repoRoot, HOME: home },
+    },
+  );
+}
+
+function temporaryHome(testContext: { after: (callback: () => void) => void }): string {
+  const home = mkdtempSync(join(tmpdir(), "pi-context-status-"));
+  testContext.after(() => rmSync(home, { recursive: true, force: true }));
+  return home;
+}
 
 function createHarness(exec: Exec = async () => ({ code: 1, stdout: "", stderr: "no pull request" })) {
   const events = new Map<string, EventHandler>();
@@ -217,4 +255,46 @@ test("shutdown prevents a late lookup update", async () => {
   await settle();
 
   assert.deepEqual(harness.statuses, [undefined]);
+});
+
+test("installer creates an idempotent extension symlink", (testContext) => {
+  const home = temporaryHome(testContext);
+  const target = join(home, ".pi/agent/extensions/context-status.ts");
+
+  const first = runInstaller(home);
+  assert.equal(first.status, 0, first.stderr);
+  assert.equal(lstatSync(target).isSymbolicLink(), true);
+  assert.equal(readlinkSync(target), extensionSource);
+
+  const second = runInstaller(home);
+  assert.equal(second.status, 0, second.stderr);
+  assert.equal(readlinkSync(target), extensionSource);
+});
+
+test("installer preserves an unrelated destination file", (testContext) => {
+  const home = temporaryHome(testContext);
+  const target = join(home, ".pi/agent/extensions/context-status.ts");
+  mkdirSync(dirname(target), { recursive: true });
+  writeFileSync(target, "keep me");
+
+  const result = runInstaller(home);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Refusing to replace/);
+  assert.equal(readFileSync(target, "utf8"), "keep me");
+});
+
+test("installer preserves an unrelated destination symlink", (testContext) => {
+  const home = temporaryHome(testContext);
+  const target = join(home, ".pi/agent/extensions/context-status.ts");
+  const other = join(home, "other-extension.ts");
+  mkdirSync(dirname(target), { recursive: true });
+  writeFileSync(other, "export default function () {}\n");
+  symlinkSync(other, target);
+
+  const result = runInstaller(home);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Refusing to replace/);
+  assert.equal(readlinkSync(target), other);
 });
