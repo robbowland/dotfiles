@@ -2,3 +2,5 @@
 alias clear=prompt_to_bottom
 # -- reload fish configuration
 alias refish=reload_fish_config
+# -- review current branch changes since it diverged from origin/main
+alias hunk-main='hunk diff origin/main...HEAD --mode split --agent-notes'
