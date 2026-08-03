@@ -56,7 +56,8 @@ plutil -lint "$BASE/bat/themes/Micrographics.tmTheme" >/dev/null
 python3 - "$BASE" <<'PY'
 import pathlib, re, sys, tomllib
 base = pathlib.Path(sys.argv[1])
-allowed = {"#000000", "#ffffff", "#999999", "#404040", "#34c759", "#ff3b2f", "#303030"}
+shared_allowed = {"#000000", "#ffffff", "#999999", "#404040", "#34c759", "#ff3b2f", "#303030"}
+hunk_allowed = shared_allowed | {"#10291b", "#174527", "#301816", "#4a1d18"}
 paths = [
     base / "micrographics/palette.env",
     base / "ghostty/themes/Micrographics",
@@ -75,6 +76,7 @@ paths = [
 ]
 for path in paths:
     colors = {c.lower() for c in re.findall(r"#[0-9a-fA-F]{6}", path.read_text())}
+    allowed = hunk_allowed if path == base / "hunk/config.toml" else shared_allowed
     unexpected = colors - allowed
     if unexpected:
         raise SystemExit(f"{path}: unexpected colors {sorted(unexpected)}")
