@@ -9,3 +9,7 @@ xplr
 .worktrees/
 fish/fish_variables
 hunk/state.json
+cagent/
+gh/config.yml
+gh/hosts.yml
+zed/prompts/
