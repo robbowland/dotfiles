@@ -176,7 +176,7 @@ test("rejects malformed pull-request output", () => {
 });
 
 test("formats and truncates manual tasks", () => {
-  assert.equal(formatTask(" Fix flaky auth test "), "Task · Fix flaky auth test");
+  assert.equal(formatTask(" Fix flaky auth test "), "CTX: Fix flaky auth test");
 
   const longTask = formatTask("x".repeat(100));
   assert.equal([...longTask].length, 72);
@@ -231,18 +231,18 @@ test("sets and reports a manual context", async () => {
   await harness.runContext("  Fix flaky auth test  ", harness.context);
   await harness.runContext("", harness.context);
 
-  assert.equal(harness.statuses.at(-1), "Task · Fix flaky auth test");
+  assert.equal(harness.statuses.at(-1), "CTX: Fix flaky auth test");
   assert.deepEqual(harness.notifications.at(-1), {
-    message: "Context: Task · Fix flaky auth test",
+    message: "Context: CTX: Fix flaky auth test",
     level: "info",
   });
   assert.deepEqual(harness.statusUpdates.at(-1), {
     id: "context",
-    value: "Task · Fix flaky auth test",
+    value: "CTX: Fix flaky auth test",
   });
   assert.deepEqual(harness.themeCalls.at(-1), {
     color: "dim",
-    text: "Task · Fix flaky auth test",
+    text: "CTX: Fix flaky auth test",
   });
   assert.equal("context".localeCompare("mcp") < 0, true);
 });
@@ -268,8 +268,8 @@ test("buffers and dims a singular MCP summary with a leading separator", async (
     text: " MCP: 1 server enabled (1 connected)",
   });
   assert.equal(
-    `Task · doing some tests ${harness.statusUpdates.at(-1)?.value}`,
-    "Task · doing some tests  MCP: 1 server enabled (1 connected)",
+    `${formatTask("doing some tests")} ${harness.statusUpdates.at(-1)?.value}`,
+    "CTX: doing some tests  MCP: 1 server enabled (1 connected)",
   );
 });
 
@@ -394,7 +394,7 @@ test("manual context wins over a pending automatic lookup", async () => {
   resolveExec?.({ code: 0, stdout: '{"number":789,"title":"Late result"}', stderr: "" });
   await settle();
 
-  assert.deepEqual(harness.statuses, [undefined, "Task · Manual task"]);
+  assert.deepEqual(harness.statuses, [undefined, "CTX: Manual task"]);
 });
 
 test("shutdown prevents a late lookup update", async () => {

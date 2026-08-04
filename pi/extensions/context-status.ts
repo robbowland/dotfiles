@@ -75,7 +75,7 @@ export function formatPullRequest(pullRequest: PullRequest): string {
 }
 
 export function formatTask(text: string): string {
-  return truncateStatus(`Task · ${text.trim()}`);
+  return truncateStatus(`CTX: ${text.trim()}`);
 }
 
 export function formatMcpStatus(snapshot: McpStatusSnapshot): string | undefined {
