@@ -17,8 +17,11 @@ import { setImmediate } from "node:timers/promises";
 import test from "node:test";
 
 import contextStatusExtension, {
+  MCP_STATUS_EVENT,
+  formatMcpStatus,
   formatPullRequest,
   formatTask,
+  parseMcpStatusSnapshot,
   parsePullRequest,
 } from "../extensions/context-status.ts";
 
@@ -41,6 +44,17 @@ type TestContext = {
 type EventHandler = (event: unknown, context: TestContext) => unknown;
 type CommandHandler = (args: string, context: TestContext) => Promise<void> | void;
 type Exec = (command: string, args: string[], options: { cwd: string; timeout: number }) => Promise<ExecResult>;
+type SharedEventHandler = (data: unknown) => void;
+
+type StatusUpdate = {
+  readonly id: string;
+  readonly value: string | undefined;
+};
+
+type ThemeCall = {
+  readonly color: string;
+  readonly text: string;
+};
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const extensionSource = join(repoRoot, "pi/extensions/context-status.ts");
@@ -68,7 +82,10 @@ function temporaryHome(testContext: { after: (callback: () => void) => void }): 
 
 function createHarness(exec: Exec = async () => ({ code: 1, stdout: "", stderr: "no pull request" })) {
   const events = new Map<string, EventHandler>();
+  const sharedEvents = new Map<string, SharedEventHandler>();
   const statuses: Array<string | undefined> = [];
+  const statusUpdates: StatusUpdate[] = [];
+  const themeCalls: ThemeCall[] = [];
   const notifications: Array<{ message: string; level: string }> = [];
   let contextCommand: CommandHandler | undefined;
 
@@ -81,6 +98,17 @@ function createHarness(exec: Exec = async () => ({ code: 1, stdout: "", stderr: 
       contextCommand = definition.handler;
     },
     exec,
+    events: {
+      emit(channel: string, data: unknown) {
+        sharedEvents.get(channel)?.(data);
+      },
+      on(channel: string, handler: SharedEventHandler) {
+        sharedEvents.set(channel, handler);
+        return () => {
+          if (sharedEvents.get(channel) === handler) sharedEvents.delete(channel);
+        };
+      },
+    },
   };
 
   // The harness deliberately implements only the methods used during extension registration.
@@ -93,13 +121,13 @@ function createHarness(exec: Exec = async () => ({ code: 1, stdout: "", stderr: 
     ui: {
       theme: {
         fg(color, text) {
-          assert.equal(color, "accent");
+          themeCalls.push({ color, text });
           return text;
         },
       },
       setStatus(id, value) {
-        assert.equal(id, "work-context");
-        statuses.push(value);
+        statusUpdates.push({ id, value });
+        if (id === "context") statuses.push(value);
       },
       notify(message, level) {
         notifications.push({ message, level });
@@ -113,7 +141,20 @@ function createHarness(exec: Exec = async () => ({ code: 1, stdout: "", stderr: 
     return handler;
   }
 
-  return { context, event, notifications, runContext: contextCommand, statuses };
+  function emitShared(channel: string, data: unknown): void {
+    pi.events.emit(channel, data);
+  }
+
+  return {
+    context,
+    emitShared,
+    event,
+    notifications,
+    runContext: contextCommand,
+    statuses,
+    statusUpdates,
+    themeCalls,
+  };
 }
 
 async function settle(): Promise<void> {
@@ -195,6 +236,116 @@ test("sets and reports a manual context", async () => {
     message: "Context: Task · Fix flaky auth test",
     level: "info",
   });
+  assert.deepEqual(harness.statusUpdates.at(-1), {
+    id: "context",
+    value: "Task · Fix flaky auth test",
+  });
+  assert.deepEqual(harness.themeCalls.at(-1), {
+    color: "dim",
+    text: "Task · Fix flaky auth test",
+  });
+  assert.equal("context".localeCompare("mcp") < 0, true);
+});
+
+test("buffers and dims a singular MCP summary without an icon", async () => {
+  const harness = createHarness();
+
+  harness.emitShared(MCP_STATUS_EVENT, {
+    version: 1,
+    servers: [{}],
+    connectedCount: 1,
+    disabledCount: 0,
+  });
+  harness.event("session_start")({}, harness.context);
+  await settle();
+
+  assert.deepEqual(harness.statusUpdates.at(-1), {
+    id: "mcp",
+    value: "MCP: 1 server enabled (1 connected)",
+  });
+  assert.deepEqual(harness.themeCalls.at(-1), {
+    color: "dim",
+    text: "MCP: 1 server enabled (1 connected)",
+  });
+});
+
+test("formats connected and disabled MCP server counts", async () => {
+  const harness = createHarness();
+  harness.event("session_start")({}, harness.context);
+
+  harness.emitShared(MCP_STATUS_EVENT, {
+    version: 1,
+    servers: [{}, {}, {}],
+    connectedCount: 1,
+    disabledCount: 1,
+  });
+  await settle();
+
+  assert.equal(
+    harness.statusUpdates.at(-1)?.value,
+    "MCP: 2 servers enabled (1 connected) (1 disabled)",
+  );
+});
+
+test("ignores invalid MCP snapshots and clears a valid empty snapshot", async () => {
+  const harness = createHarness();
+  harness.event("session_start")({}, harness.context);
+
+  harness.context.ui.setStatus("mcp", "adapter output");
+  const beforeInvalid = harness.statusUpdates.length;
+  harness.emitShared(MCP_STATUS_EVENT, { version: 2, servers: [] });
+  harness.emitShared(MCP_STATUS_EVENT, {
+    version: 1,
+    servers: [{}],
+    connectedCount: 2,
+    disabledCount: 0,
+  });
+  await settle();
+  assert.equal(harness.statusUpdates.length, beforeInvalid);
+
+  harness.emitShared(MCP_STATUS_EVENT, {
+    version: 1,
+    servers: [],
+    connectedCount: 0,
+    disabledCount: 0,
+  });
+  await settle();
+  assert.deepEqual(harness.statusUpdates.at(-1), { id: "mcp", value: undefined });
+});
+
+test("shutdown prevents a queued MCP status update", async () => {
+  const harness = createHarness();
+  harness.event("session_start")({}, harness.context);
+
+  harness.emitShared(MCP_STATUS_EVENT, {
+    version: 1,
+    servers: [{}],
+    connectedCount: 0,
+    disabledCount: 0,
+  });
+  harness.event("session_shutdown")({}, harness.context);
+  await settle();
+
+  assert.equal(harness.statusUpdates.some(({ id }) => id === "mcp"), false);
+});
+
+test("parses and formats MCP snapshots independently", () => {
+  const snapshot = parseMcpStatusSnapshot({
+    version: 1,
+    servers: [{}, {}],
+    connectedCount: 0,
+    disabledCount: 1,
+  });
+
+  assert.ok(snapshot);
+  assert.deepEqual(snapshot, {
+    version: 1,
+    servers: [{}, {}],
+    connectedCount: 0,
+    disabledCount: 1,
+  });
+  assert.equal(formatMcpStatus(snapshot), "MCP: 1 server enabled (1 disabled)");
+  assert.equal(parseMcpStatusSnapshot(null), undefined);
 });
 
 test("returns to automatic context on command", async () => {
