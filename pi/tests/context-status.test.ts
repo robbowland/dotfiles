@@ -247,7 +247,7 @@ test("sets and reports a manual context", async () => {
   assert.equal("context".localeCompare("mcp") < 0, true);
 });
 
-test("buffers and dims a singular MCP summary without an icon", async () => {
+test("buffers and dims a singular MCP summary with a leading separator", async () => {
   const harness = createHarness();
 
   harness.emitShared(MCP_STATUS_EVENT, {
@@ -261,12 +261,16 @@ test("buffers and dims a singular MCP summary without an icon", async () => {
 
   assert.deepEqual(harness.statusUpdates.at(-1), {
     id: "mcp",
-    value: "MCP: 1 server enabled (1 connected)",
+    value: " MCP: 1 server enabled (1 connected)",
   });
   assert.deepEqual(harness.themeCalls.at(-1), {
     color: "dim",
-    text: "MCP: 1 server enabled (1 connected)",
+    text: " MCP: 1 server enabled (1 connected)",
   });
+  assert.equal(
+    `Task · doing some tests ${harness.statusUpdates.at(-1)?.value}`,
+    "Task · doing some tests  MCP: 1 server enabled (1 connected)",
+  );
 });
 
 test("formats connected and disabled MCP server counts", async () => {
@@ -283,7 +287,7 @@ test("formats connected and disabled MCP server counts", async () => {
 
   assert.equal(
     harness.statusUpdates.at(-1)?.value,
-    "MCP: 2 servers enabled (1 connected) (1 disabled)",
+    " MCP: 2 servers enabled (1 connected) (1 disabled)",
   );
 });
 

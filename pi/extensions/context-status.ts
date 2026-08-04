@@ -116,7 +116,7 @@ export default function contextStatusExtension(pi: ExtensionAPI): void {
       if (!active || generation !== mcpGeneration || activeContext !== context) return;
       context.ui.setStatus(
         MCP_STATUS_ID,
-        value === undefined ? undefined : context.ui.theme.fg("dim", value),
+        value === undefined ? undefined : context.ui.theme.fg("dim", ` ${value}`),
       );
     });
   }
