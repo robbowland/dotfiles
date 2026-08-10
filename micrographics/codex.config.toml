@@ -1,0 +1,18 @@
+# Merge these tables into ~/.codex/config.toml after running install-codex.sh.
+# Do not replace the complete Codex config: it contains machine-local settings.
+
+[tui]
+theme = "micrographics"
+status_line_use_colors = false
+
+[desktop.appearanceDarkChromeTheme]
+accent = "#ffffff"
+contrast = 60
+ink = "#ffffff"
+opaqueWindows = true
+surface = "#000000"
+
+[desktop.appearanceDarkChromeTheme.semanticColors]
+diffAdded = "#34c759"
+diffRemoved = "#ff3b2f"
+skill = "#ffffff"

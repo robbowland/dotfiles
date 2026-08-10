@@ -2,6 +2,7 @@
 set -eu
 
 BASE="${XDG_CONFIG_HOME:-$HOME/.config}"
+CODEX_DIR="${CODEX_HOME:-$HOME/.codex}"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT HUP INT TERM
 
@@ -24,6 +25,10 @@ grep -q 'micrographics/activate.fish' "$BASE/fish/config.fish"
 cmp -s "$BASE/gh-dash/config.yml" "$BASE/gh-dash/micrographics.yml"
 cmp -s "$BASE/posting/config.yaml" "$BASE/posting/profiles/micrographics.yaml"
 cmp -s "$BASE/yazi/init.lua" "$BASE/yazi/profiles/micrographics/init.lua"
+"$BASE/micrographics/tests/install-codex.test.sh" >/dev/null
+test -L "$CODEX_DIR/themes/micrographics.tmTheme"
+test "$CODEX_DIR/themes/micrographics.tmTheme" -ef \
+  "$BASE/bat/themes/Micrographics.tmTheme"
 
 # Generated defaults and compatibility profiles must match their templates.
 rendered() {
@@ -53,9 +58,11 @@ rendered "$BASE/zellij/layouts/default.kdl.in" "$BASE/zellij/layouts/micrographi
 
 # Static formats and the fixed palette contract.
 plutil -lint "$BASE/bat/themes/Micrographics.tmTheme" >/dev/null
-python3 - "$BASE" <<'PY'
+plutil -lint "$CODEX_DIR/themes/micrographics.tmTheme" >/dev/null
+python3 - "$BASE" "$CODEX_DIR" <<'PY'
 import pathlib, re, sys, tomllib
 base = pathlib.Path(sys.argv[1])
+codex_home = pathlib.Path(sys.argv[2])
 shared_allowed = {"#000000", "#ffffff", "#999999", "#404040", "#34c759", "#ff3b2f", "#303030"}
 hunk_allowed = shared_allowed | {"#10291b", "#174527", "#301816", "#4a1d18"}
 paths = [
@@ -73,6 +80,7 @@ paths = [
     base / "gh-dash/config.yml",
     base / "serie/config.toml",
     base / "posting/themes/micrographics.yaml",
+    base / "micrographics/codex.config.toml",
 ]
 for path in paths:
     colors = {c.lower() for c in re.findall(r"#[0-9a-fA-F]{6}", path.read_text())}
@@ -98,6 +106,43 @@ assert yazi["indicator"]["padding"] == {
     "open": " ",
     "close": "",
 }, "Yazi selection must keep one alignment cell without bracket glyphs"
+
+expected_tui = {
+    "theme": "micrographics",
+    "status_line_use_colors": False,
+}
+expected_desktop = {
+    "accent": "#ffffff",
+    "contrast": 60,
+    "ink": "#ffffff",
+    "opaqueWindows": True,
+    "surface": "#000000",
+}
+expected_semantic = {
+    "diffAdded": "#34c759",
+    "diffRemoved": "#ff3b2f",
+    "skill": "#ffffff",
+}
+
+def assert_values(actual, expected, label):
+    for key, value in expected.items():
+        assert actual.get(key) == value, f"{label}: unexpected {key}"
+
+fragment = tomllib.loads((base / "micrographics/codex.config.toml").read_text())
+fragment_desktop = fragment["desktop"]["appearanceDarkChromeTheme"]
+assert fragment["tui"] == expected_tui, "tracked fragment: unexpected [tui] settings"
+assert_values(fragment_desktop, expected_desktop, "tracked fragment Desktop chrome")
+assert fragment_desktop["semanticColors"] == expected_semantic, \
+    "tracked fragment: unexpected Desktop semantic colors"
+assert set(fragment_desktop) == {*expected_desktop, "semanticColors"}, \
+    "tracked fragment: unexpected Desktop keys"
+
+live = tomllib.loads((codex_home / "config.toml").read_text())
+live_desktop = live["desktop"]["appearanceDarkChromeTheme"]
+assert_values(live["tui"], expected_tui, "live Codex [tui]")
+assert_values(live_desktop, expected_desktop, "live Codex Desktop chrome")
+assert_values(live_desktop["semanticColors"], expected_semantic, \
+    "live Codex Desktop semantic colors")
 PY
 ruby -e 'require "yaml"; ARGV.each { |p| YAML.safe_load(File.read(p), permitted_classes: [], aliases: false) }' \
   "$BASE/gh-dash/config.yml" \
@@ -105,6 +150,7 @@ ruby -e 'require "yaml"; ARGV.each { |p| YAML.safe_load(File.read(p), permitted_
   "$BASE/posting/config.yaml"
 
 # Installed loaders and parsers.
+codex --strict-config --version >/dev/null
 bat cache --build >/dev/null
 bat --list-themes | grep -q '^Micrographics$'
 printf 'function alpha() { return 1; }\n' > "$TMP/sample.js"
