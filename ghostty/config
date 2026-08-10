@@ -10,6 +10,11 @@ font-family="JetBrainsMono Nerd Font Mono"
 
 macos-option-as-alt=true
 
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:down
+keybind = ctrl+shift+k=goto_split:up
+keybind = ctrl+shift+l=goto_split:right
+
 window-padding-x = 17
 window-padding-x = 16
 
