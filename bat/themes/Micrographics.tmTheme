@@ -94,7 +94,7 @@
       <key>name</key><string>Inserted content</string>
       <key>scope</key><string>markup.inserted, meta.diff.header.from-file, meta.diff.header.to-file</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#39d97a</string><key>fontStyle</key><string>bold</string></dict>
+      <dict><key>foreground</key><string>#39d97a</string><key>background</key><string>#000000</string><key>fontStyle</key><string>bold</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Changed content</string>
@@ -106,7 +106,7 @@
       <key>name</key><string>Deleted, invalid, and deprecated content</string>
       <key>scope</key><string>markup.deleted, invalid, invalid.illegal, invalid.deprecated, message.error</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#ff3b2f</string><key>fontStyle</key><string>bold</string></dict>
+      <dict><key>foreground</key><string>#ff3b2f</string><key>background</key><string>#000000</string><key>fontStyle</key><string>bold</string></dict>
     </dict>
   </array>
 </dict>

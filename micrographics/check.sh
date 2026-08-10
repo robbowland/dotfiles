@@ -65,7 +65,6 @@ base = pathlib.Path(sys.argv[1])
 codex_home = pathlib.Path(sys.argv[2])
 canonical_green = "#39d97a"
 shared_allowed = {"#000000", "#ffffff", "#999999", "#404040", canonical_green, "#ff3b2f", "#303030"}
-hunk_allowed = shared_allowed | {"#10291b", "#174527", "#301816", "#4a1d18"}
 paths = [
     base / "micrographics/palette.env",
     base / "ghostty/themes/Micrographics",
@@ -85,8 +84,7 @@ paths = [
 ]
 for path in paths:
     colors = {c.lower() for c in re.findall(r"#[0-9a-fA-F]{6}", path.read_text())}
-    allowed = hunk_allowed if path == base / "hunk/config.toml" else shared_allowed
-    unexpected = colors - allowed
+    unexpected = colors - shared_allowed
     if unexpected:
         raise SystemExit(f"{path}: unexpected colors {sorted(unexpected)}")
 
@@ -124,14 +122,24 @@ assert global_settings[0]["lineDiffAdded"] == canonical_green, \
     "Bat lineDiffAdded must use canonical green"
 
 def scope_settings(scope):
-    for item in textmate["settings"]:
-        scopes = {part.strip() for part in item.get("scope", "").split(",")}
-        if scope in scopes:
-            return item["settings"]
-    raise AssertionError(f"missing TextMate scope {scope}")
+    matches = [
+        item["settings"]
+        for item in textmate["settings"]
+        if scope in {part.strip() for part in item.get("scope", "").split(",")}
+    ]
+    assert len(matches) == 1, f"Bat must have one {scope} TextMate setting"
+    return matches[0]
 
-assert scope_settings("markup.inserted")["foreground"] == canonical_green, \
+inserted = scope_settings("markup.inserted")
+deleted = scope_settings("markup.deleted")
+assert inserted["foreground"] == canonical_green, \
     "Bat markup.inserted foreground must use canonical green"
+assert inserted["background"] == "#000000", \
+    "Bat markup.inserted background must use literal black"
+assert deleted["foreground"] == "#ff3b2f", \
+    "Bat markup.deleted foreground must use canonical red"
+assert deleted["background"] == "#000000", \
+    "Bat markup.deleted background must use literal black"
 
 toml_paths = [
     base / "starship/starship.toml",
@@ -141,8 +149,19 @@ toml_paths = [
 ]
 parsed = {path: tomllib.loads(path.read_text()) for path in toml_paths}
 hunk = parsed[base / "hunk/config.toml"]["custom_theme"]
+for key in [
+    "addedBg",
+    "removedBg",
+    "movedAddedBg",
+    "movedRemovedBg",
+    "addedContentBg",
+    "removedContentBg",
+]:
+    assert hunk[key] == "#000000", f"Hunk {key} must use literal black"
 for key in ["addedSignColor", "badgeAdded", "fileNew", "fileUntracked"]:
     assert hunk[key] == canonical_green, f"Hunk {key} must use canonical green"
+for key in ["removedSignColor", "badgeRemoved", "fileDeleted"]:
+    assert hunk[key] == "#ff3b2f", f"Hunk {key} must use canonical red"
 yazi = parsed[base / "yazi/theme.toml"]
 assert yazi["indicator"]["current"] == {
     "fg": "#000000",
