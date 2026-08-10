@@ -23,7 +23,7 @@
         <key>gutter</key><string>#000000</string>
         <key>gutterForeground</key><string>#404040</string>
         <key>gutterForegroundHighlight</key><string>#ffffff</string>
-        <key>lineDiffAdded</key><string>#34c759</string>
+        <key>lineDiffAdded</key><string>#39d97a</string>
         <key>lineDiffModified</key><string>#999999</string>
         <key>lineDiffDeleted</key><string>#ff3b2f</string>
         <key>findHighlight</key><string>#ffffff</string>
@@ -94,7 +94,7 @@
       <key>name</key><string>Inserted content</string>
       <key>scope</key><string>markup.inserted, meta.diff.header.from-file, meta.diff.header.to-file</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#34c759</string><key>fontStyle</key><string>bold</string></dict>
+      <dict><key>foreground</key><string>#39d97a</string><key>fontStyle</key><string>bold</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Changed content</string>

@@ -13,6 +13,6 @@ opaqueWindows = true
 surface = "#000000"
 
 [desktop.appearanceDarkChromeTheme.semanticColors]
-diffAdded = "#34c759"
+diffAdded = "#39d97a"
 diffRemoved = "#ff3b2f"
 skill = "#ffffff"

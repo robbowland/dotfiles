@@ -19,14 +19,14 @@
   file_tree_path_icon_unselected_fg: Some("#999999"),
   file_tree_path_icon_selected_fg:   Some("#000000"),
 
-  diff_line_add:             Some("#34c759"),
+  diff_line_add:             Some("#39d97a"),
   diff_line_delete:          Some("#ff3b2f"),
-  diff_file_added:           Some("#34c759"),
+  diff_file_added:           Some("#39d97a"),
   diff_file_removed:         Some("#ff3b2f"),
   diff_file_moved:           Some("#999999"),
   diff_file_modified:        Some("#999999"),
 
-  status_new_unselected_fg:        Some("#34c759"),
+  status_new_unselected_fg:        Some("#39d97a"),
   status_modified_unselected_fg:   Some("#999999"),
   status_deleted_unselected_fg:    Some("#ff3b2f"),
   status_renamed_unselected_fg:    Some("#999999"),
@@ -40,7 +40,7 @@
   tag_fg:                    Some("#999999"),
 
   danger_fg:                 Some("#ff3b2f"),
-  push_gauge_bg:             Some("#34c759"),
+  push_gauge_bg:             Some("#39d97a"),
   push_gauge_fg:             Some("#000000"),
   block_title_focused:       Some("#ffffff"),
   line_break:                Some("│"),

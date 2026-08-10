@@ -18,9 +18,9 @@ grep -q '^features = "micrographics"$' "$BASE/delta/config"
 grep -q 'syntax:[[:space:]]*Some("Micrographics")' "$BASE/gitui/theme.ron"
 grep -q '^theme = "custom"$' "$BASE/hunk/config.toml"
 grep -q '^label = "Micrographics"$' "$BASE/hunk/config.toml"
-grep -q '^addedSignColor = "#34c759"$' "$BASE/hunk/config.toml"
-grep -q '^plus-style = "syntax #34c759"$' "$BASE/delta/config"
-grep -q 'diff_line_add:.*Some("#34c759")' "$BASE/gitui/theme.ron"
+grep -q '^addedSignColor = "#39d97a"$' "$BASE/hunk/config.toml"
+grep -q '^plus-style = "syntax #39d97a"$' "$BASE/delta/config"
+grep -q 'diff_line_add:.*Some("#39d97a")' "$BASE/gitui/theme.ron"
 grep -q 'micrographics/activate.fish' "$BASE/fish/config.fish"
 cmp -s "$BASE/gh-dash/config.yml" "$BASE/gh-dash/micrographics.yml"
 cmp -s "$BASE/posting/config.yaml" "$BASE/posting/profiles/micrographics.yaml"
@@ -60,10 +60,11 @@ rendered "$BASE/zellij/layouts/default.kdl.in" "$BASE/zellij/layouts/micrographi
 plutil -lint "$BASE/bat/themes/Micrographics.tmTheme" >/dev/null
 plutil -lint "$CODEX_DIR/themes/micrographics.tmTheme" >/dev/null
 python3 - "$BASE" "$CODEX_DIR" <<'PY'
-import pathlib, re, sys, tomllib
+import pathlib, plistlib, re, sys, tomllib
 base = pathlib.Path(sys.argv[1])
 codex_home = pathlib.Path(sys.argv[2])
-shared_allowed = {"#000000", "#ffffff", "#999999", "#404040", "#34c759", "#ff3b2f", "#303030"}
+canonical_green = "#39d97a"
+shared_allowed = {"#000000", "#ffffff", "#999999", "#404040", canonical_green, "#ff3b2f", "#303030"}
 hunk_allowed = shared_allowed | {"#10291b", "#174527", "#301816", "#4a1d18"}
 paths = [
     base / "micrographics/palette.env",
@@ -89,6 +90,49 @@ for path in paths:
     if unexpected:
         raise SystemExit(f"{path}: unexpected colors {sorted(unexpected)}")
 
+palette = dict(
+    line.split("=", 1)
+    for line in (base / "micrographics/palette.env").read_text().splitlines()
+    if "=" in line
+)
+for role in ["PALETTE_GREEN_BRIGHT", "PALETTE_GREEN", "PALETTE_GREEN_DIM"]:
+    assert palette.get(role) == canonical_green, f"{role} must use canonical green"
+
+ghostty_palette = {}
+for line in (base / "ghostty/themes/Micrographics").read_text().splitlines():
+    if not re.match(r"^\s*palette\s*=", line):
+        continue
+    match = re.fullmatch(r"\s*palette\s*=\s*(\d+)\s*=\s*(#[0-9a-fA-F]{6})\s*", line)
+    assert match, f"invalid Ghostty palette assignment: {line}"
+    slot, color = match.groups()
+    slot = int(slot)
+    assert slot not in ghostty_palette, f"duplicate Ghostty palette slot {slot}"
+    ghostty_palette[slot] = color.lower()
+for slot in [2, 10]:
+    assert ghostty_palette.get(slot) == canonical_green, \
+        f"Ghostty palette slot {slot} must use canonical green"
+
+with (base / "bat/themes/Micrographics.tmTheme").open("rb") as file:
+    textmate = plistlib.load(file)
+global_settings = [
+    item["settings"]
+    for item in textmate["settings"]
+    if not item.get("scope") and "lineDiffAdded" in item.get("settings", {})
+]
+assert len(global_settings) == 1, "Bat must have one global lineDiffAdded setting"
+assert global_settings[0]["lineDiffAdded"] == canonical_green, \
+    "Bat lineDiffAdded must use canonical green"
+
+def scope_settings(scope):
+    for item in textmate["settings"]:
+        scopes = {part.strip() for part in item.get("scope", "").split(",")}
+        if scope in scopes:
+            return item["settings"]
+    raise AssertionError(f"missing TextMate scope {scope}")
+
+assert scope_settings("markup.inserted")["foreground"] == canonical_green, \
+    "Bat markup.inserted foreground must use canonical green"
+
 toml_paths = [
     base / "starship/starship.toml",
     base / "yazi/theme.toml",
@@ -96,6 +140,9 @@ toml_paths = [
     base / "hunk/config.toml",
 ]
 parsed = {path: tomllib.loads(path.read_text()) for path in toml_paths}
+hunk = parsed[base / "hunk/config.toml"]["custom_theme"]
+for key in ["addedSignColor", "badgeAdded", "fileNew", "fileUntracked"]:
+    assert hunk[key] == canonical_green, f"Hunk {key} must use canonical green"
 yazi = parsed[base / "yazi/theme.toml"]
 assert yazi["indicator"]["current"] == {
     "fg": "#000000",
@@ -119,7 +166,7 @@ expected_desktop = {
     "surface": "#000000",
 }
 expected_semantic = {
-    "diffAdded": "#34c759",
+    "diffAdded": canonical_green,
     "diffRemoved": "#ff3b2f",
     "skill": "#ffffff",
 }
@@ -144,10 +191,19 @@ assert_values(live_desktop, expected_desktop, "live Codex Desktop chrome")
 assert_values(live_desktop["semanticColors"], expected_semantic, \
     "live Codex Desktop semantic colors")
 PY
-ruby -e 'require "yaml"; ARGV.each { |p| YAML.safe_load(File.read(p), permitted_classes: [], aliases: false) }' \
-  "$BASE/gh-dash/config.yml" \
+ruby - "$BASE/gh-dash/config.yml" \
   "$BASE/posting/themes/micrographics.yaml" \
-  "$BASE/posting/config.yaml"
+  "$BASE/posting/config.yaml" <<'RUBY'
+require "yaml"
+canonical_green = "#39d97a"
+gh_dash, posting_theme, = ARGV.map do |path|
+  YAML.safe_load(File.read(path), permitted_classes: [], aliases: false)
+end
+raise "gh-dash success must use canonical green" unless
+  gh_dash.dig("theme", "colors", "text", "success") == canonical_green
+raise "Posting success must use canonical green" unless
+  posting_theme["success"] == canonical_green
+RUBY
 
 # Installed loaders and parsers.
 codex --strict-config --version >/dev/null
@@ -160,6 +216,8 @@ ghostty +validate-config --config-file="$TMP/ghostty"
 STARSHIP_CONFIG="$BASE/starship/starship.toml" starship print-config >/dev/null
 ! grep -Eq '\[(DIR|GIT|STA|TME|PY)\]|\$\{count\}' "$BASE/starship/starship.toml"
 fish -n "$BASE/fish/config.fish" "$BASE/fish/palettes/micrographics.fish" "$BASE/fzf/fish/exports.fish" "$BASE/micrographics/activate.fish"
+fish --no-config -c 'source "$argv[1]"; test "$MG_SUCCESS" = "#39d97a"' \
+  "$BASE/fish/palettes/micrographics.fish"
 fish --no-config -c 'source ~/.config/micrographics/activate.fish; test "$BAT_THEME" = Micrographics; printf "x\n" | fzf --filter x >/dev/null'
 YAZI_CONFIG_HOME="$BASE/yazi" yazi --debug > "$TMP/yazi" 2>&1
 grep -q '/yazi/init.lua' "$TMP/yazi"

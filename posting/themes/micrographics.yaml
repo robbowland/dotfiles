@@ -6,7 +6,7 @@ panel: "#000000"
 surface: "#000000"
 warning: "#ff3b2f"
 error: "#ff3b2f"
-success: "#34c759"
+success: "#39d97a"
 accent: "#ffffff"
 dark: true
 
