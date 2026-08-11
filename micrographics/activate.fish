@@ -14,6 +14,8 @@ set -gx ZELLIJ_CONFIG_FILE "$HOME/.config/zellij/profiles/micrographics.kdl"
 set -gx GH_DASH_CONFIG "$HOME/.config/gh-dash/micrographics.yml"
 set -gx POSTING_CONFIG_FILE "$HOME/.config/posting/profiles/micrographics.yaml"
 set -gx SERIE_CONFIG_FILE "$HOME/.config/serie/micrographics.toml"
+set -gx RAINFROG_CONFIG "$HOME/.config/rainfrog"
+set -gx RAINFROG_FAVORITES "$HOME/.config/rainfrog/favorites"
 
 # Keep eza and LS_COLORS monochrome; the file kind remains legible by glyph/name.
 set -gx EZA_COLORS 'di=1;38;2;255;255;255:ex=1;38;2;255;255;255:fi=38;2;255;255;255:ln=38;2;153;153;153:or=1;38;2;255;59;47:pi=38;2;153;153;153:so=38;2;153;153;153:bd=38;2;153;153;153:cd=38;2;153;153;153:ic=38;2;153;153;153:da=38;2;64;64;64:xx=38;2;64;64;64:hd=1;38;2;255;255;255:lp=38;2;64;64;64:ga=38;2;255;255;255:gm=38;2;153;153;153:gd=38;2;255;59;47:gv=38;2;153;153;153:gc=1;38;2;255;59;47'

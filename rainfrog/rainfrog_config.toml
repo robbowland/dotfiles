@@ -1,0 +1,16 @@
+# Rainfrog does not currently expose a theme palette in its config file.
+# Micrographics therefore comes from the terminal palette, while this file keeps
+# Rainfrog's managed config and favorites rooted under ~/.config/rainfrog via
+# RAINFROG_CONFIG and RAINFROG_FAVORITES in micrographics/activate.fish.
+
+[settings]
+mouse_mode = true
+data_compact_columns = true
+data_row_spacer = false
+autocomplete_enabled = true
+autocomplete_debounce_ms = 100
+autocomplete_trigger_len = 1
+autopairs_enabled = true
+
+[db]
+# Add named connections here as needed.

@@ -1,0 +1,15 @@
+theme = "micrographics"
+transparent_background = false
+
+# Keep classifications as TUI badges. tuicr 0.20 only supports a fixed
+# `[TYPE]` forge prefix, so comment bodies carry Rob's preferred **type:** form.
+comment_types = [
+  { id = "suggestion", label = "suggestion", definition = "a proposed improvement", color = "#ffffff" },
+  { id = "suggestion-non-blocking", label = "suggestion(non-blocking)", definition = "an optional improvement that does not block merge", color = "#999999" },
+  { id = "issue", label = "issue", definition = "a problem that should be addressed before merge", color = "#ff3b2f" },
+  { id = "question", label = "question", definition = "a request for clarification", color = "#999999" },
+  { id = "praise", label = "praise", definition = "positive feedback with no action required", color = "#39d97a" },
+]
+
+[forge]
+comment_type_prefix = false

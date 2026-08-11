@@ -16,6 +16,10 @@ grep -q 'Micrographics.tmTheme' "$BASE/yazi/theme.toml"
 grep -q '^theme: micrographics$' "$BASE/posting/config.yaml"
 grep -q '^features = "micrographics"$' "$BASE/delta/config"
 grep -q 'syntax:[[:space:]]*Some("Micrographics")' "$BASE/gitui/theme.ron"
+grep -q '^theme = "micrographics"$' "$BASE/tuicr/config.toml"
+grep -q '^transparent_background = false$' "$BASE/tuicr/config.toml"
+grep -q '^set -gx RAINFROG_CONFIG "$HOME/.config/rainfrog"$' "$BASE/micrographics/activate.fish"
+grep -q '^set -gx RAINFROG_FAVORITES "$HOME/.config/rainfrog/favorites"$' "$BASE/micrographics/activate.fish"
 grep -q '^theme = "custom"$' "$BASE/hunk/config.toml"
 grep -q '^label = "Micrographics"$' "$BASE/hunk/config.toml"
 grep -q '^addedSignColor = "#39d97a"$' "$BASE/hunk/config.toml"
@@ -80,6 +84,7 @@ paths = [
     base / "gh-dash/config.yml",
     base / "serie/config.toml",
     base / "posting/themes/micrographics.yaml",
+    base / "tuicr/themes/micrographics.toml",
     base / "micrographics/codex.config.toml",
 ]
 for path in paths:
@@ -146,6 +151,9 @@ toml_paths = [
     base / "yazi/theme.toml",
     base / "serie/config.toml",
     base / "hunk/config.toml",
+    base / "tuicr/config.toml",
+    base / "tuicr/themes/micrographics.toml",
+    base / "rainfrog/rainfrog_config.toml",
 ]
 parsed = {path: tomllib.loads(path.read_text()) for path in toml_paths}
 hunk = parsed[base / "hunk/config.toml"]["custom_theme"]
@@ -172,6 +180,26 @@ assert yazi["indicator"]["padding"] == {
     "open": " ",
     "close": "",
 }, "Yazi selection must keep one alignment cell without bracket glyphs"
+
+tuicr_config = parsed[base / "tuicr/config.toml"]
+assert tuicr_config["theme"] == "micrographics", "tuicr must select the local Micrographics theme"
+assert tuicr_config["transparent_background"] is False, "tuicr must paint the configured panel background"
+assert tuicr_config["comment_types"][0]["color"] == "#ffffff"
+assert tuicr_config["comment_types"][2]["color"] == "#ff3b2f"
+assert tuicr_config["comment_types"][4]["color"] == canonical_green
+
+tuicr_theme = parsed[base / "tuicr/themes/micrographics.toml"]
+assert tuicr_theme["syntax_theme"] == "../../bat/themes/Micrographics.tmTheme", \
+    "tuicr must reuse the shared Bat TextMate theme"
+assert tuicr_theme["panel_bg"] == "#000000"
+assert tuicr_theme["diff_add"] == canonical_green
+assert tuicr_theme["diff_del"] == "#ff3b2f"
+assert tuicr_theme["mode_bg"] == "#ffffff"
+
+rainfrog = parsed[base / "rainfrog/rainfrog_config.toml"]
+assert rainfrog["settings"]["mouse_mode"] is True
+assert rainfrog["settings"]["autopairs_enabled"] is True
+assert rainfrog["db"] == {}, "rainfrog db block should stay empty until explicit connections are added"
 
 expected_tui = {
     "theme": "micrographics",

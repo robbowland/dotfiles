@@ -1,0 +1,54 @@
+# Micrographics local theme for tuicr.
+# Keep the palette inside the terminal-suite contract and reuse the shared
+# TextMate syntax theme for code and diff token colors.
+panel_bg = "#000000"
+bg_highlight = "#303030"
+fg_primary = "#ffffff"
+fg_secondary = "#999999"
+fg_dim = "#404040"
+
+syntax_theme = "../../bat/themes/Micrographics.tmTheme"
+
+diff_add = "#39d97a"
+diff_add_bg = "#000000"
+diff_del = "#ff3b2f"
+diff_del_bg = "#000000"
+diff_context = "#ffffff"
+diff_hunk_header = "#999999"
+expanded_context_fg = "#404040"
+
+syntax_add_bg = "#000000"
+syntax_del_bg = "#000000"
+
+file_added = "#39d97a"
+file_modified = "#ffffff"
+file_deleted = "#ff3b2f"
+file_renamed = "#999999"
+
+reviewed = "#39d97a"
+pending = "#999999"
+
+comment_note = "#999999"
+comment_suggestion = "#ffffff"
+comment_issue = "#ff3b2f"
+comment_praise = "#39d97a"
+
+border_focused = "#ffffff"
+border_unfocused = "#404040"
+status_bar_bg = "#303030"
+cursor_color = "#ffffff"
+cursor_line_bg = "#303030"
+branch_name = "#999999"
+help_indicator = "#999999"
+
+message_info_fg = "#000000"
+message_info_bg = "#ffffff"
+message_warning_fg = "#000000"
+message_warning_bg = "#999999"
+message_error_fg = "#000000"
+message_error_bg = "#ff3b2f"
+update_badge_fg = "#000000"
+update_badge_bg = "#ffffff"
+
+mode_fg = "#000000"
+mode_bg = "#ffffff"

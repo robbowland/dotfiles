@@ -14,6 +14,8 @@ Micrographics is the default theme across the terminal stack. Fish loads `activa
 - eza and `LS_COLORS`
 - delta, GitUI, Hunk, Serie, and gh-dash Git surfaces
 - Posting API client
+- tuicr code review TUI
+- rainfrog database TUI (via terminal palette; app config stays under `~/.config/rainfrog`)
 - Codex CLI syntax and Desktop dark chrome
 - Pi and Neovim use their separate Micrographics themes
 
@@ -32,6 +34,29 @@ The generated defaults continue to use the repository's existing simple theme pi
 `micrographics/palette.env` supplies the default `PALETTE_*` values. Module templates remain the source of truth for Delta, GitUI, Serie, Starship, Yazi, and Zellij; their `.scripts/gen_theme.sh` wrappers produce both the normal config and any compatibility profile.
 
 `micrographics-shell` and `micrographics-terminal` remain available as compatibility launchers, but normal Fish and Ghostty sessions are already themed.
+
+## tuicr
+
+`tuicr/config.toml` selects the local `micrographics` theme, and `tuicr/themes/micrographics.toml` keeps the full UI palette inside the shared terminal contract. The local theme also reuses the shared Bat TextMate file through:
+
+```toml
+syntax_theme = "../../bat/themes/Micrographics.tmTheme"
+```
+
+so diff/code syntax stays aligned with Bat, GitUI, Yazi previews, and Codex.
+
+## rainfrog
+
+Rainfrog currently supports a managed config file but not a configurable color palette. Micrographics therefore reaches Rainfrog through the terminal palette rather than a Rainfrog-native theme table.
+
+`micrographics/activate.fish` exports:
+
+```fish
+set -gx RAINFROG_CONFIG "$HOME/.config/rainfrog"
+set -gx RAINFROG_FAVORITES "$HOME/.config/rainfrog/favorites"
+```
+
+and the tracked config lives at `rainfrog/rainfrog_config.toml`, so Rainfrog state stays in the dotfiles repo even on macOS where the default would otherwise live under `~/Library/Application Support`.
 
 ## Codex
 
