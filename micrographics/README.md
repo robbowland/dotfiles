@@ -37,7 +37,7 @@ The generated defaults continue to use the repository's existing simple theme pi
 
 ## tuicr
 
-`tuicr/config.toml` selects the local `micrographics` theme, and `tuicr/themes/micrographics.toml` keeps the full UI palette inside the shared terminal contract. The local theme also reuses the shared Bat TextMate file through:
+`tuicr/config.toml` selects the local `micrographics` theme, and `tuicr/themes/micrographics.toml` keeps the full UI palette inside the shared terminal contract. Unlike the rest of the suite's literal-black diff surfaces, tuicr uses very subtle tinted add/remove backgrounds so dense review diffs remain easier to scan while keeping the full green/red sidebars. The local theme also reuses the shared Bat TextMate file through:
 
 ```toml
 syntax_theme = "../../bat/themes/Micrographics.tmTheme"

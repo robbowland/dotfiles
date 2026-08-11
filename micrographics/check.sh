@@ -69,6 +69,7 @@ base = pathlib.Path(sys.argv[1])
 codex_home = pathlib.Path(sys.argv[2])
 canonical_green = "#39d97a"
 shared_allowed = {"#000000", "#ffffff", "#999999", "#404040", canonical_green, "#ff3b2f", "#303030"}
+tuicr_allowed = {"#0b1a12", "#1a0b0a"}
 paths = [
     base / "micrographics/palette.env",
     base / "ghostty/themes/Micrographics",
@@ -89,7 +90,8 @@ paths = [
 ]
 for path in paths:
     colors = {c.lower() for c in re.findall(r"#[0-9a-fA-F]{6}", path.read_text())}
-    unexpected = colors - shared_allowed
+    allowed = shared_allowed | (tuicr_allowed if path == base / "tuicr/themes/micrographics.toml" else set())
+    unexpected = colors - allowed
     if unexpected:
         raise SystemExit(f"{path}: unexpected colors {sorted(unexpected)}")
 
@@ -193,7 +195,11 @@ assert tuicr_theme["syntax_theme"] == "../../bat/themes/Micrographics.tmTheme", 
     "tuicr must reuse the shared Bat TextMate theme"
 assert tuicr_theme["panel_bg"] == "#000000"
 assert tuicr_theme["diff_add"] == canonical_green
+assert tuicr_theme["diff_add_bg"] == "#0b1a12"
 assert tuicr_theme["diff_del"] == "#ff3b2f"
+assert tuicr_theme["diff_del_bg"] == "#1a0b0a"
+assert tuicr_theme["syntax_add_bg"] == "#0b1a12"
+assert tuicr_theme["syntax_del_bg"] == "#1a0b0a"
 assert tuicr_theme["mode_bg"] == "#ffffff"
 
 rainfrog = parsed[base / "rainfrog/rainfrog_config.toml"]
