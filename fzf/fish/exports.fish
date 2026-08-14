@@ -10,7 +10,7 @@ end
 # Micrographics theme
 set -x FZF_DEFAULT_OPTS "
   --style=minimal
-  --color=fg:$PALETTE_WHITE,bg:$PALETTE_BLACK,hl:$PALETTE_GRAY,fg+:$PALETTE_BLACK:bold,bg+:$PALETTE_WHITE,hl+:$PALETTE_BLACK:bold,info:$PALETTE_GRAY_DIM,border:$PALETTE_GRAY_DIM,gutter:$PALETTE_BLACK,prompt:$PALETTE_GRAY,pointer:$PALETTE_BLACK:bold,marker:$PALETTE_BLACK:bold,spinner:$PALETTE_GRAY,header:$PALETTE_GRAY,label:$PALETTE_GRAY_DIM,query:$PALETTE_WHITE
+  --color=fg:$PALETTE_WHITE,bg:$PALETTE_BLACK,hl:$PALETTE_GRAY,fg+:$PALETTE_BLACK:regular,bg+:$PALETTE_WHITE,hl+:$PALETTE_BLACK:regular,info:$PALETTE_GRAY_DIM,border:$PALETTE_GRAY_DIM,gutter:$PALETTE_BLACK,prompt:$PALETTE_GRAY,pointer:$PALETTE_BLACK:bold,marker:$PALETTE_BLACK:bold,spinner:$PALETTE_GRAY,header:$PALETTE_GRAY,label:$PALETTE_GRAY_DIM,query:$PALETTE_WHITE
   --prompt='[FND] '
   --marker='+ '
   --pointer='> '
