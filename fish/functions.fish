@@ -8,6 +8,14 @@ function reload_fish_config
 end
 
 ######################################
+# Review commits not yet pushed to the current branch's upstream.
+######################################
+function tuicr-unpushed
+    set --local upstream (git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}') || return
+    tuicr --revisions "$upstream..HEAD" $argv
+end
+
+######################################
 # Moves prompt to bottom of the terminal window,
 # clearing lines above the prompt if existing.
 ######################################
