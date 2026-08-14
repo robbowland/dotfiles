@@ -8,11 +8,19 @@ function reload_fish_config
 end
 
 ######################################
-# Review commits not yet pushed to the current branch's upstream.
+# Review the current branch as a prospective pull request.
 ######################################
-function tuicr-unpushed
-    set --local upstream (git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}') || return
-    tuicr --revisions "$upstream..HEAD" $argv
+function tuicr-branch --argument-names base
+    if test -z "$base"
+        set --local branch (git symbolic-ref --quiet --short HEAD) || return
+        set base (git config --get "branch.$branch.gh-merge-base")
+        if test -z "$base"
+            set base (git symbolic-ref --quiet --short refs/remotes/origin/HEAD) || return
+        end
+    end
+
+    git rev-parse --verify --quiet "$base^{commit}" >/dev/null || return
+    tuicr --revisions "$base...HEAD"
 end
 
 ######################################
