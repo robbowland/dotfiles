@@ -31,7 +31,10 @@ set -g fish_color_redirection $MG_FAINT
 set -g fish_color_end $MG_FAINT
 set -g fish_color_error $MG_DANGER --bold
 set -g fish_color_param $MG_INK
-set -g fish_color_comment $MG_METADATA --italics
+# Use a named fish color here: fish's generated fzf history widget evals
+# fish_color_comment into command text, and a hex color like #999999 gets parsed
+# as a comment there, breaking Ctrl-R history search.
+set -g fish_color_comment brblack --italics
 set -g fish_color_operator $MG_FAINT
 set -g fish_color_escape $MG_METADATA
 set -g fish_color_status $MG_DANGER
