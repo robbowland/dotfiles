@@ -35,9 +35,9 @@ unset_main  = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_RED}", bold = true }
 unset_alt   = { fg = "${PALETTE_RED}", bg = "${PALETTE_BLACK}" }
 
 [indicator]
-parent  = { fg = "${PALETTE_GRAY_DIM}" }
+parent  = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}", bold = true }
 current = { fg = "${PALETTE_BLACK}", bg = "${PALETTE_WHITE}", bold = true }
-preview = { fg = "${PALETTE_GRAY_DIM}" }
+preview = { bold = true }
 padding = { open = " ", close = "" }
 
 [status]

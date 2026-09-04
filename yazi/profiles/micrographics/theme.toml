@@ -35,9 +35,9 @@ unset_main  = { fg = "#000000", bg = "#ff3b2f", bold = true }
 unset_alt   = { fg = "#ff3b2f", bg = "#000000" }
 
 [indicator]
-parent  = { fg = "#404040" }
+parent  = { fg = "#000000", bg = "#ffffff", bold = true }
 current = { fg = "#000000", bg = "#ffffff", bold = true }
-preview = { fg = "#404040" }
+preview = { bold = true }
 padding = { open = " ", close = "" }
 
 [status]
