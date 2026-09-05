@@ -69,6 +69,6 @@ yabai -m rule --add app="Alfred Preferences" manage=off
 yabai -m config layout bsp
 
 # Start JankyBorders to remove window top shadows
-borders active_color=0xf0000000 inactive_color=0xf0000000 width=2.0 hidpi=on style=round
+borders active_color=0xf0000000 inactive_color=0xf0000000 width=2.0 hidpi=on style=round order=above
 
 echo "yabai configuration loaded.."
