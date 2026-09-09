@@ -132,7 +132,7 @@ theme:
       primary: "#ffffff"
       secondary: "#999999"
       inverted: "#000000"
-      faint: "#404040"
+      faint: "#616161"
       warning: "#ff3b2f"
       success: "#39d97a"
     background:
@@ -140,7 +140,7 @@ theme:
     border:
       primary: "#ffffff"
       secondary: "#999999"
-      faint: "#404040"
+      faint: "#616161"
 pager:
   diff: diffnav
 confirmQuit: false

@@ -68,7 +68,7 @@ import pathlib, plistlib, re, sys, tomllib
 base = pathlib.Path(sys.argv[1])
 codex_home = pathlib.Path(sys.argv[2])
 canonical_green = "#39d97a"
-shared_allowed = {"#000000", "#ffffff", "#999999", "#404040", canonical_green, "#ff3b2f", "#303030"}
+shared_allowed = {"#000000", "#ffffff", "#999999", "#616161", canonical_green, "#ff3b2f", "#303030"}
 tuicr_allowed = {"#0b1a12", "#1a0b0a"}
 paths = [
     base / "micrographics/palette.env",
@@ -100,6 +100,22 @@ palette = dict(
     for line in (base / "micrographics/palette.env").read_text().splitlines()
     if "=" in line
 )
+def ink_over_black(opacity):
+    channel = round(255 * opacity)
+    return f"#{channel:02x}{channel:02x}{channel:02x}"
+
+assert palette.get("PALETTE_WHITE_DIM") == ink_over_black(float(palette["PALETTE_METADATA_OPACITY"]))
+for role in [
+    "PALETTE_GRAY_DIM",
+    "PALETTE_BLUE_DIM",
+    "PALETTE_CYAN_DIM",
+    "PALETTE_YELLOW_DIM",
+    "PALETTE_MAGENTA_DIM",
+    "PALETTE_ORANGE_DIM",
+    "PALETTE_PINK_DIM",
+]:
+    assert palette.get(role) == ink_over_black(float(palette["PALETTE_FAINT_OPACITY"])), \
+        f"{role} must derive from the faint opacity"
 for role in ["PALETTE_GREEN_BRIGHT", "PALETTE_GREEN", "PALETTE_GREEN_DIM"]:
     assert palette.get(role) == canonical_green, f"{role} must use canonical green"
 
