@@ -1,0 +1,10 @@
+# Keep Worktrunk-managed checkouts together instead of adding more dated
+# sibling directories beside each primary repository.
+worktree-path = "{{ repo_path }}/../.worktrees/{{ repo }}/{{ branch | sanitize }}"
+
+[remove]
+# Worktrunk owns checkout cleanup; Git and gh-stack own branch lifecycle.
+delete-branch = false
+
+[switch.picker]
+pager = "delta --paging=never"
