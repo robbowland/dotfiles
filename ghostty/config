@@ -27,3 +27,11 @@ quick-terminal-animation-duration=0.05
 window-vsync=true
 
 shell-integration=fish
+
+# Cmd+D / Cmd+Shift+D go to the terminal program (as kitty-protocol keys);
+# zellij turns them into pane splits. Outside zellij they do nothing.
+keybind = super+d=csi:100;9u
+keybind = super+shift+d=csi:100;10u
+# Ghostty's own splits
+keybind = super+alt+d=new_split:right
+keybind = super+alt+shift+d=new_split:down
