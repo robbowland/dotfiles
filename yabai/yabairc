@@ -53,18 +53,24 @@ yabai -m config --space 3 auto_balance on
 
 # Window Rules (fixed space positions)
 yabai -m rule --add app="^Logseq$" space=1 manage=off
-yabai -m rule --add app="^Zen Browser$" space=2
+yabai -m rule --add app="^Zen( Browser)?$" space=2
 yabai -m rule --add app="^Ghostty$" space=3
 yabai -m rule --add app="^Zed$" space=4
 
-# Float Windows
-yabai -m rule --add app=Finder manage=off
-yabai -m rule --add app="System Settings" manage=off
-yabai -m rule --add app=System\ Preferences manage=off
-yabai -m rule --add app=Surfshark manage=off
-yabai -m rule --add app="^Proton Pass$" manage=off
-yabai -m rule --add app=Calculator manage=off
-yabai -m rule --add app="Alfred Preferences" manage=off
+# Float Windows (names match the app's process name, anchored below)
+float_apps="Finder|System Settings|Calculator|Passwords|Proton Pass|ProtonVPN|Proton Mail Bridge"
+# Menu-bar utilities / launchers
+float_apps="$float_apps|Raycast|Monarch|TabTab|Homerow|Hyperkey|Ice|Caffeine|MiddleClick|Alcove|DockFix|Latest|QLMarkdown|Karabiner-Elements|Karabiner-EventViewer"
+# Small system apps
+float_apps="$float_apps|Activity Monitor|Archive Utility|Clock|Digital Color Meter|Extractor|FaceTime|Installer|iPhone Mirroring|Photo Booth|Screenshot|Software Update|Stickies|System Information|The Unarchiver"
+yabai -m rule --add label=float_apps app="^($float_apps)$" manage=off
+
+# ChatGPT launcher + companion chat popups (titled "ChatGPT"; main window title is empty)
+yabai -m rule --add label=float_chatgpt_popup app="^ChatGPT$" title="^ChatGPT$" manage=off
+
+# Rules only hit new windows; apply float rules to windows already open
+yabai -m rule --apply float_apps
+yabai -m rule --apply float_chatgpt_popup
 
 yabai -m config layout bsp
 
