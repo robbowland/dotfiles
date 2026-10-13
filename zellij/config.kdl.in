@@ -1,9 +1,10 @@
 keybinds {
-    // agentnav: Alt y dashboard, Alt v nvim beside the focused agent, Alt V the same fullscreen (skhd owns Alt a/e)
+    // weaver: Alt y dashboard, Alt v nvim beside the focused agent, Alt V the same fullscreen, Alt 1 the agent that needs you (skhd owns Alt a/e)
     shared_except "locked" {
-        bind "Alt y" { Run "agentnav" "ls" { floating true; close_on_exit true; width "90%"; height "85%"; x "5%"; y "7%"; }; }
-        bind "Alt v" { Run "agentnav" "edit" { floating true; close_on_exit true; }; }
-        bind "Alt V" { Run "agentnav" "edit" "--full" { floating true; close_on_exit true; }; }
+        bind "Alt y" { Run "weaver" "ls" { floating true; close_on_exit true; width "90%"; height "85%"; x "5%"; y "7%"; }; }
+        bind "Alt v" { Run "weaver" "edit" { floating true; close_on_exit true; }; }
+        bind "Alt V" { Run "weaver" "edit" "--full" { floating true; close_on_exit true; }; }
+        bind "Alt 1" { Run "weaver" "next" { floating true; close_on_exit true; }; }
     }
     normal {
         // Unbind to avoid conflicts with neovim jumps
