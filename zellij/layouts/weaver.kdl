@@ -1,7 +1,7 @@
 // The weaver session's layout (`weaver` starts it): home first, thread tabs
-// after it (`weaver new` adds them, each with the thread sidebar), and one
-// status line in place of the tab bar: the current tab's name (a thread's is
-// "<num> <name> · <repo>/<branch>"), weaver's counts and the mode.
+// after it (`weaver new` adds them), and one status line in place of the tab
+// bar: the current tab's name (a thread's is "<num> <name> · <repo>/<branch>")
+// in faint grey, weaver's counts and the mode. White stays for what needs you.
 layout {
     default_tab_template {
         children
@@ -26,14 +26,14 @@ layout {
                 mode_resize "#[fg=#ffffff,bold][SIZE]"
                 mode_move   "#[fg=#ffffff,bold][MOVE]"
 
-                // Only the current tab: the sidebar shows every thread.
+                // Only the current tab: home (Alt y) shows every thread.
                 tab_normal               ""
                 tab_normal_fullscreen    ""
                 tab_normal_sync          ""
                 tab_normal_bell          ""
                 tab_normal_flashing_bell ""
-                tab_active               "#[fg=#ffffff,bold]{name}"
-                tab_active_fullscreen    "#[fg=#ffffff,bold]{name} #[fg=#616161]full"
+                tab_active               "#[fg=#616161]{name}"
+                tab_active_fullscreen    "#[fg=#616161]{name} full"
             }
         }
     }
