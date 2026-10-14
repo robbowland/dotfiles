@@ -20,7 +20,8 @@ Micrographics is the default theme across the terminal stack. Fish loads `activa
 - Claude Code interface (custom theme)
 - Pi and Neovim use their separate Micrographics themes
 
-The shared dark palette uses `#000000` paper and `#ffffff` ink. Metadata and faint scaffolding are ink-derived opacity tiers at `60%` and `38%`; opaque terminal formats receive their resolved `#999999` and `#616161` values. Success and additions use `#39d97a`, danger and deletions use `#ff3b2f`, and `#303030` appears only where a tool cannot safely render pure reverse selection.
+The shared dark palette uses `#000000` paper and `#ffffff` ink. Metadata and faint scaffolding are ink-derived opacity tiers at `60%` and `38%`; opaque terminal formats receive their resolved `#999999` and `#616161` values.
+The Obsidian theme's faint tier is quieter (`0.25` since 2026-08-01); terminals keep `0.38` (`#616161`) on purpose, for legibility at terminal sizes. Success and additions use `#39d97a`, danger and deletions use `#ff3b2f`, and `#303030` appears only where a tool cannot safely render pure reverse selection.
 
 Diff surfaces remain literal black; green and red are signal colors rather than tinted backgrounds. The shared TextMate inserted and deleted scopes explicitly set black backgrounds, suppressing consumer-specific tint fallbacks, including Codex's.
 
