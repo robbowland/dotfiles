@@ -2,7 +2,7 @@ keybinds {
     // weaver: Alt y dashboard, Alt N new thread (a tab with nvim and an agent), Alt v nvim beside the focused agent, Alt V the same fullscreen, Alt 1 the agent that needs you (skhd owns Alt a/e; Claude Code owns Alt o/p/t/w)
     shared_except "locked" {
         bind "Alt y" { Run "weaver" "ls" { floating true; close_on_exit true; borderless true; name "weaver"; width "80%"; height "50%"; x "10%"; y "25%"; }; }
-        bind "Alt N" { Run "weaver" "new" { floating true; close_on_exit true; width "70%"; height "40%"; x "15%"; y "20%"; }; }
+        bind "Alt N" { Run "weaver" "new" { floating true; close_on_exit true; borderless true; name "weaver"; width "96"; height "11"; x "10%"; y "30%"; }; }
         bind "Alt v" { Run "weaver" "edit" { floating true; close_on_exit true; }; }
         bind "Alt V" { Run "weaver" "edit" "--full" { floating true; close_on_exit true; }; }
         bind "Alt 1" { Run "weaver" "next" { floating true; close_on_exit true; }; }
