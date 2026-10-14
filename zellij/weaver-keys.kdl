@@ -1,0 +1,6 @@
+// weaver session: Alt j / Alt k the next / previous tab (the threads in their numbers' order), Alt y home and back
+shared_except "locked" {
+    bind "Alt j" { GoToNextTab; }
+    bind "Alt k" { GoToPreviousTab; }
+    bind "Alt y" { Run "weaver" "go" "home" { floating true; close_on_exit true; borderless true; name "weaver"; width "1"; height "1"; x "0"; y "0"; }; }
+}
