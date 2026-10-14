@@ -17,6 +17,7 @@ Micrographics is the default theme across the terminal stack. Fish loads `activa
 - tuicr code review TUI
 - rainfrog database TUI (via terminal palette; app config stays under `~/.config/rainfrog`)
 - Codex CLI syntax and Desktop dark chrome
+- Claude Code interface (custom theme)
 - Pi and Neovim use their separate Micrographics themes
 
 The shared dark palette uses `#000000` paper and `#ffffff` ink. Metadata and faint scaffolding are ink-derived opacity tiers at `60%` and `38%`; opaque terminal formats receive their resolved `#999999` and `#616161` values. Success and additions use `#39d97a`, danger and deletions use `#ff3b2f`, and `#303030` appears only where a tool cannot safely render pure reverse selection.
@@ -79,3 +80,13 @@ The full Desktop tables live in `micrographics/codex.config.toml`. Merge them ra
 ## Validate
 
 Run `~/.config/micrographics/check.sh`. The check verifies generated-file parity, active selectors, theme formats, installed loaders, and the fixed palette contract.
+
+## Claude Code
+
+`micrographics/claude-theme.json` is a Claude Code custom theme on the `dark-ansi` base, so code and anything it leaves unset follow the Ghostty palette.
+`install-claude.sh` links it to `~/.claude/themes/micrographics.json` (under `CLAUDE_CONFIG_DIR` when set), and `~/.claude/settings.json` selects it with `"theme": "custom:micrographics"`.
+Claude Code reloads the file when it changes.
+
+White marks what needs you: permission prompts, plan mode, warnings and picker selections.
+Hints, the spinner, labels and subagents are `#999999`; borders are `#616161`.
+Claude Code can only colour diffs with backgrounds, so, as in tuicr, added and removed lines get faint tints of the signal colours (`#0b1a12`, `#1a0b0a`) and changed words stronger ones.

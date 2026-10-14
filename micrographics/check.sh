@@ -3,6 +3,7 @@ set -eu
 
 BASE="${XDG_CONFIG_HOME:-$HOME/.config}"
 CODEX_DIR="${CODEX_HOME:-$HOME/.codex}"
+CLAUDE_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT HUP INT TERM
 
@@ -33,6 +34,11 @@ cmp -s "$BASE/yazi/init.lua" "$BASE/yazi/profiles/micrographics/init.lua"
 test -L "$CODEX_DIR/themes/micrographics.tmTheme"
 test "$CODEX_DIR/themes/micrographics.tmTheme" -ef \
   "$BASE/bat/themes/Micrographics.tmTheme"
+"$BASE/micrographics/tests/install-claude.test.sh" >/dev/null
+test -L "$CLAUDE_DIR/themes/micrographics.json"
+test "$CLAUDE_DIR/themes/micrographics.json" -ef \
+  "$BASE/micrographics/claude-theme.json"
+jq -e '.theme == "custom:micrographics"' "$CLAUDE_DIR/settings.json" >/dev/null
 
 # Generated defaults and compatibility profiles must match their templates.
 rendered() {
