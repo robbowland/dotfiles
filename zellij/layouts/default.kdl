@@ -27,11 +27,12 @@ layout {
                 tab_normal "#[fg=#616161][{index}] {name} "
                 tab_active "#[fg=#000000,bg=#ffffff,bold][{index}] {name} "
                 // A tab whose agent rang the bell (needs you, or finished)
-                // stands out in ink until you look at it.
+                // stands out in ink, marked *, until you look at it (● is the
+                // counts' working).
                 tab_normal_bell          "#[fg=#ffffff,bold][{index}] {name}{bell_indicator} "
                 tab_normal_flashing_bell "#[fg=#ffffff,bold][{index}] {name}{bell_indicator} "
-                tab_bell_indicator          " ●"
-                tab_flashing_bell_indicator " ○"
+                tab_bell_indicator          " *"
+                tab_flashing_bell_indicator "  "
             }
         }
     }
