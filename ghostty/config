@@ -28,10 +28,11 @@ window-vsync=true
 
 shell-integration=fish
 
-# Cmd+D / Cmd+Shift+D go to the terminal program (as kitty-protocol keys);
-# zellij turns them into pane splits. Outside zellij they do nothing.
-keybind = super+d=csi:100;9u
-keybind = super+shift+d=csi:100;10u
+# Cmd+D / Cmd+Shift+D go to the terminal program, which weaver's tmux turns
+# into pane splits. Not as kitty-protocol keys (csi:100;9u): tmux reads those
+# as Alt+d, Option+d's own. Outside tmux they do nothing.
+keybind = super+d=csi:100;9~
+keybind = super+shift+d=csi:100;10~
 # Ghostty's own splits
 keybind = super+alt+d=new_split:right
 keybind = super+alt+shift+d=new_split:down
