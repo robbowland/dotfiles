@@ -28,11 +28,11 @@ window-vsync=true
 
 shell-integration=fish
 
-# Cmd+D / Cmd+Shift+D go to the terminal program, which weaver's tmux turns
-# into pane splits. Not as kitty-protocol keys (csi:100;9u): tmux reads those
-# as Alt+d, Option+d's own. Outside tmux they do nothing.
-keybind = super+d=csi:100;9~
-keybind = super+shift+d=csi:100;10~
 # Ghostty's own splits
-keybind = super+alt+d=new_split:right
-keybind = super+alt+shift+d=new_split:down
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
+# Cmd+Alt+D / Cmd+Alt+Shift+D go to the terminal program, which weaver's tmux
+# turns into pane splits. Not as kitty-protocol keys (csi:100;9u): tmux reads
+# those as Alt+d, Option+d's own. Outside tmux they do nothing.
+keybind = super+alt+d=csi:100;9~
+keybind = super+alt+shift+d=csi:100;10~
