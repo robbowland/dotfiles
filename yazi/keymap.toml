@@ -2,3 +2,8 @@
 on = "<Enter>"
 run = "open"
 desc = "Use default open"
+
+[[mgr.prepend_keymap]]
+on = "<Esc>"
+run = "plugin esc"
+desc = "Cancel; in Neovim, close once nothing is left"
