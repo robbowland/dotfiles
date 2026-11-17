@@ -1,3 +1,10 @@
+# skhd runs each command with `$SHELL -c`. The login shell is fish, whose
+# startup costs more than these commands, so the launch agent sets
+# SHELL=/bin/sh; keep commands POSIX. Re-apply after reinstalling the service:
+#   plutil -replace EnvironmentVariables.SHELL -string /bin/sh \
+#     ~/Library/LaunchAgents/com.koekeishiya.skhd.plist
+#   skhd --stop-service && skhd --start-service
+
 # Yabai
 
 # -- Fixed space positions
