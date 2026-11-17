@@ -71,7 +71,11 @@ shift + alt - r : yabai -m space --rotate 90
 
 # -- Rotate on X and Y Axis
 shift + alt - x : yabai -m space --mirror x-axis
-shift + alt - y : yabai -m space --mirror y-axis
+# Rex keeps shift + alt - y: weaver's alt+Y (a thread's own board).
+shift + alt - y [
+    "rex beta" ~
+    *          : yabai -m space --mirror y-axis
+]
 
 # -- Set insertion point for focused container
 shift + lctrl + alt - h : yabai -m window --insert west
