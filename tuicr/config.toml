@@ -1,5 +1,18 @@
 theme = "micrographics"
-transparent_background = false
+transparent_background = true
+# Re-read the diff every half second, so an agent's edits show as it makes them.
+diff_watch_interval_ms = 500
+# q quits, so in weaver's panel q relaunches tuicr and picks up new commits.
+q_quits = true
+# Quiet panel (Rob's tuicr fork adds show_brand, section_style and show_total_stat).
+cursor_line = false
+compact_folders = true
+show_commits = false
+show_brand = false
+section_style = "rule"
+show_total_stat = true
+# 0.28.0-rb1 sorts below 0.28.0, so the update check would always offer upstream.
+no_update_check = true
 
 # Keep classifications as TUI badges. tuicr 0.20 only supports a fixed
 # `[TYPE]` forge prefix, so comment bodies carry Rob's preferred **type:** form.
