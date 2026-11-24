@@ -80,7 +80,7 @@ shift + alt - r : yabai -m space --rotate 90
 shift + alt - x : yabai -m space --mirror x-axis
 # Rex keeps shift + alt - y: weaver's alt+Y (a thread's own board).
 shift + alt - y [
-    "rex beta" ~
+    "rex"      ~
     *          : yabai -m space --mirror y-axis
 ]
 
